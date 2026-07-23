@@ -1,0 +1,48 @@
+---
+import type { CVExperience } from "../../data/cv/types";
+import styles from "../../layouts/CVLayout.module.css";
+
+interface Props {
+    experience: CVExperience;
+}
+
+const { experience } = Astro.props;
+---
+
+<div class={styles.itemContent}>
+    <div class={styles.itemHeading}>
+        <div>
+            <h3 class={styles.itemTitle}>{experience.role}</h3>
+            <p class={styles.itemSubheading}>
+                {
+                    experience.url ? (
+                        <a
+                            class={styles.itemLink}
+                            href={experience.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {experience.company}
+                        </a>
+                    ) : (
+                        experience.company
+                    )
+                }
+            </p>
+        </div>
+        <p class={styles.itemPeriod}>{experience.period}</p>
+    </div>
+
+    <ul class={styles.bulletList}>
+        {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+    </ul>
+
+    {
+        experience.technologies && experience.technologies.length > 0 && (
+            <p class={styles.technologyLine}>
+                <span class={styles.technologyLabel}>Technologies:</span>{" "}
+                {experience.technologies.join(" · ")}
+            </p>
+        )
+    }
+</div>

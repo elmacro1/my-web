@@ -1,0 +1,22 @@
+---
+import styles from "../../layouts/CVLayout.module.css";
+
+interface Props {
+    title: string;
+    className?: string;
+}
+
+const { title, className } = Astro.props;
+const classes = [styles.sectionContent, className].filter(Boolean);
+const headingId = title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+---
+
+<div class:list={classes}>
+    <h2 class={styles.sectionTitle} id={headingId}>{title}</h2>
+    <div class={styles.sectionBody}>
+        <slot />
+    </div>
+</div>

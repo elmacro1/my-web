@@ -1,0 +1,15 @@
+---
+import type { CVSkillGroup } from "../../data/cv/types";
+import styles from "../../layouts/CVLayout.module.css";
+
+interface Props {
+    group: CVSkillGroup;
+}
+
+const { group } = Astro.props;
+---
+
+<p class={styles.skillLine}>
+    <span class={styles.skillCategory}>{group.category}:</span>
+    {group.skills.join(", ")}
+</p>

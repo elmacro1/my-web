@@ -1,0 +1,325 @@
+.browserFrame {
+    min-height: 100vh;
+    padding: 24px;
+    background: #e9ecef;
+    font-size: 10pt;
+    line-height: 1.34;
+}
+
+.page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 12mm;
+    overflow-wrap: anywhere;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgb(24 24 27 / 12%);
+}
+
+.skipLink {
+    position: absolute;
+    z-index: 1;
+    top: 4px;
+    left: 4px;
+    padding: 6px 10px;
+    color: #166534;
+    background: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-150%);
+}
+
+.skipLink:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid #166534;
+    outline-offset: 2px;
+}
+
+.header {
+    padding-bottom: 4mm;
+    border-bottom: 1px solid #a1a1aa;
+}
+
+.identity {
+    display: grid;
+    gap: 1mm;
+}
+
+.name {
+    margin: 0;
+    color: #18181b;
+    font-size: 22pt;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+}
+
+.role {
+    margin: 0;
+    color: #166534;
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.identityMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1mm 4mm;
+    margin-top: 0.5mm;
+    color: #52525b;
+}
+
+.identityMeta p {
+    margin: 0;
+}
+
+.contactList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm 4mm;
+    margin: 2.5mm 0 0;
+    padding: 0;
+    list-style: none;
+    font-style: normal;
+}
+
+.contactList li {
+    min-width: 0;
+}
+
+.contactLink {
+    color: #166534;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.contactLink:hover,
+.contactLink:focus-visible,
+.itemLink:hover,
+.itemLink:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.main {
+    display: grid;
+    gap: 3.4mm;
+    padding-top: 3.4mm;
+}
+
+.section {
+    margin: 0;
+}
+
+.sectionContent {
+    display: grid;
+    gap: 2mm;
+}
+
+.sectionTitle {
+    margin: 0;
+    padding-bottom: 0.8mm;
+    border-bottom: 1px solid #d4d4d8;
+    color: #27272a;
+    font-size: 11pt;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+}
+
+.sectionBody {
+    min-width: 0;
+}
+
+.summary {
+    display: grid;
+    gap: 1.5mm;
+}
+
+.summary p {
+    margin: 0;
+}
+
+.contentList {
+    display: grid;
+    gap: 2.7mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.contentList > li {
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.itemContent {
+    display: grid;
+    gap: 1.2mm;
+}
+
+.itemHeading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 2mm 6mm;
+}
+
+.itemTitle {
+    margin: 0;
+    color: #18181b;
+    font-size: 10.5pt;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.itemSubheading,
+.itemPeriod {
+    margin: 0;
+    color: #52525b;
+}
+
+.itemSubheading {
+    margin-top: 0.4mm;
+    font-weight: 600;
+}
+
+.itemPeriod {
+    white-space: nowrap;
+    font-size: 9.5pt;
+    font-weight: 500;
+    text-align: right;
+}
+
+.itemLink {
+    color: #166534;
+    text-decoration: none;
+}
+
+.bulletList {
+    display: grid;
+    gap: 0.35mm;
+    margin: 0;
+    padding-left: 4.5mm;
+}
+
+.bulletList li {
+    padding-left: 0.6mm;
+}
+
+.technologyLine,
+.projectDescription {
+    margin: 0;
+}
+
+.technologyLine {
+    color: #52525b;
+    font-size: 9.5pt;
+}
+
+.technologyLabel {
+    color: #3f3f46;
+    font-weight: 600;
+}
+
+.projectDescription {
+    color: #27272a;
+}
+
+.compactSection {
+    gap: 1.6mm;
+}
+
+.skillsList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1mm 6mm;
+}
+
+.skillLine {
+    margin: 0;
+}
+
+.skillCategory,
+.languageName {
+    color: #27272a;
+    font-weight: 600;
+}
+
+.languageList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1mm 7mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.languageList li {
+    margin: 0;
+}
+
+@media screen and (width <= 860px) {
+    .browserFrame {
+        padding: 0;
+    }
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+        padding: clamp(24px, 6vw, 48px);
+        box-shadow: none;
+    }
+}
+
+@media screen and (width <= 560px) {
+    .name {
+        font-size: 18pt;
+    }
+
+    .itemHeading {
+        grid-template-columns: 1fr;
+        gap: 0.5mm;
+    }
+
+    .itemPeriod {
+        white-space: normal;
+        text-align: left;
+    }
+
+    .skillsList {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    .browserFrame {
+        min-height: 0;
+        padding: 0;
+        background: #ffffff;
+    }
+
+    .page {
+        width: 210mm;
+        min-height: 0;
+        margin: 0;
+        padding: 10mm 12mm;
+        box-shadow: none;
+    }
+
+    .contactLink,
+    .itemLink {
+        color: #166534;
+    }
+
+    .skipLink {
+        display: none;
+    }
+}

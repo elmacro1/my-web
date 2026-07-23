@@ -1,0 +1,48 @@
+---
+import type { CVProject } from "../../data/cv/types";
+import styles from "../../layouts/CVLayout.module.css";
+
+interface Props {
+    project: CVProject;
+}
+
+const { project } = Astro.props;
+---
+
+<div class={styles.itemContent}>
+    <h3 class={styles.itemTitle}>
+        {
+            project.url ? (
+                <a
+                    class={styles.itemLink}
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {project.name}
+                </a>
+            ) : (
+                project.name
+            )
+        }
+    </h3>
+
+    <p class={styles.projectDescription}>{project.description}</p>
+
+    {
+        project.highlights && project.highlights.length > 0 && (
+            <ul class={styles.bulletList}>
+                {project.highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+        )
+    }
+
+    {
+        project.technologies && project.technologies.length > 0 && (
+            <p class={styles.technologyLine}>
+                <span class={styles.technologyLabel}>Technologies:</span>{" "}
+                {project.technologies.join(" · ")}
+            </p>
+        )
+    }
+</div>

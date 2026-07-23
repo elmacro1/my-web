@@ -1,0 +1,86 @@
+---
+import CVHeader from "../../components/cv/CVHeader.astro";
+import CVSection from "../../components/cv/CVSection.astro";
+import ExperienceItem from "../../components/cv/ExperienceItem.astro";
+import ProjectItem from "../../components/cv/ProjectItem.astro";
+import SkillsGroup from "../../components/cv/SkillsGroup.astro";
+import { cvData } from "../../data/cv/en";
+import CVLayout from "../../layouts/CVLayout.astro";
+import styles from "../../layouts/CVLayout.module.css";
+
+const pageTitle = `${cvData.header.name} — ${cvData.header.role}`;
+const pageDescription = cvData.summary.join(" ");
+---
+
+<CVLayout title={pageTitle} description={pageDescription}>
+    <a class={styles.skipLink} href="#cv-main">Skip to CV content</a>
+
+    <header class={styles.header}>
+        <CVHeader header={cvData.header} />
+    </header>
+
+    <main class={styles.main} id="cv-main">
+        <section class={styles.section} aria-labelledby="professional-summary">
+            <CVSection title="Professional Summary">
+                <div class={styles.summary}>
+                    {cvData.summary.map((paragraph) => <p>{paragraph}</p>)}
+                </div>
+            </CVSection>
+        </section>
+
+        <section class={styles.section} aria-labelledby="professional-experience">
+            <CVSection title="Professional Experience">
+                <ul class={styles.contentList}>
+                    {
+                        cvData.experiences.map((experience) => (
+                            <li>
+                                <article class={styles.item} data-cv-item>
+                                    <ExperienceItem experience={experience} />
+                                </article>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </CVSection>
+        </section>
+
+        <section class={styles.section} aria-labelledby="featured-projects">
+            <CVSection title="Featured Projects">
+                <ul class={styles.contentList}>
+                    {
+                        cvData.projects.map((project) => (
+                            <li>
+                                <article class={styles.item} data-cv-item>
+                                    <ProjectItem project={project} />
+                                </article>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </CVSection>
+        </section>
+
+        <section class={styles.section} aria-labelledby="core-technologies">
+            <CVSection title="Core Technologies" className={styles.compactSection}>
+                <div class={styles.skillsList}>
+                    {cvData.skillGroups.map((group) => <SkillsGroup group={group} />)}
+                </div>
+            </CVSection>
+        </section>
+
+        <section class={styles.section} aria-labelledby="languages">
+            <CVSection title="Languages" className={styles.compactSection}>
+                <ul class={styles.languageList}>
+                    {
+                        cvData.languages.map((language) => (
+                            <li>
+                                <span class={styles.languageName}>{language.name}:</span>{" "}
+                                {language.proficiency}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </CVSection>
+        </section>
+    </main>
+</CVLayout>

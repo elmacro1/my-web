@@ -1,0 +1,41 @@
+---
+import type { CVHeaderData } from "../../data/cv/types";
+import styles from "../../layouts/CVLayout.module.css";
+
+interface Props {
+    header: CVHeaderData;
+}
+
+const { header } = Astro.props;
+---
+
+<div class={styles.identity}>
+    <h1 class={styles.name}>{header.name}</h1>
+    <p class={styles.role}>{header.role}</p>
+    <div class={styles.identityMeta}>
+        <p>{header.specialty}</p>
+        <p>{header.location}</p>
+    </div>
+</div>
+
+<address>
+    <ul class={styles.contactList}>
+        {
+            header.contactLinks.map((link) => (
+                <li>
+                    <a
+                        class={styles.contactLink}
+                        href={link.href}
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http")
+                            ? "noopener noreferrer"
+                            : undefined}
+                        aria-label={link.label}
+                    >
+                        {link.text}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</address>
