@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "export:cv:en": "node scripts/export-cv.mjs en",
+    "export:cv:es": "node scripts/export-cv.mjs es",
     "export:cv": "node scripts/export-cv.mjs",
     "astro": "astro"
   },

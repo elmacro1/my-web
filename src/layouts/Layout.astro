@@ -6,25 +6,105 @@ import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import { SITE_URL, SOCIAL_LINKS } from "../consts";
 
-interface Props {
+interface AlternateLanguage {
     lang: string;
+    href: string;
+}
+
+interface Props {
+    lang: "en" | "es";
     title?: string;
     description?: string;
+    canonicalPath?: string;
     ogImage?: string;
+    ogType?: "website" | "profile";
+    alternates?: AlternateLanguage[];
+    noindex?: boolean;
 }
 
 const {
     lang,
     title = lang === "en"
-        ? "Marco Galván | React Native & Full Stack Developer"
-        : "Marco Galván | Desarrollador React Native y Full Stack",
+        ? "Marco Galván | Software Developer"
+        : "Marco Galván | Desarrollador de Software",
     description = lang === "en"
-        ? "React Native & Full Stack Developer building scalable web and mobile applications with React, Expo, Next.js and TypeScript."
-        : "Desarrollador React Native & Full Stack construyendo aplicaciones web y móviles escalables con React, Expo, Next.js y TypeScript.",
-    ogImage = `${SITE_URL}/og-image.svg`,
+        ? "Software Developer building web, mobile, SaaS, and business software products with TypeScript, React, Next.js, React Native, Node.js, and PostgreSQL."
+        : "Desarrollador de Software especializado en productos web, móviles, SaaS y software para negocios con TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
+    canonicalPath = Astro.url.pathname,
+    ogImage = `${SITE_URL}/og-image.png`,
+    ogType = "profile",
+    alternates = [],
+    noindex = false,
 }: Props = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, SITE_URL).href;
+const canonicalURL = new URL(canonicalPath, SITE_URL).href;
+
+const defaultAlternate = alternates.find(
+    (alternate) => alternate.lang === "x-default",
+);
+
+const personId = `${SITE_URL}/#person`;
+const profilePageId = `${canonicalURL}#profile-page`;
+
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": profilePageId,
+    url: canonicalURL,
+    name: title,
+    headline:
+        lang === "en"
+            ? "Marco Galván — Software Developer"
+            : "Marco Galván — Desarrollador de Software",
+    description,
+    inLanguage: lang,
+    isPartOf: {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: "Marco Galván",
+    },
+    mainEntity: {
+        "@type": "Person",
+        "@id": personId,
+        name: "Marco Galván",
+        url: SITE_URL,
+        image: {
+            "@type": "ImageObject",
+            url: ogImage,
+        },
+        email: "mailto:elmacro11@gmail.com",
+        jobTitle:
+            lang === "en" ? "Software Developer" : "Desarrollador de Software",
+        address: {
+            "@type": "PostalAddress",
+            addressLocality: "Santiago del Estero",
+            addressCountry: "AR",
+        },
+        worksFor: {
+            "@type": "Organization",
+            name: "Dam Squad",
+        },
+        knowsAbout: [
+            "Software Development",
+            "Web Development",
+            "Mobile Application Development",
+            "SaaS",
+            "TypeScript",
+            "React",
+            "Next.js",
+            "React Native",
+            "Node.js",
+            "PostgreSQL",
+            "Software Architecture",
+            "Artificial Intelligence",
+        ],
+        sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.github, SOCIAL_LINKS.x],
+        mainEntityOfPage: {
+            "@id": profilePageId,
+        },
+    },
+};
 ---
 
 <!doctype html>
@@ -32,71 +112,104 @@ const canonicalURL = new URL(Astro.url.pathname, SITE_URL).href;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>{title}</title>
+
         <meta name="description" content={description} />
         <meta name="author" content="Marco Galván" />
-        <meta name="robots" content="index, follow" />
+        <meta
+            name="robots"
+            content={noindex
+                ? "noindex, follow"
+                : "index, follow, max-image-preview:large"}
+        />
         <meta name="theme-color" content="#0a0a0a" />
 
         <link rel="canonical" href={canonicalURL} />
 
+        {
+            alternates.map(({ lang: alternateLang, href }) => (
+                <link
+                    rel="alternate"
+                    hreflang={alternateLang}
+                    href={new URL(href, SITE_URL).href}
+                />
+            ))
+        }
+
+        {
+            !defaultAlternate && alternates.length > 0 && (
+                <link
+                    rel="alternate"
+                    hreflang="x-default"
+                    href={canonicalURL}
+                />
+            )
+        }
+
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={ogType} />
         <meta property="og:url" content={canonicalURL} />
+        <meta property="og:site_name" content="Marco Galván" />
+        <meta
+            property="og:locale"
+            content={lang === "en" ? "en_US" : "es_AR"}
+        />
         <meta property="og:image" content={ogImage} />
+        <meta
+            property="og:image:alt"
+            content={lang === "en"
+                ? "Marco Galván — Software Developer"
+                : "Marco Galván — Desarrollador de Software"}
+        />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+
+        {
+            alternates
+                .filter(({ lang: alternateLang }) =>
+                    ["en", "es"].includes(alternateLang),
+                )
+                .map(({ lang: alternateLang }) => (
+                    <meta
+                        property="og:locale:alternate"
+                        content={alternateLang === "en" ? "en_US" : "es_AR"}
+                    />
+                ))
+        }
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
+        <meta
+            name="twitter:image:alt"
+            content={lang === "en"
+                ? "Marco Galván — Software Developer"
+                : "Marco Galván — Desarrollador de Software"}
+        />
         <meta name="twitter:site" content="@MarcoGal4" />
         <meta name="twitter:creator" content="@MarcoGal4" />
 
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-
-        <link rel="alternate" href="https://mgalvan.dev/" hreflang="en" />
-        <link rel="alternate" href="https://mgalvan.dev/es" hreflang="es" />
-        <link rel="alternate" href="https://mgalvan.dev/" hreflang="x-default" />
-
-        <title>{title}</title>
-
-        <Analytics />
-        <SpeedInsights />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         <script
             type="application/ld+json"
-            set:html={JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "ProfilePage",
-                name: title,
-                description,
-                url: canonicalURL,
-                mainEntity: {
-                    "@type": "Person",
-                    name: "Marco Galván",
-                    url: SITE_URL,
-                    jobTitle:
-                        lang === "en"
-                            ? "React Native & Full Stack Developer"
-                            : "Desarrollador React Native y Full Stack",
-                    worksFor: {
-                        "@type": "Organization",
-                        name: "Freelance",
-                    },
-                    sameAs: [
-                        SOCIAL_LINKS.linkedin,
-                        SOCIAL_LINKS.github,
-                        SOCIAL_LINKS.x,
-                    ],
-                },
-            })}
+            set:html={JSON.stringify(structuredData)}
         />
+
+        <Analytics />
+        <SpeedInsights />
     </head>
+
     <body>
         <slot />
     </body>

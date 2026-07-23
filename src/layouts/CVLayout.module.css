@@ -192,7 +192,9 @@
 }
 
 .itemPeriod {
-    white-space: nowrap;
+    min-width: 0;
+    max-width: 68mm;
+    white-space: normal;
     font-size: 9.5pt;
     font-weight: 500;
     text-align: right;
@@ -290,6 +292,7 @@
     }
 
     .itemPeriod {
+        max-width: none;
         white-space: normal;
         text-align: left;
     }

@@ -5,9 +5,20 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 
 const projectRoot = fileURLToPath(new URL("..", import.meta.url));
-const outputPath = fileURLToPath(
-  new URL("../public/Marco-Galvan-CV-EN-v2.pdf", import.meta.url),
-);
+const targets = Object.freeze({
+  en: {
+    path: "/cv/en",
+    outputPath: fileURLToPath(
+      new URL("../public/Marco-Galvan-CV-EN-v2.pdf", import.meta.url),
+    ),
+  },
+  es: {
+    path: "/cv/es",
+    outputPath: fileURLToPath(
+      new URL("../public/Marco-Galvan-CV-ES-v2.pdf", import.meta.url),
+    ),
+  },
+});
 const retryDelayMs = 250;
 const readinessAttempts = 40;
 
@@ -101,6 +112,18 @@ function runPnpm(args, label) {
   });
 }
 
+function selectTargets(argument) {
+  if (!argument) {
+    return [targets.en, targets.es];
+  }
+
+  if (argument === "en" || argument === "es") {
+    return [targets[argument]];
+  }
+
+  throw new Error(`Unknown CV export target "${argument}". Use en or es.`);
+}
+
 async function waitForPreview(cvUrl) {
   let lastError;
 
@@ -150,9 +173,31 @@ async function waitForStableLayout(page) {
   });
 }
 
+async function exportTarget(baseUrl, target) {
+  const cvUrl = `${baseUrl}${target.path}`;
+  await waitForPreview(cvUrl);
+
+  const page = await browser.newPage();
+  try {
+    await page.goto(cvUrl, { waitUntil: "networkidle" });
+    await waitForStableLayout(page);
+    await page.pdf({
+      path: target.outputPath,
+      format: "A4",
+      printBackground: true,
+      displayHeaderFooter: false,
+      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    });
+    console.log(`Wrote ${target.outputPath}`);
+  } finally {
+    await page.close();
+  }
+}
+
 async function main() {
+  const selectedTargets = selectTargets(process.argv[2]);
   const port = await findAvailablePort();
-  const cvUrl = `http://127.0.0.1:${port}/cv/en`;
+  const baseUrl = `http://127.0.0.1:${port}`;
 
   await runPnpm(["build"], "pnpm build");
 
@@ -166,21 +211,10 @@ async function main() {
     console.error(`pnpm preview failed to start: ${error.message}`);
   });
 
-  await waitForPreview(cvUrl);
-
   browser = await chromium.launch();
-  const page = await browser.newPage();
-  await page.goto(cvUrl);
-  await waitForStableLayout(page);
-  await page.pdf({
-    path: outputPath,
-    format: "A4",
-    printBackground: true,
-    displayHeaderFooter: false,
-    margin: { top: "0", right: "0", bottom: "0", left: "0" },
-  });
-
-  console.log(`Wrote ${outputPath}`);
+  for (const target of selectedTargets) {
+    await exportTarget(baseUrl, target);
+  }
 }
 
 installSignalCleanup("SIGINT");

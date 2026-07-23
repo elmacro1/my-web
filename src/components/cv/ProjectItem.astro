@@ -4,9 +4,10 @@ import styles from "../../layouts/CVLayout.module.css";
 
 interface Props {
     project: CVProject;
+    technologyLabel: string;
 }
 
-const { project } = Astro.props;
+const { project, technologyLabel } = Astro.props;
 ---
 
 <div class={styles.itemContent}>
@@ -40,7 +41,7 @@ const { project } = Astro.props;
     {
         project.technologies && project.technologies.length > 0 && (
             <p class={styles.technologyLine}>
-                <span class={styles.technologyLabel}>Technologies:</span>{" "}
+                <span class={styles.technologyLabel}>{technologyLabel}:</span>{" "}
                 {project.technologies.join(" · ")}
             </p>
         )

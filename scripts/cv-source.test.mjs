@@ -9,9 +9,11 @@ const file = (path) => new URL(path, root);
 test("CV source files and route exist", async () => {
   const paths = [
     "src/pages/cv/en.astro",
+    "src/pages/cv/es.astro",
     "src/layouts/CVLayout.astro",
     "src/data/cv/types.ts",
     "src/data/cv/en.ts",
+    "src/data/cv/es.ts",
     "src/components/cv/CVHeader.astro",
     "src/components/cv/CVSection.astro",
     "src/components/cv/ExperienceItem.astro",
@@ -38,13 +40,16 @@ test("CV route is standalone and data preserves required content", async () => {
   }
   assert.match(data, /September 2025 – June 2026/);
   assert.match(data, /September 2025 – Present/);
-  assert.match(data, /name:\s+"Marco Galván"/);
+  assert.match(data, /name:\s+"Marco Antonio Galván Fernandez"/);
   assert.match(data, /elmacro11@gmail\.com/);
   assert.match(data, /https:\/\/mgalvan\.dev/);
   assert.match(data, /href:\s+"https:\/\/www\.linkedin\.com\/in\/mgalvan26"/);
   assert.doesNotMatch(data, /href:\s+"https:\/\/www\.linkedin\.com\/in\/mgalvan26\//);
   assert.match(data, /SOCIAL_LINKS\.github/);
   assert.doesNotMatch(data, /posdespensa|POS Despensa/i);
+  assert.match(data, /Professional Summary/);
+  assert.match(data, /https:\/\/mgalvan\.dev\/cv\/en/);
+  assert.match(data, /hreflang: "es"/);
 
   const summary = data.match(/summary:\s*\[\s*"([^"]+)"/);
   assert.ok(summary, "English CV must contain a summary paragraph");
@@ -64,9 +69,12 @@ test("CV print contract and export target are explicit", async () => {
   assert.match(layout, /break-inside:\s*avoid/);
   assert.match(exporter, /\bpnpm\s+build\b/);
   assert.match(exporter, /\bpnpm\s+preview\b/);
-  assert.match(exporter, /const\s+cvUrl\s*=\s*[^;\n]*\/cv\/en[^;\n]*;/);
-  assert.match(exporter, /page\.goto\(\s*cvUrl\s*\)/);
+  assert.match(exporter, /\/cv\/en/);
+  assert.match(exporter, /\/cv\/es/);
   assert.match(exporter, /Marco-Galvan-CV-EN-v2\.pdf/);
+  assert.match(exporter, /Marco-Galvan-CV-ES-v2\.pdf/);
   assert.match(exporter, /document\.fonts\.ready/);
+  assert.equal(packageJson.scripts["export:cv:en"], "node scripts/export-cv.mjs en");
+  assert.equal(packageJson.scripts["export:cv:es"], "node scripts/export-cv.mjs es");
   assert.equal(packageJson.scripts["export:cv"], "node scripts/export-cv.mjs");
 });

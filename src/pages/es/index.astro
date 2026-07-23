@@ -11,15 +11,23 @@ import ContactCta from "../../components/contact-cta/contact-cta.astro";
 import dictionary from "../../dictionaries/es.json";
 import styles from "../_index.module.css";
 
-const lang = "es";
-const title = "Marco Galván | Desarrollador React Native y Full Stack";
-const description =
-    "Desarrollador React Native y Full Stack construyendo aplicaciones web y móviles escalables con React, Expo, Next.js y TypeScript.";
+const config = {
+    lang: "es",
+    title: "Marco Galván | Desarrollador de Software",
+    description:
+        "Desarrollador de Software especializado en productos web, móviles, SaaS y software para negocios con TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
+    alternates: [
+        { lang: "en", href: "/" },
+        { lang: "es", href: "/es" },
+        { lang: "x-default", href: "/" },
+    ],
+    canonicalPath: "/es",
+};
 ---
 
-<Layout lang={lang} title={title} description={description}>
+<Layout {...config}>
     <a href="#main" class="skip-link">Saltar al contenido</a>
-    <Header lang={lang} />
+    <Header lang={config.lang} />
     <main id="main" class={styles.main}>
         <div class={styles.content_container}>
             <Hero dictionary={dictionary.hero} />

@@ -39,8 +39,33 @@ export interface CVLanguage {
   proficiency: string;
 }
 
+export interface CVLabels {
+  skipLink: string;
+  summary: string;
+  experience: string;
+  projects: string;
+  skills: string;
+  languages: string;
+  technologies: string;
+}
+
+export interface CVAlternate {
+  hreflang: "en" | "es" | "x-default";
+  href: string;
+}
+
+export interface CVPageMetadata {
+  lang: "en" | "es";
+  title: string;
+  description: string;
+  canonical: string;
+  alternates: CVAlternate[];
+}
+
 export interface CVData {
   header: CVHeaderData;
+  labels: CVLabels;
+  metadata: CVPageMetadata;
   summary: string[];
   experiences: CVExperience[];
   projects: CVProject[];
