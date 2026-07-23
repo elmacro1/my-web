@@ -55,7 +55,8 @@ test("CV print contract and export target are explicit", async () => {
   assert.match(layout, /break-inside:\s*avoid/);
   assert.match(exporter, /\bpnpm\s+build\b/);
   assert.match(exporter, /\bpnpm\s+preview\b/);
-  assert.match(exporter, /\/cv\/en/);
+  assert.match(exporter, /const\s+cvUrl\s*=\s*[^;\n]*\/cv\/en[^;\n]*;/);
+  assert.match(exporter, /page\.goto\(\s*cvUrl\s*\)/);
   assert.match(exporter, /Marco-Galvan-CV-EN-v2\.pdf/);
   assert.match(exporter, /document\.fonts\.ready/);
   assert.equal(packageJson.scripts["export:cv"], "node scripts/export-cv.mjs");
