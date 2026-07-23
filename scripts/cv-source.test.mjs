@@ -38,11 +38,20 @@ test("CV route is standalone and data preserves required content", async () => {
   }
   assert.match(data, /September 2025 – June 2026/);
   assert.match(data, /September 2025 – Present/);
+  assert.match(data, /name:\s+"Marco Galván"/);
   assert.match(data, /elmacro11@gmail\.com/);
   assert.match(data, /https:\/\/mgalvan\.dev/);
-  assert.match(data, /linkedin\.com\/in\/mgalvan26/);
+  assert.match(data, /href:\s+"https:\/\/www\.linkedin\.com\/in\/mgalvan26"/);
+  assert.doesNotMatch(data, /href:\s+"https:\/\/www\.linkedin\.com\/in\/mgalvan26\//);
   assert.match(data, /SOCIAL_LINKS\.github/);
   assert.doesNotMatch(data, /posdespensa|POS Despensa/i);
+
+  const summary = data.match(/summary:\s*\[\s*"([^"]+)"/);
+  assert.ok(summary, "English CV must contain a summary paragraph");
+  assert.ok(
+    summary[1].split(/\s+/).length <= 45,
+    "Professional Summary should stay concise enough for approximately 3–4 lines",
+  );
 });
 
 test("CV print contract and export target are explicit", async () => {

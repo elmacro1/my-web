@@ -3,7 +3,7 @@ import type { CVData } from "./types";
 
 export const cvData: CVData = {
   header: {
-    name: "Marco Antonio Galvan Fernandez",
+    name: "Marco Galván",
     role: "React Native & Full Stack Developer",
     specialty: "React Native / Expo / Next.js / TypeScript",
     location: "Santiago del Estero, Argentina",
@@ -20,7 +20,7 @@ export const cvData: CVData = {
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/in/mgalvan26/",
+        href: "https://www.linkedin.com/in/mgalvan26",
         text: "linkedin.com/in/mgalvan26",
       },
       {
@@ -31,7 +31,7 @@ export const cvData: CVData = {
     ],
   },
   summary: [
-    "React Native & Full Stack Developer building scalable web and mobile applications using React, React Native, Expo, Next.js, TypeScript and Node.js. Experienced delivering SaaS products, insurance platforms, AI-powered applications, internal business systems and customer-facing mobile apps, working with startups, agencies and product teams across the full software development lifecycle. Currently focused on React Native, Expo, modern web applications and product development, with hands-on involvement in architecture, implementation, deployment and continuous improvement.",
+    "React Native & Full Stack Developer building web, mobile and SaaS products with React, React Native, Expo, Next.js, TypeScript and Node.js. Experienced across insurance platforms, AI-powered applications and internal business systems, working with startups, agencies and product teams from architecture through deployment and continuous improvement.",
   ],
   experiences: [
     {
