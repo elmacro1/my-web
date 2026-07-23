@@ -2,9 +2,9 @@
 
 ## Objective
 
-Add a new English CV experience to the existing Astro portfolio at `/cv/en` and generate a matching, text-based PDF at `public/Marco-Galvan-CV-EN.pdf` through Playwright. The new implementation must be visually independent from the portfolio's dark shell while reusing its local Geist Sans font, package manager, existing GitHub URL, and branding context.
+Add a new English CV experience to the existing Astro portfolio at `/cv/en` and generate a matching, text-based PDF at `public/Marco-Galvan-CV-EN-v2.pdf` through Playwright. The new implementation must be visually independent from the portfolio's dark shell while reusing its local Geist Sans font, package manager, existing GitHub URL, and branding context.
 
-The existing PDF remains untouched until the new page has passed build, export, visual, content, link, and text-selectability checks.
+The existing `public/Marco-Galvan-CV-EN.pdf` remains untouched throughout the first export and validation cycle. Only after explicit later approval may the v2 artifact replace it.
 
 ## Context and constraints
 
@@ -17,7 +17,9 @@ The existing PDF remains untouched until the new page has passed build, export, 
 - The CV content must not invent metrics, employers, dates, technologies, achievements, or a public URL for POS Despensa.
 - Capsule Codes must render exactly `September 2025 – June 2026`.
 - Dam Squad must render exactly `September 2025 – Present`.
-- Body text in print must remain approximately 9.5–10pt or larger; legibility takes priority over forcing one page.
+- Body text in print must remain approximately 9.5–10pt or larger; legibility and hierarchy take priority over page count.
+- The Professional Summary is rendered as one concise paragraph of approximately 3–4 lines, without repeating the experience section unnecessarily.
+- A clean two-page A4 result is preferred to compressed one-page output when the complete content needs more room.
 
 ## Architecture
 
@@ -73,7 +75,7 @@ The route owns the section ordering and passes the typed data to these component
 
 ## Visual design
 
-The browser view shows the A4 page centered on a very light neutral canvas so its boundaries are legible on screen. The document itself is white, with a constrained `210mm` width and `297mm` minimum height. Internal padding is generous enough for print margins while keeping the content dense enough to be practical.
+The browser view shows the A4 page centered on a very light neutral canvas so its boundaries are legible on screen. Each printed page is white, with a constrained `210mm` width and `297mm` height. Internal padding is generous enough for print margins while preserving readable body copy. The page wrapper must not use a `297mm` minimum height plus print padding in a way that creates a blank trailing page.
 
 The header creates the strongest hierarchy:
 
@@ -84,7 +86,7 @@ The header creates the strongest hierarchy:
 
 Section headings use uppercase or small-caps-like letter spacing only when it improves scanning, with a subtle rule or accent marker. The accent is used sparingly for section rules or a small header detail; all substantive text remains grayscale. The layout does not use cards, sidebars, progress bars, timelines, charts, tables, or decorative graphics.
 
-Experience and project items keep their title, company/project name, date, and first content block together whenever possible. Date text is visually secondary but remains normal selectable text. Skills are grouped as labeled lines rather than a visual table, preserving ATS parsing and compactness.
+Experience and project items keep their title, company/project name, date, and content together whenever possible. Date text is visually secondary but remains normal selectable text. Skills are grouped as labeled lines rather than a visual table, preserving ATS parsing and compactness. The page flow should place a deliberate section boundary at the top of page two when possible, rather than splitting an experience item across pages.
 
 Responsive behavior applies only to the browser view: on narrow screens the page becomes fluid with reduced outer framing, while print retains the A4 geometry. No animation is used by the CV page, including in print.
 
@@ -101,16 +103,17 @@ The CV stylesheet must include:
 
 It must also set `-webkit-print-color-adjust: exact` and `print-color-adjust: exact` where background or accent colors are intentional. The print document must use explicit black/gray text colors, a white page background, and controlled overflow.
 
-Experience and project blocks use `break-inside: avoid`, `page-break-inside: avoid`, and related section rules where supported. The implementation should first target one A4 page with readable 10pt body copy. If the complete content does not fit without compromising readability, a clean second page is acceptable; clipping, overlapping, or tiny text is not.
+Experience and project blocks use `break-inside: avoid`, `page-break-inside: avoid`, and related section rules where supported. The implementation targets one or two A4 pages with readable 10pt body copy; a clean two-page result is preferred whenever the full content needs more room. Clipping, overlapping, or tiny text is not acceptable.
 
 Add `scripts/export-cv.mjs`. It must:
 
-1. start the existing Astro site locally using the project's pnpm workflow;
-2. wait until `/cv/en` is reachable;
+1. run `pnpm build` using the existing Astro configuration;
+2. start `astro preview` on a local host and wait until `/cv/en` is reachable;
 3. open that URL with Playwright;
 4. wait for `document.fonts.ready` and a stable layout;
 5. call `page.pdf` with A4 output, `printBackground: true`, and no browser header/footer;
-6. write `public/Marco-Galvan-CV-EN.pdf`.
+6. write `public/Marco-Galvan-CV-EN-v2.pdf` without touching the previous CV PDF;
+7. stop the preview server cleanly on success or failure.
 
 The script must cleanly stop the local server on success or failure and use only the project's actual package manager. The required package script is:
 
@@ -136,9 +139,10 @@ Validation is divided into source, build, export, and artifact checks:
 
 ### Export and PDF structure
 
-- Run `pnpm export:cv` after a successful build or local dev startup.
-- Confirm `public/Marco-Galvan-CV-EN.pdf` is newly generated and the prior PDF was not removed before validation.
+- Run `pnpm export:cv`; the script itself must build production output and serve it through `astro preview`.
+- Confirm `public/Marco-Galvan-CV-EN-v2.pdf` is newly generated and `public/Marco-Galvan-CV-EN.pdf` remains byte-for-byte untouched during this cycle.
 - Inspect page count and page dimensions with a PDF parser or `pdfinfo`.
+- Confirm there is no blank trailing page caused by A4 height, padding, overflow, or browser rounding.
 - Extract text and verify that the PDF contains the required headings, both date strings, and the expected contact URLs.
 - Confirm extracted content is normal text rather than an image.
 - Inspect PDF link annotations and confirm the email, website, LinkedIn, and GitHub links are clickable.
@@ -148,7 +152,7 @@ Validation is divided into source, build, export, and artifact checks:
 - Capture `/cv/en` at desktop and narrow viewport sizes.
 - Render the generated PDF page(s) to an image for visual inspection.
 - Check that no block is clipped, no text overlaps, rules remain subtle, the hierarchy is legible, and the accent does not dominate.
-- Confirm the output remains a single clean A4 page when it fits naturally; otherwise confirm the second page begins at a deliberate section boundary.
+- Confirm the output is one or two clean A4 pages, with two pages preferred to compressed text when required for legibility. Confirm page two begins at a deliberate section boundary when possible.
 
 ### Content and ATS review
 
