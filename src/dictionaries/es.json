@@ -1,8 +1,8 @@
 {
   "hero": {
-    "title": "Desarrollador React Native y Full Stack",
-    "subtitle": "Construyo aplicaciones web y móviles escalables con React, Expo, Next.js y TypeScript.",
-    "description": "Desarrollador de software con más de 5 años de experiencia construyendo productos web y móviles en producción para startups, agencias y empresas de distintas industrias.",
+    "title": "Desarrollador de Software",
+    "subtitle": "Construyo productos de software para la web, dispositivos móviles y empresas utilizando TypeScript, React, Next.js y React Native.",
+    "description": "Desarrollador de Software con más de 5 años de experiencia construyendo productos listos para producción para startups, agencias y empresas de distintas industrias.",
     "openToRemote": "Abierto a oportunidades remotas.",
     "resumeUrl": "/Marco-Galvan-CV-ES.pdf",
     "ctaResume": "Ver CV",
@@ -11,9 +11,9 @@
   "about": {
     "title": "Sobre mí",
     "descriptions": [
-      "Desarrollador Full Stack con más de 5 años de experiencia construyendo aplicaciones web y móviles con React, Next.js, React Native, Expo, Node.js y TypeScript.",
-      "Trabajé con startups, agencias y equipos de producto, desarrollando aplicaciones escalables, experiencias móviles, backoffices y productos SaaS para distintas industrias.",
-      "Me gusta participar en todo el ciclo de vida del producto: planificación, arquitectura, desarrollo, despliegue y mejora continua. Mi experiencia incluye aplicaciones web modernas, apps móviles, plataformas administrables con CMS, integraciones con servicios externos y funciones potenciadas con IA."
+      "Desarrollador de Software con más de 5 años de experiencia construyendo aplicaciones web, móviles y plataformas SaaS utilizando TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
+      "Trabajé con startups, agencias y equipos de producto, diseñando y desarrollando soluciones de software durante todo el ciclo de vida del producto: desde la arquitectura y la implementación hasta el despliegue y la mejora continua.",
+      "Disfruto construir software que resuelva problemas reales de negocio. Más allá de escribir código, me interesan el diseño de productos, la arquitectura de software, la experiencia de usuario, las funcionalidades impulsadas por IA y la creación de sistemas fáciles de mantener a medida que evolucionan."
     ],
     "technologiesTitle": "Tecnologías principales",
     "technologies": [
@@ -24,7 +24,7 @@
       "PostgreSQL & Supabase",
       "Strapi & Payload CMS",
       "REST APIs & Integraciones",
-      "Aplicaciones con IA"
+      "Funciones con IA & Automatización"
     ]
   },
   "experience": {
@@ -35,9 +35,9 @@
         "title": "Dam Squad",
         "time": "Septiembre 2025 - Actualidad",
         "descriptions": [
-          "Integro el equipo IT de Dam Squad junto al CTO, desarrollando y manteniendo soluciones a medida para nuestros clientes.",
-          "En Amparo Seguros gestiono todos sus productos digitales: la app móvil de vendedores (React Native) para la carga de solicitudes y gestión de ventas, el backend de la plataforma, y la app interna de emisión de certificados.",
-          "En Red SOS me encargo del desarrollo y mantenimiento de sus sitios web y landings."
+          "Formo parte del equipo IT de Dam Squad junto al CTO, desarrollando y manteniendo soluciones de software a medida para clientes.",
+          "En Amparo Seguros lidero el desarrollo de sus productos digitales, incluyendo una aplicación React Native para productores de seguros, servicios backend y herramientas internas para la emisión de certificados y la operación diaria.",
+          "En Red SOS desarrollo y mantengo sus sitios web institucionales y plataformas digitales."
         ]
       },
       {
@@ -45,8 +45,8 @@
         "title": "Capsule Codes",
         "time": "Septiembre 2025 - Junio 2026",
         "descriptions": [
-          "Desarrollo aplicaciones web y móviles desde cero para clientes de distintos países.",
-          "Estoy trabajando en UR POV, una app móvil de reseñas y listados de negocios para el mercado sudafricano, en una plataforma educativa sobre inversiones y finanzas, y en el SaaS propio de la empresa: una plataforma de gestión para agencias de desarrollo que incluye seguimiento de proyectos, carga de horas, facturación y gestión de tickets estilo Kanban."
+          "Desarrollé aplicaciones web y móviles desde cero para clientes internacionales de distintas industrias.",
+          "Participé en UR POV, una plataforma móvil de reseñas para el mercado sudafricano, una plataforma educativa sobre inversiones y finanzas, y el SaaS propio de la empresa para la gestión de agencias de desarrollo con seguimiento de horas, facturación y flujos de trabajo tipo Kanban."
         ]
       },
       {
@@ -54,9 +54,9 @@
         "title": "Helmcode",
         "time": "Febrero 2025 - Noviembre 2025",
         "descriptions": [
-          "Trabajé en tres productos dentro del ecosistema Helmcode. Desarrollé Andulia, un agente de IA que se conecta a credenciales de AWS y Kubernetes para gestionar infraestructura en la nube mediante lenguaje natural.",
-          "Contribuí al desarrollo de HelmCloud, una plataforma en la nube basada en contenedores para pymes y startups que permite reducir costos de infraestructura hasta un 70% frente a nubes tradicionales.",
-          "También trabajé en Coderun, un SaaS para desplegar y gestionar servicios en contenedores con integración a GitHub, GitLab y soporte para Dockerfiles, sin configuración compleja. Además desarrollé el sitio web institucional de la empresa."
+          "Desarrollé Andulia, un agente de IA capaz de administrar infraestructura en AWS y Kubernetes mediante lenguaje natural.",
+          "Contribuí al desarrollo de HelmCloud, una plataforma cloud basada en contenedores diseñada para reducir los costos de infraestructura de startups y pymes.",
+          "Trabajé en Coderun, una plataforma SaaS para desplegar y administrar servicios en contenedores con integración a GitHub, GitLab y Docker. Además desarrollé el sitio web institucional de la empresa."
         ]
       },
       {
@@ -64,9 +64,9 @@
         "title": "Potentiality Group",
         "time": "Septiembre 2022 - Enero 2025",
         "descriptions": [
-          "Trabajé como staff augmentation asignado a los equipos IT de Iúnigo y San Cristóbal Seguros.",
-          "En Iúnigo desarrollé y mantuve la app móvil de autogestión del asegurado — con funcionalidades de consulta de póliza, asistencia en ruta, denuncia de siniestros, beneficios y pago de cuotas integrado con Mercado Pago — y la web principal con su cotizador online de seguros de auto y la web de caución para cotización y compra de seguros de hogar.",
-          "En San Cristóbal Seguros formé parte del equipo de Marketing IT, donde desarrollamos y mantuvimos el cotizador online de múltiples productos, el portal del productor de seguros con su sistema de autogestión (ventas, comisiones y analíticas), y la implementación de todos estos sistemas para el mercado de Uruguay."
+          "Me desempeñé como Desarrollador de Software dentro de los equipos IT de Iúnigo y San Cristóbal Seguros.",
+          "En Iúnigo desarrollé y mantuve la aplicación móvil para clientes, el sitio web principal, la plataforma de cotización online y distintos productos digitales enfocados en la autogestión.",
+          "En San Cristóbal Seguros participé en el desarrollo del cotizador multiproducto, el portal para productores de seguros y la implementación de estas plataformas para el mercado uruguayo."
         ]
       },
       {
@@ -74,9 +74,9 @@
         "title": "Vippin",
         "time": "Noviembre 2021 - Septiembre 2022",
         "descriptions": [
-          "Desarrollé de principio a fin la web institucional de la Clínica Universitaria Reina Fabiola.",
-          "Construí una API proxy entre Salesforce y el frontend para un cliente de Telefónica España.",
-          "También participé en el desarrollo de una app de turismo para el Ministerio de Turismo de Villa Carlos Paz, Córdoba, con integración a Google Maps y tecnología Beacon para geolocalización en tiempo real de puntos de interés turísticos."
+          "Desarrollé desde cero el sitio web institucional de la Clínica Universitaria Reina Fabiola.",
+          "Construí una API proxy para conectar Salesforce con el frontend en un proyecto para Telefónica España.",
+          "Participé en el desarrollo de una aplicación de turismo para el Ministerio de Turismo de Villa Carlos Paz con integración a Google Maps y geolocalización mediante tecnología Beacon."
         ]
       }
     ]
@@ -88,21 +88,21 @@
         "url": "https://invoice.mgalvan.dev/es",
         "title": "Invoice App",
         "category": "Proyecto propio",
-        "description": "Generador simple de facturas para freelancers, construido con Next.js, TypeScript y generación de PDF. Incluye historial local de facturas y soporte multi-idioma.",
+        "description": "Generador de facturas para freelancers desarrollado con Next.js, TypeScript, generación de PDF y soporte multilenguaje.",
         "tags": ["Next.js", "TypeScript", "PDF", "i18n"]
       },
       {
         "url": "https://amparoseguros.com/",
         "title": "Amparo Seguros",
         "category": "Móvil + Backend",
-        "description": "Ecosistema digital para una empresa de seguros, incluyendo una app móvil React Native para vendedores, backend y herramientas internas para emisión de certificados y operaciones.",
-        "tags": ["React Native", "Expo", "Next.js", "Seguros", "Backend"]
+        "description": "Ecosistema digital para una empresa de seguros que incluye una aplicación React Native, servicios backend y herramientas internas para la operación diaria.",
+        "tags": ["React Native", "Expo", "Next.js", "Backend", "Seguros"]
       },
       {
         "url": "https://helmcode.com/",
-        "title": "Helmcode / Productos en la nube",
-        "category": "Nube / IA",
-        "description": "Participación en productos en la nube con IA, plataformas basadas en contenedores y SaaS para desplegar y gestionar servicios.",
+        "title": "Helmcode Cloud Products",
+        "category": "Cloud & IA",
+        "description": "Desarrollo de herramientas cloud potenciadas con IA, plataformas basadas en contenedores y productos SaaS orientados a mejorar la productividad de desarrolladores.",
         "tags": ["React", "Next.js", "IA", "AWS", "Kubernetes", "SaaS"]
       }
     ]
@@ -113,33 +113,33 @@
       {
         "url": "https://curf.com.ar/",
         "title": "Clínica Universitaria Reina Fabiola",
-        "description": "Web institucional de la Clínica Universitaria Reina Fabiola, con diseño responsive y foco en la experiencia para pacientes."
+        "description": "Desarrollo del sitio web institucional con foco en accesibilidad, diseño responsive y experiencia del paciente."
       },
       {
         "url": "https://iunigo.com.ar/",
         "title": "Iúnigo Web",
-        "description": "Desarrollo y mantenimiento de la web principal de Iúnigo y su cotizador online, una empresa de seguros líder en Argentina, enfocada en brindar una excelente experiencia al usuario."
+        "description": "Desarrollo y mantenimiento del sitio web institucional y de la plataforma de cotización online."
       },
       {
         "url": "https://www.sancristobal.com.ar/institucional/",
         "title": "San Cristóbal Seguros",
-        "description": "Desarrollo y mantenimiento del cotizador online y del portal de productores de seguros en Argentina y Uruguay."
+        "description": "Participación en el desarrollo del cotizador online y del portal para productores de seguros en Argentina y Uruguay."
       },
       {
         "url": "https://www.estudialoai.ai/",
         "title": "Estudialo AI",
-        "description": "Plataforma full stack para estudiantes y docentes con integración a Google Gemini que genera automáticamente exámenes, resúmenes, presentaciones y material de estudio a partir de cualquier contenido."
+        "description": "Plataforma educativa full stack con integración a Google Gemini para generar automáticamente exámenes, resúmenes, presentaciones y material de estudio."
       },
       {
         "url": "https://www.redsos.com.ar/",
         "title": "Red SOS",
-        "description": "Desarrollo de la web institucional de Red SOS, una empresa dedicada a brindar servicios de asistencia y emergencias médicas en Argentina."
+        "description": "Desarrollo y mantenimiento del sitio web institucional y de la presencia digital de la empresa."
       }
     ]
   },
   "contact": {
     "title": "¿Te interesa trabajar conmigo?",
-    "text": "Estoy abierto a oportunidades remotas enfocadas en React Native, Expo, Next.js y desarrollo full stack en JavaScript.",
+    "text": "Estoy abierto a oportunidades remotas donde pueda contribuir al desarrollo de productos de software de alta calidad junto a equipos ambiciosos.",
     "contactLabel": "Contactarme",
     "linkedinLabel": "Ver LinkedIn"
   },

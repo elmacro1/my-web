@@ -1,8 +1,8 @@
 {
   "hero": {
-    "title": "React Native & Full Stack Developer",
-    "subtitle": "Building scalable web and mobile applications with React, Expo, Next.js and TypeScript.",
-    "description": "Full Stack Developer with 5+ years of experience building production-ready web and mobile products for startups, agencies, and companies across different industries.",
+    "title": "Software Developer",
+    "subtitle": "Building software products for the web, mobile, and businesses using TypeScript, React, Next.js and React Native.",
+    "description": "Software Developer with 5+ years of experience building production-ready software products for startups, agencies, and businesses across different industries.",
     "openToRemote": "Open to remote opportunities.",
     "resumeUrl": "/Marco-Galvan-CV-EN.pdf",
     "ctaResume": "View Resume",
@@ -11,11 +11,11 @@
   "about": {
     "title": "About Me",
     "descriptions": [
-      "Full Stack Developer with 5+ years of experience building web and mobile applications using React, Next.js, React Native, Expo, Node.js, and TypeScript.",
-      "Throughout my career, I've worked with startups, agencies, and product teams, developing scalable applications, mobile experiences, back-office platforms, and SaaS products across different industries.",
-      "I enjoy working across the full product lifecycle, from planning and architecture to development, deployment, and continuous improvement. My experience includes building modern web applications, mobile apps, CMS-driven platforms, third-party integrations, and AI-powered features."
+      "Software Developer with 5+ years of experience building web, mobile, and SaaS products using TypeScript, React, Next.js, React Native, Node.js, and PostgreSQL.",
+      "I've worked with startups, agencies, and product teams, designing and developing software across the entire product lifecycle—from architecture and implementation to deployment and continuous improvement.",
+      "I enjoy building software that solves real business problems. Beyond writing code, I'm interested in product thinking, software architecture, user experience, AI-powered features, and creating systems that remain maintainable as they grow."
     ],
-    "technologiesTitle": "Key technologies",
+    "technologiesTitle": "Core Technologies",
     "technologies": [
       "React & Next.js",
       "React Native & Expo",
@@ -24,7 +24,7 @@
       "PostgreSQL & Supabase",
       "Strapi & Payload CMS",
       "REST APIs & Third-Party Integrations",
-      "AI-Powered Applications"
+      "AI Features & Automation"
     ]
   },
   "experience": {
@@ -35,9 +35,9 @@
         "title": "Dam Squad",
         "time": "September 2025 - Present",
         "descriptions": [
-          "I'm part of the Dam Squad IT team alongside the CTO, building and maintaining custom solutions for ongoing clients",
-          "At Amparo Seguros I manage all their digital products: the sales team mobile app (React Native) for policy requests and sales management, the platform backend, and the internal certificate issuance app.",
-          "At Red SOS I handle the development and maintenance of their websites and landing pages."
+          "I'm part of the Dam Squad IT team alongside the CTO, building and maintaining custom software solutions for ongoing clients.",
+          "At Amparo Seguros I lead the development of their digital products, including a React Native app for insurance agents, backend services, and internal tools for certificate issuance and business operations.",
+          "At Red SOS I develop and maintain their institutional websites and digital platforms."
         ]
       },
       {
@@ -45,8 +45,8 @@
         "title": "Capsule Codes",
         "time": "September 2025 - June 2026",
         "descriptions": [
-          "I build web and mobile applications from scratch for clients across different countries.",
-          "I'm currently working on UR POV, a mobile reviews and business listings app for the South African market, on an educational platform focused on investing and personal finance, and on the company's own SaaS product — a project management platform for development agencies featuring time tracking, invoicing, and Kanban-style ticket management."
+          "Built web and mobile products from scratch for international clients across multiple industries.",
+          "Contributed to UR POV, a mobile reviews platform for the South African market, an educational platform focused on investing and personal finance, and the company's SaaS project management platform featuring time tracking, invoicing, and Kanban workflows."
         ]
       },
       {
@@ -54,9 +54,9 @@
         "title": "Helmcode",
         "time": "February 2025 - November 2025",
         "descriptions": [
-          "I worked on three products within the Helmcode ecosystem. I developed Andulia, an AI agent that connects to AWS and Kubernetes credentials to manage cloud infrastructure through natural language.",
-          "I contributed to HelmCloud, a container-based cloud platform for SMBs and startups that reduces infrastructure costs by up to 70% compared to traditional clouds.",
-          "I also worked on Coderun, a SaaS for deploying and managing containerized services with GitHub, GitLab integration and Dockerfile support — no complex configuration needed. I also built the company's institutional website."
+          "Developed Andulia, an AI agent capable of managing AWS and Kubernetes infrastructure through natural language.",
+          "Contributed to HelmCloud, a container-based cloud platform designed to reduce infrastructure costs for startups and SMBs.",
+          "Worked on Coderun, a SaaS platform for deploying and managing containerized services with GitHub, GitLab, and Docker integration. I also developed the company's institutional website."
         ]
       },
       {
@@ -64,9 +64,9 @@
         "title": "Potentiality Group",
         "time": "September 2022 - January 2025",
         "descriptions": [
-          "I worked as staff augmentation assigned to the IT teams of Iúnigo and San Cristóbal Seguros.",
-          "At Iúnigo I developed and maintained the policyholder self-service mobile app — featuring policy status, roadside assistance, claims reporting, benefits, and installment payments integrated with Mercado Pago — as well as the main website with its online car insurance quoting tool and a surety bond platform for home insurance.",
-          "At San Cristóbal Seguros I was part of the Marketing IT team, where we developed and maintained the multi-product online quoting platform, the insurance broker portal with its self-management system (sales, commissions, and analytics), and the rollout of all these systems for the Uruguayan market."
+          "Worked as a Software Developer within the IT teams of Iúnigo and San Cristóbal Seguros.",
+          "At Iúnigo I developed and maintained the customer mobile app, the main website, the online insurance quoting platform, and digital products focused on self-service experiences.",
+          "At San Cristóbal Seguros I contributed to the multi-product quoting platform, the insurance broker portal, and the rollout of these systems for the Uruguayan market."
         ]
       },
       {
@@ -74,9 +74,9 @@
         "title": "Vippin",
         "time": "November 2021 - September 2022",
         "descriptions": [
-          "I developed the institutional website for Clínica Universitaria Reina Fabiola from scratch.",
-          "I built a proxy API between Salesforce and the frontend for a Telefónica España client.",
-          "I also worked on a tourism app for the Ministry of Tourism of Villa Carlos Paz, Córdoba, featuring Google Maps integration and Beacon technology for real-time geolocation of tourist points of interest."
+          "Built the institutional website for Clínica Universitaria Reina Fabiola from scratch.",
+          "Developed a proxy API connecting Salesforce with the frontend for a Telefónica España project.",
+          "Contributed to a tourism application for the Ministry of Tourism of Villa Carlos Paz featuring Google Maps integration and Beacon-based geolocation."
         ]
       }
     ]
@@ -88,21 +88,21 @@
         "url": "https://invoice.mgalvan.dev/en",
         "title": "Invoice App",
         "category": "Side Project",
-        "description": "A simple invoice generator for freelancers, built with Next.js, TypeScript and PDF generation. Includes local invoice history and multilingual support.",
+        "description": "A lightweight invoice generator for freelancers built with Next.js, TypeScript, PDF generation, and multilingual support.",
         "tags": ["Next.js", "TypeScript", "PDF", "i18n"]
       },
       {
         "url": "https://amparoseguros.com/",
         "title": "Amparo Seguros",
         "category": "Mobile + Backend",
-        "description": "Digital insurance ecosystem including a React Native mobile app for agents, backend services, and internal tools for certificate issuance and business operations.",
-        "tags": ["React Native", "Expo", "Next.js", "Insurance", "Backend"]
+        "description": "Complete digital insurance ecosystem including a React Native app, backend services, and internal operational tools.",
+        "tags": ["React Native", "Expo", "Next.js", "Backend", "Insurance"]
       },
       {
         "url": "https://helmcode.com/",
-        "title": "Helmcode / Cloud Products",
-        "category": "Cloud / AI",
-        "description": "Contributed to AI-powered cloud infrastructure tools, container-based platforms and SaaS products for deploying and managing services.",
+        "title": "Helmcode Cloud Products",
+        "category": "Cloud & AI",
+        "description": "Development of AI-powered cloud infrastructure tools, container platforms, and SaaS products focused on developer productivity.",
         "tags": ["React", "Next.js", "AI", "AWS", "Kubernetes", "SaaS"]
       }
     ]
@@ -113,33 +113,33 @@
       {
         "url": "https://curf.com.ar/",
         "title": "Clínica Universitaria Reina Fabiola",
-        "description": "Institutional website for Clínica Universitaria Reina Fabiola, with a responsive design and a focus on the patient experience."
+        "description": "Built the institutional website with a strong focus on accessibility, responsiveness, and patient experience."
       },
       {
         "url": "https://iunigo.com.ar/",
         "title": "Iúnigo Website",
-        "description": "Development and maintenance of Iúnigo's main website and its online quote tool for a leading insurance company in Argentina, focused on delivering an excellent user experience."
+        "description": "Developed and maintained the company's institutional website and online insurance quoting platform."
       },
       {
         "url": "https://www.sancristobal.com.ar/institucional/",
         "title": "San Cristóbal Seguros",
-        "description": "Development and maintenance of the online quote tool and the agents' portal for Argentina and Uruguay."
+        "description": "Contributed to the online quoting platform and broker portal for Argentina and Uruguay."
       },
       {
         "url": "https://www.estudialoai.ai/",
         "title": "Estudialo AI",
-        "description": "Fullstack platform for students and teachers with a Google Gemini integration that automatically generates exams, summaries, slides, and study materials from any content."
+        "description": "Full-stack educational platform using Google Gemini to automatically generate exams, summaries, presentations, and study materials."
       },
       {
         "url": "https://www.redsos.com.ar/",
         "title": "Red SOS",
-        "description": "Development of Red SOS's institutional website, a company providing medical assistance and emergency services in Argentina."
+        "description": "Development and maintenance of the company's institutional website and digital presence."
       }
     ]
   },
   "contact": {
     "title": "Interested in working together?",
-    "text": "I'm open to remote opportunities focused on React Native, Expo, Next.js and Full Stack JavaScript development.",
+    "text": "I'm open to remote opportunities where I can help build high-quality software products alongside ambitious teams.",
     "contactLabel": "Contact Me",
     "linkedinLabel": "View LinkedIn"
   },
