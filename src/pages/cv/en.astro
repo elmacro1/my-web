@@ -32,9 +32,16 @@ const pageDescription = cvData.summary.join(" ");
             <CVSection title="Professional Experience">
                 <ul class={styles.contentList}>
                     {
-                        cvData.experiences.map((experience) => (
+                        cvData.experiences.map((experience, index) => (
                             <li>
-                                <article class={styles.item} data-cv-item>
+                                <article
+                                    class:list={[
+                                        styles.item,
+                                        index === cvData.experiences.length - 1 &&
+                                            styles.printPageStart,
+                                    ]}
+                                    data-cv-item
+                                >
                                     <ExperienceItem experience={experience} />
                                 </article>
                             </li>

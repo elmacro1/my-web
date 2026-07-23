@@ -314,6 +314,12 @@
         box-shadow: none;
     }
 
+    .printPageStart {
+        break-before: page;
+        page-break-before: always;
+        padding-top: 10mm;
+    }
+
     .contactLink,
     .itemLink {
         color: #166534;
