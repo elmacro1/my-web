@@ -31,7 +31,7 @@ export const cvData: CVData = {
     ],
   },
   summary: [
-    "React Native & Full Stack Developer with 5+ years of experience building scalable web and mobile applications using React, React Native, Expo, Next.js, TypeScript and Node.js. Experienced delivering SaaS products, insurance platforms, AI-powered applications, internal business systems and customer-facing mobile apps, working with startups, agencies and product teams across the full software development lifecycle. Currently focused on React Native, Expo, modern web applications and product development, with hands-on involvement in architecture, implementation, deployment and continuous improvement.",
+    "React Native & Full Stack Developer building scalable web and mobile applications using React, React Native, Expo, Next.js, TypeScript and Node.js. Experienced delivering SaaS products, insurance platforms, AI-powered applications, internal business systems and customer-facing mobile apps, working with startups, agencies and product teams across the full software development lifecycle. Currently focused on React Native, Expo, modern web applications and product development, with hands-on involvement in architecture, implementation, deployment and continuous improvement.",
   ],
   experiences: [
     {
