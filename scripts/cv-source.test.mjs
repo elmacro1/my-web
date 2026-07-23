@@ -27,8 +27,15 @@ test("CV route is standalone and data preserves required content", async () => {
   const route = await readFile(file("src/pages/cv/en.astro"), "utf8");
   const data = await readFile(file("src/data/cv/en.ts"), "utf8");
 
-  assert.match(route, /CVLayout/);
+  assert.match(
+    route,
+    /import\s+CVLayout\s+from\s+["']\.\.\/\.\.\/layouts\/CVLayout\.astro["']/,
+  );
+  assert.match(route, /<CVLayout\b[\s\S]*<\/CVLayout>/);
   assert.doesNotMatch(route, /layouts\/Layout/);
+  for (const tag of ["header", "main", "section", "article", "ul", "a"]) {
+    assert.match(route, new RegExp(`<${tag}\\b`));
+  }
   assert.match(data, /September 2025 – June 2026/);
   assert.match(data, /September 2025 – Present/);
   assert.match(data, /elmacro11@gmail\.com/);
@@ -46,8 +53,9 @@ test("CV print contract and export target are explicit", async () => {
   assert.match(layout, /@page\s*\{[\s\S]*size:\s*A4;[\s\S]*margin:\s*0;/);
   assert.match(layout, /-webkit-print-color-adjust:\s*exact/);
   assert.match(layout, /break-inside:\s*avoid/);
-  assert.match(exporter, /pnpm/);
-  assert.match(exporter, /preview/);
+  assert.match(exporter, /\bpnpm\s+build\b/);
+  assert.match(exporter, /\bpnpm\s+preview\b/);
+  assert.match(exporter, /\/cv\/en/);
   assert.match(exporter, /Marco-Galvan-CV-EN-v2\.pdf/);
   assert.match(exporter, /document\.fonts\.ready/);
   assert.equal(packageJson.scripts["export:cv"], "node scripts/export-cv.mjs");
