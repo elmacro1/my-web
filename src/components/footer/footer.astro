@@ -1,18 +1,78 @@
 ---
+import { CONTACT_EMAIL, SOCIAL_LINKS } from "../../consts";
 import type { Dictionary } from "../../models/dictionary.model";
 import styles from "./footer.module.css";
 
 interface Props {
-  dictionary: Dictionary["footer"];
+    lang: "en" | "es";
+    dictionary: Dictionary["footer"];
+    navigation: Dictionary["navigation"];
+    cvUrl: string;
 }
 
-const { dictionary } = Astro.props;
+const { lang, dictionary, navigation, cvUrl } = Astro.props;
+const languageHref = lang === "en" ? "/es/" : "/";
+const languageCode = lang === "en" ? "ES" : "EN";
+const homeHref = lang === "en" ? "/" : "/es/";
+const language = lang === "en" ? "es" : "en";
 const year = new Date().getFullYear();
 ---
 
 <footer class={styles.main_container}>
-  <a href="#inicio" class={styles.name_link}>
-    {dictionary.title}
-  </a>
-  <p>{`Copyright © ${year} Marco Galván. ${dictionary.copyright}`}</p>
+    <div class={styles.content_container}>
+        <a href={homeHref} class={styles.brand}>
+            <span class={styles.name}>{dictionary.title}</span>
+            <span class={styles.role}>{dictionary.role}</span>
+        </a>
+
+        <nav aria-label={dictionary.title}>
+            <ul class={styles.navigation}>
+                <li><a href="#work">{navigation.work}</a></li>
+                <li><a href="#process">{navigation.process}</a></li>
+                <li><a href="#about">{navigation.about}</a></li>
+                <li><a href="#contact">{navigation.contact}</a></li>
+                <li>
+                    <a
+                        href={cvUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {dictionary.resumeLabel}
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class={styles.links}>
+            <a href={CONTACT_EMAIL}>{dictionary.emailLabel}</a>
+            <a
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                LinkedIn
+            </a>
+            <a
+                href={SOCIAL_LINKS.github}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
+            <a href={SOCIAL_LINKS.x} target="_blank" rel="noopener noreferrer">
+                X
+            </a>
+            <a
+                href={languageHref}
+                hreflang={language}
+                aria-label={navigation.languageLabel}
+            >
+                {languageCode}
+            </a>
+        </div>
+
+        <p class={styles.copyright}>
+            Copyright © {year} {dictionary.title}. {dictionary.copyright}
+        </p>
+    </div>
 </footer>

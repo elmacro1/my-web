@@ -8,25 +8,26 @@ interface Props {
 }
 
 const { dictionary } = Astro.props;
-
-const linkedinUrl = SOCIAL_LINKS.linkedin;
-const contactEmail = CONTACT_EMAIL;
+const contactHref = `${CONTACT_EMAIL}?subject=${encodeURIComponent(dictionary.emailSubject)}`;
 ---
 
-<section class={styles.main_container}>
+<section id="contact" class={styles.main_container} aria-labelledby="contact-title">
     <div class={styles.panel}>
-        <h2 class={styles.title}>{dictionary.title}</h2>
+        <p class={styles.kicker}>05</p>
+        <h2 id="contact-title" class={styles.title}>{dictionary.title}</h2>
         <p class={styles.text}>{dictionary.text}</p>
         <div class={styles.button_group}>
-            <a class={styles.primary_button} href={contactEmail}
-                >{dictionary.contactLabel}</a
-            >
+            <a class={styles.primary_button} href={contactHref}>
+                {dictionary.contactLabel}
+            </a>
             <a
                 class={styles.secondary_button}
-                href={linkedinUrl}
+                href={SOCIAL_LINKS.linkedin}
                 target="_blank"
-                rel="noopener noreferrer">{dictionary.linkedinLabel}</a
+                rel="noopener noreferrer"
             >
+                {dictionary.linkedinLabel}
+            </a>
         </div>
     </div>
 </section>

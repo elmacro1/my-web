@@ -44,11 +44,11 @@ export const cvData: CVData = {
     title: "Marco Antonio Galván Fernandez — Software Developer",
     description:
       "Software Developer with nearly five years of experience building web, mobile and SaaS products for startups, agencies and businesses. Experienced across product engineering, software architecture and the full development lifecycle, delivering software that solves real business problems.",
-    canonical: "https://mgalvan.dev/cv/en",
+    canonical: "https://mgalvan.dev/cv/en/",
     alternates: [
-      { hreflang: "en", href: "https://mgalvan.dev/cv/en" },
-      { hreflang: "es", href: "https://mgalvan.dev/cv/es" },
-      { hreflang: "x-default", href: "https://mgalvan.dev/cv/en" },
+      { hreflang: "en", href: "https://mgalvan.dev/cv/en/" },
+      { hreflang: "es", href: "https://mgalvan.dev/cv/es/" },
+      { hreflang: "x-default", href: "https://mgalvan.dev/cv/en/" },
     ],
   },
   summary: [

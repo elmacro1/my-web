@@ -1,0 +1,50 @@
+---
+import { SOCIAL_LINKS } from "../../consts";
+import type { Dictionary } from "../../models/dictionary.model";
+import styles from "./experience-summary.module.css";
+
+interface Props {
+    dictionary: Dictionary["experienceSummary"];
+    cvUrl: string;
+}
+
+const { dictionary, cvUrl } = Astro.props;
+---
+
+<section id="about" class={styles.section} aria-labelledby="about-title">
+    <div class={styles.image_wrapper}>
+        <img
+            src="/profile.jpg"
+            alt="Marco Galván"
+            width="112"
+            height="112"
+            loading="lazy"
+            class={styles.image}
+        />
+    </div>
+
+    <div class={styles.content}>
+        <p class={styles.kicker}>04</p>
+        <h2 id="about-title" class={styles.title}>{dictionary.title}</h2>
+        <p class={styles.description}>{dictionary.text}</p>
+
+        <div class={styles.actions}>
+            <a
+                class={styles.primary_button}
+                href={cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {dictionary.resumeLabel}
+            </a>
+            <a
+                class={styles.secondary_button}
+                href={SOCIAL_LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {dictionary.linkedinLabel}
+            </a>
+        </div>
+    </div>
+</section>

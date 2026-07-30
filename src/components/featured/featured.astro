@@ -4,19 +4,23 @@ import ProductCard from "../product-card/product-card.astro";
 import styles from "./featured.module.css";
 
 interface Props {
-    dictionary: Dictionary["featured"];
+    dictionary: Dictionary["selectedWork"];
 }
 
 const { dictionary } = Astro.props;
 ---
 
-<section class={styles.main_container}>
-    <h2 class={styles.title}>{dictionary.title}</h2>
-    <article class={styles.content_container}>
+<section id="work" class={styles.main_container} aria-labelledby="work-title">
+    <div class={styles.heading}>
+        <p class={styles.kicker}>03</p>
+        <h2 id="work-title" class={styles.title}>{dictionary.title}</h2>
+    </div>
+
+    <div class={styles.content_container}>
         {
             dictionary.items.map((item) => (
                 <ProductCard dictionary={item} />
             ))
         }
-    </article>
+    </div>
 </section>

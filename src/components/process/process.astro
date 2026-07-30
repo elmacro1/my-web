@@ -1,0 +1,31 @@
+---
+import type { Dictionary } from "../../models/dictionary.model";
+import styles from "./process.module.css";
+
+interface Props {
+    dictionary: Dictionary["process"];
+}
+
+const { dictionary } = Astro.props;
+---
+
+<section id="process" class={styles.section} aria-labelledby="process-title">
+    <div class={styles.heading}>
+        <p class={styles.kicker}>02</p>
+        <h2 id="process-title" class={styles.title}>{dictionary.title}</h2>
+    </div>
+
+    <ol class={styles.steps}>
+        {
+            dictionary.steps.map((step) => (
+                <li class={styles.step}>
+                    <span class={styles.number}>{step.number}</span>
+                    <div class={styles.content}>
+                        <h3 class={styles.step_title}>{step.title}</h3>
+                        <p class={styles.description}>{step.description}</p>
+                    </div>
+                </li>
+            ))
+        }
+    </ol>
+</section>

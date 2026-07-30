@@ -1,17 +1,16 @@
 .main {
     width: 100%;
-    display: flex;
-    justify-content: center;
 }
 
 .content_container {
-    width: 1024px;
-    margin: 0 24px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: clamp(5rem, 12vw, 10rem);
+    width: min(calc(100% - 2rem), var(--site-container));
+    margin-inline: auto;
+    padding-block: 0 clamp(5rem, 12vw, 10rem);
 }
 
 .content_container section {
-    margin-bottom: 32px;
+    scroll-margin-top: 6rem;
 }

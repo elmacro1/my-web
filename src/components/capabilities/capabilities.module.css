@@ -1,0 +1,74 @@
+.section {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.heading {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.kicker {
+    color: var(--site-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.title {
+    max-width: 16ch;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+    min-height: 19rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--site-border);
+    border-radius: 1.25rem;
+    background: var(--site-surface);
+}
+
+.card:hover {
+    border-color: var(--site-border-strong);
+}
+
+.number {
+    color: var(--site-accent);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.card_title {
+    font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.description {
+    max-width: 34rem;
+    color: var(--site-text-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+@media (width <= 800px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: 0;
+    }
+}

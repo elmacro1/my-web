@@ -1,45 +1,56 @@
-.main_container {
-    display: flex;
-    justify-content: center;
+.section {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    align-items: start;
+    padding-block: clamp(1.5rem, 4vw, 3rem);
+    border-block: 1px solid var(--site-border);
 }
 
-.panel {
-    display: grid;
-    justify-items: start;
-    gap: 1.25rem;
+.image_wrapper {
+    width: clamp(7rem, 16vw, 10rem);
+    aspect-ratio: 1;
+}
+
+.image {
     width: 100%;
-    padding: clamp(2rem, 6vw, 5rem);
-    border: 1px solid var(--site-border-strong);
-    border-radius: 1.5rem;
-    background: linear-gradient(135deg, var(--site-surface), var(--site-surface-raised));
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.25rem;
+    filter: saturate(0.85);
+}
+
+.content {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 48rem;
 }
 
 .kicker {
     color: var(--site-accent);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
 }
 
 .title {
-    max-width: 15ch;
-    font-size: clamp(2.25rem, 6vw, 5rem);
-    line-height: 0.98;
-    letter-spacing: -0.06em;
+    max-width: 18ch;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
 }
 
-.text {
+.description {
     max-width: 44rem;
     color: var(--site-text-muted);
     font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.55;
 }
 
-.button_group {
+.actions {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 0.5rem;
 }
 
 .primary_button,
@@ -47,10 +58,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.8rem 1.1rem;
-    border-radius: 0.65rem;
-    font-size: 0.95rem;
+    min-height: 2.75rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.6rem;
+    font-size: 0.9rem;
     font-weight: 700;
     text-decoration: none;
     transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
@@ -75,15 +86,9 @@
     border-color: var(--site-accent);
 }
 
-@media (width <= 560px) {
-    .button_group {
-        align-items: stretch;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .primary_button,
-    .secondary_button {
-        width: 100%;
+@media (width <= 680px) {
+    .section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }

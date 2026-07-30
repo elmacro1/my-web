@@ -1,150 +1,117 @@
 {
+  "navigation": {
+    "work": "Trabajo",
+    "process": "Proceso",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "resumeLabel": "Ver CV",
+    "cta": "Hablemos",
+    "languageLabel": "Cambiar a inglés",
+    "menuLabel": "Menú"
+  },
   "hero": {
-    "title": "Desarrollador de Software",
-    "subtitle": "Construyo productos de software para la web, dispositivos móviles y empresas utilizando TypeScript, React, Next.js y React Native.",
-    "description": "Desarrollador de Software con más de 5 años de experiencia construyendo productos listos para producción para startups, agencias y empresas de distintas industrias.",
-    "openToRemote": "Abierto a oportunidades remotas.",
-    "resumeUrl": "/Marco-Galvan-CV-ES.pdf",
-    "ctaResume": "Ver CV",
-    "ctaContact": "Contactarme"
+    "eyebrow": "Marco Galván · Product Builder",
+    "title": "Convierto problemas de negocio en productos y sistemas que funcionan.",
+    "description": "Diseño y construyo productos digitales, automatizaciones e integraciones para founders, pymes y equipos. Me involucro desde entender el problema hasta lanzar y evolucionar la solución.",
+    "primaryCta": "Contame qué estás intentando resolver",
+    "secondaryCta": "Ver mi trabajo"
   },
-  "about": {
-    "title": "Sobre mí",
-    "descriptions": [
-      "Desarrollador de Software con más de 5 años de experiencia construyendo aplicaciones web, móviles y plataformas SaaS utilizando TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
-      "Trabajé con startups, agencias y equipos de producto, diseñando y desarrollando soluciones de software durante todo el ciclo de vida del producto: desde la arquitectura y la implementación hasta el despliegue y la mejora continua.",
-      "Disfruto construir software que resuelva problemas reales de negocio. Más allá de escribir código, me interesan el diseño de productos, la arquitectura de software, la experiencia de usuario, las funcionalidades impulsadas por IA y la creación de sistemas fáciles de mantener a medida que evolucionan."
-    ],
-    "technologiesTitle": "Tecnologías principales",
-    "technologies": [
-      "React & Next.js",
-      "React Native & Expo",
-      "TypeScript & JavaScript",
-      "Node.js",
-      "PostgreSQL & Supabase",
-      "Strapi & Payload CMS",
-      "REST APIs & Integraciones",
-      "Funciones con IA & Automatización"
-    ]
-  },
-  "experience": {
-    "title": "Experiencia",
-    "experiences": [
+  "capabilities": {
+    "title": "Cómo puedo ayudarte",
+    "items": [
       {
-        "url": "https://www.damsquad.com",
-        "title": "Dam Squad",
-        "time": "Septiembre 2025 - Actualidad",
-        "descriptions": [
-          "Formo parte del equipo IT de Dam Squad junto al CTO, desarrollando y manteniendo soluciones de software a medida para clientes.",
-          "En Amparo Seguros lidero el desarrollo de sus productos digitales, incluyendo una aplicación React Native para productores de seguros, servicios backend y herramientas internas para la emisión de certificados y la operación diaria.",
-          "En Red SOS desarrollo y mantengo sus sitios web institucionales y plataformas digitales."
-        ]
+        "title": "Crear un producto",
+        "description": "Transformo una idea, una oportunidad o un problema de negocio en un producto digital listo para validar y evolucionar. Puede ser una aplicación web, mobile, un SaaS o una herramienta interna."
       },
       {
-        "url": "https://www.capsulecodes.com/",
-        "title": "Capsule Codes",
-        "time": "Septiembre 2025 - Junio 2026",
-        "descriptions": [
-          "Desarrollé aplicaciones web y móviles desde cero para clientes internacionales de distintas industrias.",
-          "Participé en UR POV, una plataforma móvil de reseñas para el mercado sudafricano, una plataforma educativa sobre inversiones y finanzas, y el SaaS propio de la empresa para la gestión de agencias de desarrollo con seguimiento de horas, facturación y flujos de trabajo tipo Kanban."
-        ]
+        "title": "Automatizar una operación",
+        "description": "Analizo procesos manuales y tareas repetitivas para diseñar automatizaciones, workflows y soluciones con IA que reduzcan trabajo operativo y errores."
       },
       {
-        "url": "https://helmcode.com/",
-        "title": "Helmcode",
-        "time": "Febrero 2025 - Noviembre 2025",
-        "descriptions": [
-          "Desarrollé Andulia, un agente de IA capaz de administrar infraestructura en AWS y Kubernetes mediante lenguaje natural.",
-          "Contribuí al desarrollo de HelmCloud, una plataforma cloud basada en contenedores diseñada para reducir los costos de infraestructura de startups y pymes.",
-          "Trabajé en Coderun, una plataforma SaaS para desplegar y administrar servicios en contenedores con integración a GitHub, GitLab y Docker. Además desarrollé el sitio web institucional de la empresa."
-        ]
-      },
-      {
-        "url": "https://potentialitygroup.com/",
-        "title": "Potentiality Group",
-        "time": "Septiembre 2022 - Enero 2025",
-        "descriptions": [
-          "Me desempeñé como Desarrollador de Software dentro de los equipos IT de Iúnigo y San Cristóbal Seguros.",
-          "En Iúnigo desarrollé y mantuve la aplicación móvil para clientes, el sitio web principal, la plataforma de cotización online y distintos productos digitales enfocados en la autogestión.",
-          "En San Cristóbal Seguros participé en el desarrollo del cotizador multiproducto, el portal para productores de seguros y la implementación de estas plataformas para el mercado uruguayo."
-        ]
-      },
-      {
-        "url": "https://www.vippinn.com/",
-        "title": "Vippin",
-        "time": "Noviembre 2021 - Septiembre 2022",
-        "descriptions": [
-          "Desarrollé desde cero el sitio web institucional de la Clínica Universitaria Reina Fabiola.",
-          "Construí una API proxy para conectar Salesforce con el frontend en un proyecto para Telefónica España.",
-          "Participé en el desarrollo de una aplicación de turismo para el Ministerio de Turismo de Villa Carlos Paz con integración a Google Maps y geolocalización mediante tecnología Beacon."
-        ]
+        "title": "Integrar o evolucionar sistemas",
+        "description": "Conecto herramientas existentes, desarrollo nuevas funcionalidades y modernizo productos que necesitan crecer sin perder estabilidad ni claridad."
       }
     ]
   },
-  "featured": {
-    "title": "Proyectos Destacados",
+  "process": {
+    "title": "Cómo trabajo",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Entender",
+        "description": "Conozco el negocio, sus usuarios, la operación actual, las restricciones y el resultado que se busca alcanzar."
+      },
+      {
+        "number": "02",
+        "title": "Definir",
+        "description": "Identifico el problema prioritario, cuestiono supuestos y delimito qué vale la pena resolver primero."
+      },
+      {
+        "number": "03",
+        "title": "Diseñar",
+        "description": "Evalúo alternativas y defino la solución, el alcance y la arquitectura que mejor se adaptan al contexto."
+      },
+      {
+        "number": "04",
+        "title": "Construir",
+        "description": "Convierto las decisiones en entregas funcionales que puedan revisarse y validarse durante el proceso."
+      },
+      {
+        "number": "05",
+        "title": "Evolucionar",
+        "description": "Observo el uso real, incorporo aprendizajes y decido junto al equipo cuáles son los siguientes pasos."
+      }
+    ]
+  },
+  "selectedWork": {
+    "title": "Trabajo seleccionado",
     "items": [
       {
-        "url": "https://invoice.mgalvan.dev/es",
-        "title": "Invoice App",
-        "category": "Proyecto propio",
-        "description": "Generador de facturas para freelancers desarrollado con Next.js, TypeScript, generación de PDF y soporte multilenguaje.",
-        "tags": ["Next.js", "TypeScript", "PDF", "i18n"]
+        "name": "POS para comercios",
+        "category": "Producto propio · Product design & development",
+        "title": "Un sistema de gestión pensado desde la operación diaria de un comercio real.",
+        "description": "Diseñé y construí un POS multi-tenant para centralizar ventas, stock, clientes, cuentas corrientes, caja, egresos, compras y proveedores. El producto se está preparando para validarse en una operación real antes de evolucionar hacia un SaaS.",
+        "role": "Discovery, definición del MVP, diseño de producto, arquitectura y desarrollo full-stack.",
+        "tags": []
       },
       {
         "url": "https://amparoseguros.com/",
-        "title": "Amparo Seguros",
-        "category": "Móvil + Backend",
-        "description": "Ecosistema digital para una empresa de seguros que incluye una aplicación React Native, servicios backend y herramientas internas para la operación diaria.",
-        "tags": ["React Native", "Expo", "Next.js", "Backend", "Seguros"]
+        "name": "Amparo Seguros",
+        "category": "Producto, automatización e integraciones",
+        "title": "Evolución de un ecosistema digital conectado con procesos reales de seguros.",
+        "description": "Trabajo en productos mobile, servicios backend, herramientas internas, integraciones y automatizaciones que conectan la experiencia de productores y clientes con la operación de la empresa.",
+        "role": "Decisiones de producto, arquitectura, desarrollo e integración de sistemas.",
+        "tags": ["React Native", "Next.js", "Payload CMS"]
       },
       {
         "url": "https://helmcode.com/",
-        "title": "Helmcode Cloud Products",
-        "category": "Cloud & IA",
-        "description": "Desarrollo de herramientas cloud potenciadas con IA, plataformas basadas en contenedores y productos SaaS orientados a mejorar la productividad de desarrolladores.",
+        "name": "Helmcode Cloud Products",
+        "category": "SaaS y evolución de producto",
+        "title": "Productos cloud para simplificar infraestructura y productividad de equipos.",
+        "description": "Participé en Andulia, HelmCloud y Coderun: productos y servicios para gestionar infraestructura, desplegar servicios contenedorizados y mejorar la productividad de equipos de desarrollo.",
+        "role": "Arquitectura, desarrollo full-stack y evolución de producto.",
         "tags": ["React", "Next.js", "IA", "AWS", "Kubernetes", "SaaS"]
       }
     ]
   },
-  "projects": {
-    "title": "Más proyectos",
-    "projects": [
-      {
-        "url": "https://curf.com.ar/",
-        "title": "Clínica Universitaria Reina Fabiola",
-        "description": "Desarrollo del sitio web institucional con foco en accesibilidad, diseño responsive y experiencia del paciente."
-      },
-      {
-        "url": "https://iunigo.com.ar/",
-        "title": "Iúnigo Web",
-        "description": "Desarrollo y mantenimiento del sitio web institucional y de la plataforma de cotización online."
-      },
-      {
-        "url": "https://www.sancristobal.com.ar/institucional/",
-        "title": "San Cristóbal Seguros",
-        "description": "Participación en el desarrollo del cotizador online y del portal para productores de seguros en Argentina y Uruguay."
-      },
-      {
-        "url": "https://www.estudialoai.ai/",
-        "title": "Estudialo AI",
-        "description": "Plataforma educativa full stack con integración a Google Gemini para generar automáticamente exámenes, resúmenes, presentaciones y material de estudio."
-      },
-      {
-        "url": "https://www.redsos.com.ar/",
-        "title": "Red SOS",
-        "description": "Desarrollo y mantenimiento del sitio web institucional y de la presencia digital de la empresa."
-      }
-    ]
-  },
-  "contact": {
-    "title": "¿Te interesa trabajar conmigo?",
-    "text": "Estoy abierto a oportunidades remotas donde pueda contribuir al desarrollo de productos de software de alta calidad junto a equipos ambiciosos.",
-    "contactLabel": "Contactarme",
+  "experienceSummary": {
+    "title": "Experiencia construyendo productos reales",
+    "text": "Durante casi cinco años trabajé en productos web, mobile y SaaS para empresas y equipos de seguros, tecnología, educación y servicios digitales. Actualmente formo parte de Dam Squad, donde participo en la evolución de productos, integraciones y automatizaciones utilizadas en operaciones reales.",
+    "resumeLabel": "Ver CV",
     "linkedinLabel": "Ver LinkedIn"
   },
+  "contact": {
+    "title": "¿Qué estás intentando resolver?",
+    "text": "Puede ser una idea de producto, un proceso manual, una integración pendiente o un sistema que necesita evolucionar. El primer paso es entender el contexto y decidir qué solución tiene más sentido.",
+    "contactLabel": "Contame sobre tu proyecto",
+    "linkedinLabel": "Conectemos en LinkedIn",
+    "emailSubject": "Proyecto o problema de negocio"
+  },
   "footer": {
-    "title": "Desarrollado por Marco 😎",
+    "title": "Marco Galván",
+    "role": "Product Builder",
+    "emailLabel": "Email",
+    "resumeLabel": "Ver CV",
     "copyright": "Todos los derechos reservados."
   }
 }

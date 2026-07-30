@@ -1,52 +1,27 @@
 ---
 import type { Dictionary } from "../../models/dictionary.model";
-import { CONTACT_EMAIL } from "../../consts";
 import styles from "./hero.module.css";
 
 interface Props {
     dictionary: Dictionary["hero"];
 }
 
-const { dictionary }: Props = Astro.props;
-
-const resumeUrl = dictionary.resumeUrl;
-const contactEmail = CONTACT_EMAIL;
+const { dictionary } = Astro.props;
 ---
 
-<section class={styles.main_container} id="inicio">
+<section class={styles.main_container} aria-labelledby="hero-title">
     <article class={styles.content_container}>
-        <div class={styles.image_container}>
-            <img
-                src="/profile.jpg"
-                alt="Marco Galván"
-                class={styles.profile_photo}
-                width="200"
-                height="200"
-                loading="eager"
-                fetchpriority="high"
-            />
-            <div class={styles.text_container}>
-                <h1 class={styles.title}>{dictionary.title}</h1>
-                <p class={styles.subtitle}>{dictionary.subtitle}</p>
-                <p class={styles.description}>{dictionary.description}</p>
+        <p class={styles.eyebrow}>{dictionary.eyebrow}</p>
+        <h1 id="hero-title" class={styles.title}>{dictionary.title}</h1>
+        <p class={styles.description}>{dictionary.description}</p>
 
-                <span class={styles.availability}>
-                    <span class={styles.availability_dot}></span>
-                    {dictionary.openToRemote}
-                </span>
-
-                <div class={styles.button_group}>
-                    <a
-                        class={styles.primary_button}
-                        href={resumeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer">{dictionary.ctaResume}</a
-                    >
-                    <a class={styles.secondary_button} href={contactEmail}
-                        >{dictionary.ctaContact}</a
-                    >
-                </div>
-            </div>
+        <div class={styles.button_group}>
+            <a class={styles.primary_button} href="#contact">
+                {dictionary.primaryCta}
+            </a>
+            <a class={styles.secondary_button} href="#work">
+                {dictionary.secondaryCta}
+            </a>
         </div>
     </article>
 </section>

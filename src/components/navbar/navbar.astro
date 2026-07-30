@@ -1,65 +1,44 @@
 ---
-import { SOCIAL_LINKS } from "../../consts";
+import type { Dictionary } from "../../models/dictionary.model";
 import styles from "./navbar.module.css";
 
 interface Props {
-  lang: string;
+    lang: "en" | "es";
+    dictionary: Dictionary["navigation"];
+    cvUrl: string;
 }
 
-const { lang } = Astro.props;
+const { lang, dictionary, cvUrl } = Astro.props;
+const languageHref = lang === "en" ? "/es/" : "/";
+const languageCode = lang === "en" ? "ES" : "EN";
+const language = lang === "en" ? "es" : "en";
 ---
 
-<nav class={styles.main_container} aria-label="Social and language">
-  <div class={styles.links_container}>
-    <a
-      href={SOCIAL_LINKS.x}
-      target="_blank"
-      rel="noopener noreferrer"
-      class={styles.links}
-    >
-      <img
-        src="/logos/x_dark.svg"
-        alt="X (Twitter)"
-        width={16}
-        height={16}
-        class={styles.image}
-      />
-    </a>
-    <a
-      href={SOCIAL_LINKS.linkedin}
-      target="_blank"
-      rel="noopener noreferrer"
-      class={styles.links}
-    >
-      <img
-        src="/logos/linkedin.svg"
-        alt="LinkedIn"
-        width={16}
-        height={16}
-        class={styles.image}
-      />
-    </a>
-    <a
-      href={SOCIAL_LINKS.github}
-      target="_blank"
-      rel="noopener noreferrer"
-      class={styles.links}
-    >
-      <img
-        src="/logos/github-dark.svg"
-        alt="GitHub"
-        width={16}
-        height={16}
-        class={styles.image}
-      />
-    </a>
-    <a
-      href={lang === "en" ? "/es" : "/"}
-      hreflang={lang === "en" ? "es" : "en"}
-      aria-label={lang === "en" ? "Cambiar a español" : "Switch to English"}
-      class={styles.lang_button}
-    >
-      {lang === "en" ? "ES" : "EN"}
-    </a>
-  </div>
+<nav class={styles.main_container} aria-label={dictionary.menuLabel}>
+    <details class={styles.menu} open>
+        <summary class={styles.menu_toggle}>{dictionary.menuLabel}</summary>
+        <div class={styles.links_container}>
+            <a class={styles.link} href="#work">{dictionary.work}</a>
+            <a class={styles.link} href="#process">{dictionary.process}</a>
+            <a class={styles.link} href="#about">{dictionary.about}</a>
+            <a class={styles.link} href="#contact">{dictionary.contact}</a>
+            <a
+                class={styles.resume_link}
+                href={cvUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {dictionary.resumeLabel}
+            </a>
+            <a
+                class={styles.language_link}
+                href={languageHref}
+                hreflang={language}
+                aria-label={dictionary.languageLabel}
+            >
+                {languageCode}
+            </a>
+            <a class={styles.cta_link} href="#contact">{dictionary.cta}</a>
+        </div>
+    </details>
 </nav>

@@ -1,150 +1,117 @@
 {
+  "navigation": {
+    "work": "Work",
+    "process": "Process",
+    "about": "About",
+    "contact": "Contact",
+    "resumeLabel": "View CV",
+    "cta": "Start a conversation",
+    "languageLabel": "Switch to Spanish",
+    "menuLabel": "Menu"
+  },
   "hero": {
-    "title": "Software Developer",
-    "subtitle": "Building software products for the web, mobile, and businesses using TypeScript, React, Next.js and React Native.",
-    "description": "Software Developer with 5+ years of experience building production-ready software products for startups, agencies, and businesses across different industries.",
-    "openToRemote": "Open to remote opportunities.",
-    "resumeUrl": "/Marco-Galvan-CV-EN.pdf",
-    "ctaResume": "View Resume",
-    "ctaContact": "Contact Me"
+    "eyebrow": "Marco Galván · Product Builder",
+    "title": "I turn business problems into products and systems that work.",
+    "description": "I design and build digital products, automations, and integrations for founders, small businesses, and teams. I get involved from understanding the problem through launching and evolving the solution.",
+    "primaryCta": "Tell me what you're trying to solve",
+    "secondaryCta": "See my work"
   },
-  "about": {
-    "title": "About Me",
-    "descriptions": [
-      "Software Developer with 5+ years of experience building web, mobile, and SaaS products using TypeScript, React, Next.js, React Native, Node.js, and PostgreSQL.",
-      "I've worked with startups, agencies, and product teams, designing and developing software across the entire product lifecycle—from architecture and implementation to deployment and continuous improvement.",
-      "I enjoy building software that solves real business problems. Beyond writing code, I'm interested in product thinking, software architecture, user experience, AI-powered features, and creating systems that remain maintainable as they grow."
-    ],
-    "technologiesTitle": "Core Technologies",
-    "technologies": [
-      "React & Next.js",
-      "React Native & Expo",
-      "TypeScript & JavaScript",
-      "Node.js",
-      "PostgreSQL & Supabase",
-      "Strapi & Payload CMS",
-      "REST APIs & Third-Party Integrations",
-      "AI Features & Automation"
-    ]
-  },
-  "experience": {
-    "title": "Experience",
-    "experiences": [
+  "capabilities": {
+    "title": "How I can help",
+    "items": [
       {
-        "url": "https://www.damsquad.com",
-        "title": "Dam Squad",
-        "time": "September 2025 - Present",
-        "descriptions": [
-          "I'm part of the Dam Squad IT team alongside the CTO, building and maintaining custom software solutions for ongoing clients.",
-          "At Amparo Seguros I lead the development of their digital products, including a React Native app for insurance agents, backend services, and internal tools for certificate issuance and business operations.",
-          "At Red SOS I develop and maintain their institutional websites and digital platforms."
-        ]
+        "title": "Build a product",
+        "description": "I turn an idea, opportunity, or business problem into a digital product ready to validate and evolve. It may be a web app, mobile product, SaaS, or internal tool."
       },
       {
-        "url": "https://www.capsulecodes.com/",
-        "title": "Capsule Codes",
-        "time": "September 2025 - June 2026",
-        "descriptions": [
-          "Built web and mobile products from scratch for international clients across multiple industries.",
-          "Contributed to UR POV, a mobile reviews platform for the South African market, an educational platform focused on investing and personal finance, and the company's SaaS project management platform featuring time tracking, invoicing, and Kanban workflows."
-        ]
+        "title": "Automate an operation",
+        "description": "I analyze manual processes and repetitive work to design automations, workflows, and AI solutions that reduce operational effort and errors."
       },
       {
-        "url": "https://helmcode.com/",
-        "title": "Helmcode",
-        "time": "February 2025 - November 2025",
-        "descriptions": [
-          "Developed Andulia, an AI agent capable of managing AWS and Kubernetes infrastructure through natural language.",
-          "Contributed to HelmCloud, a container-based cloud platform designed to reduce infrastructure costs for startups and SMBs.",
-          "Worked on Coderun, a SaaS platform for deploying and managing containerized services with GitHub, GitLab, and Docker integration. I also developed the company's institutional website."
-        ]
-      },
-      {
-        "url": "https://potentialitygroup.com/",
-        "title": "Potentiality Group",
-        "time": "September 2022 - January 2025",
-        "descriptions": [
-          "Worked as a Software Developer within the IT teams of Iúnigo and San Cristóbal Seguros.",
-          "At Iúnigo I developed and maintained the customer mobile app, the main website, the online insurance quoting platform, and digital products focused on self-service experiences.",
-          "At San Cristóbal Seguros I contributed to the multi-product quoting platform, the insurance broker portal, and the rollout of these systems for the Uruguayan market."
-        ]
-      },
-      {
-        "url": "https://www.vippinn.com/",
-        "title": "Vippin",
-        "time": "November 2021 - September 2022",
-        "descriptions": [
-          "Built the institutional website for Clínica Universitaria Reina Fabiola from scratch.",
-          "Developed a proxy API connecting Salesforce with the frontend for a Telefónica España project.",
-          "Contributed to a tourism application for the Ministry of Tourism of Villa Carlos Paz featuring Google Maps integration and Beacon-based geolocation."
-        ]
+        "title": "Integrate or evolve systems",
+        "description": "I connect existing tools, build new capabilities, and modernize products that need to grow without losing stability or clarity."
       }
     ]
   },
-  "featured": {
-    "title": "Featured Projects",
+  "process": {
+    "title": "How I work",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Understand",
+        "description": "I learn about the business, its users, current operation, constraints, and the outcome we want to achieve."
+      },
+      {
+        "number": "02",
+        "title": "Define",
+        "description": "I identify the priority problem, challenge assumptions, and determine what is worth solving first."
+      },
+      {
+        "number": "03",
+        "title": "Design",
+        "description": "I evaluate alternatives and define the solution, scope, and architecture that best fit the context."
+      },
+      {
+        "number": "04",
+        "title": "Build",
+        "description": "I turn decisions into working deliveries that can be reviewed and validated throughout the process."
+      },
+      {
+        "number": "05",
+        "title": "Evolve",
+        "description": "I observe real usage, incorporate learnings, and decide with the team what should come next."
+      }
+    ]
+  },
+  "selectedWork": {
+    "title": "Selected work",
     "items": [
       {
-        "url": "https://invoice.mgalvan.dev/en",
-        "title": "Invoice App",
-        "category": "Side Project",
-        "description": "A lightweight invoice generator for freelancers built with Next.js, TypeScript, PDF generation, and multilingual support.",
-        "tags": ["Next.js", "TypeScript", "PDF", "i18n"]
+        "name": "POS for retailers",
+        "category": "Own product · Product design & development",
+        "title": "A management system designed around the daily operation of a real store.",
+        "description": "I designed and built a multi-tenant POS to centralize sales, inventory, customers, store credit, cash management, expenses, purchases, and suppliers. The product is being prepared for validation in a real operation before evolving into a SaaS.",
+        "role": "Discovery, MVP definition, product design, architecture, and full-stack development.",
+        "tags": []
       },
       {
         "url": "https://amparoseguros.com/",
-        "title": "Amparo Seguros",
-        "category": "Mobile + Backend",
-        "description": "Complete digital insurance ecosystem including a React Native app, backend services, and internal operational tools.",
-        "tags": ["React Native", "Expo", "Next.js", "Backend", "Insurance"]
+        "name": "Amparo Seguros",
+        "category": "Product, automation & integrations",
+        "title": "Evolving a digital ecosystem connected to real insurance operations.",
+        "description": "I work across mobile products, backend services, internal tools, integrations, and automations that connect the producer and customer experience with the company's operation.",
+        "role": "Product decisions, architecture, development, and systems integration.",
+        "tags": ["React Native", "Next.js", "Payload CMS"]
       },
       {
         "url": "https://helmcode.com/",
-        "title": "Helmcode Cloud Products",
-        "category": "Cloud & AI",
-        "description": "Development of AI-powered cloud infrastructure tools, container platforms, and SaaS products focused on developer productivity.",
+        "name": "Helmcode Cloud Products",
+        "category": "SaaS & product evolution",
+        "title": "Cloud products designed to simplify infrastructure and developer productivity.",
+        "description": "I contributed to Andulia, HelmCloud, and Coderun: products and services for managing infrastructure, deploying containerized services, and improving developer productivity.",
+        "role": "Architecture, full-stack development, and product evolution.",
         "tags": ["React", "Next.js", "AI", "AWS", "Kubernetes", "SaaS"]
       }
     ]
   },
-  "projects": {
-    "title": "More Projects",
-    "projects": [
-      {
-        "url": "https://curf.com.ar/",
-        "title": "Clínica Universitaria Reina Fabiola",
-        "description": "Built the institutional website with a strong focus on accessibility, responsiveness, and patient experience."
-      },
-      {
-        "url": "https://iunigo.com.ar/",
-        "title": "Iúnigo Website",
-        "description": "Developed and maintained the company's institutional website and online insurance quoting platform."
-      },
-      {
-        "url": "https://www.sancristobal.com.ar/institucional/",
-        "title": "San Cristóbal Seguros",
-        "description": "Contributed to the online quoting platform and broker portal for Argentina and Uruguay."
-      },
-      {
-        "url": "https://www.estudialoai.ai/",
-        "title": "Estudialo AI",
-        "description": "Full-stack educational platform using Google Gemini to automatically generate exams, summaries, presentations, and study materials."
-      },
-      {
-        "url": "https://www.redsos.com.ar/",
-        "title": "Red SOS",
-        "description": "Development and maintenance of the company's institutional website and digital presence."
-      }
-    ]
-  },
-  "contact": {
-    "title": "Interested in working together?",
-    "text": "I'm open to remote opportunities where I can help build high-quality software products alongside ambitious teams.",
-    "contactLabel": "Contact Me",
+  "experienceSummary": {
+    "title": "Experience building real products",
+    "text": "For nearly five years, I have worked on web, mobile, and SaaS products for companies and teams across insurance, technology, education, and digital services. I currently work at Dam Squad, where I contribute to products, integrations, and automations used in real operations.",
+    "resumeLabel": "View CV",
     "linkedinLabel": "View LinkedIn"
   },
+  "contact": {
+    "title": "What are you trying to solve?",
+    "text": "It may be a product idea, a manual process, a missing integration, or a system that needs to evolve. The first step is understanding the context and deciding which solution makes the most sense.",
+    "contactLabel": "Tell me about your project",
+    "linkedinLabel": "Connect on LinkedIn",
+    "emailSubject": "Project or business problem"
+  },
   "footer": {
-    "title": "Developed by Marco 😎",
+    "title": "Marco Galván",
+    "role": "Product Builder",
+    "emailLabel": "Email",
+    "resumeLabel": "View CV",
     "copyright": "All rights reserved."
   }
 }

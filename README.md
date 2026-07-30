@@ -1,62 +1,94 @@
-# Marco Galván — Full Stack Developer
+# Marco Galván — Product Builder
 
-Personal website built with Astro. Source at [mgalvan.dev](https://mgalvan.dev).
+Personal website for Marco Galván, a Product Builder who designs and builds digital products, automations, and integrations for real business problems.
 
-## Project structure
+The site is a static bilingual Astro project deployed to Vercel.
+
+## Routes
+
+| Route | Content |
+| :--- | :--- |
+| `/` | English commercial Home |
+| `/es/` | Spanish commercial Home |
+| `/cv/en/` | English CV |
+| `/cv/es/` | Spanish CV |
+| `/en` | Redirect to `/` for compatibility |
+
+The Home is organized around capabilities, process, selected work, an experience summary, and a commercial contact CTA. Journal content is intentionally not rendered until real entries exist.
+
+## Architecture
 
 ```text
 /
 ├── public/
-│   ├── favicon.ico
-│   ├── profile.webp
+│   ├── favicon.ico and favicon-*.png
+│   ├── profile.jpg
+│   ├── og-image.svg
 │   ├── robots.txt
-│   ├── og-image.png
 │   ├── Marco-Galvan-CV-EN.pdf
 │   ├── Marco-Galvan-CV-ES.pdf
-│   └── logos/          (x_dark, linkedin, github-dark)
+│   └── logos/
+├── scripts/
+│   ├── home-source.test.mjs
+│   ├── cv-source.test.mjs
+│   ├── cv-localization.test.mjs
+│   └── export-cv.mjs
 ├── src/
 │   ├── consts.ts
 │   ├── components/
-│   │   ├── about/
+│   │   ├── capabilities/
 │   │   ├── contact-cta/
-│   │   ├── experience/
-│   │   ├── experience-card/
+│   │   ├── cv/
+│   │   ├── experience-summary/
 │   │   ├── featured/
 │   │   ├── footer/
 │   │   ├── header/
 │   │   ├── hero/
 │   │   ├── navbar/
-│   │   ├── product-card/
-│   │   ├── project-card/
-│   │   └── projects/
-│   ├── dictionaries/
-│   │   ├── en.json
-│   │   └── es.json
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── models/
-│   │   └── dictionary.model.ts
+│   │   ├── process/
+│   │   └── product-card/
+│   ├── data/cv/              # CV-only source data
+│   ├── dictionaries/          # Home content: en.json and es.json
+│   ├── layouts/               # Home and CV layouts
+│   ├── models/                # Home dictionary contracts
 │   └── pages/
-│       ├── index.astro       (EN)
-│       └── es/index.astro    (ES)
+│       ├── index.astro
+│       ├── es/index.astro
+│       ├── cv/en.astro
+│       └── cv/es.astro
 └── package.json
 ```
 
-## Tech stack
+Home dictionaries have explicit `navigation`, `hero`, `capabilities`, `process`, `selectedWork`, `experienceSummary`, `contact`, and `footer` sections. CV content remains isolated under `src/data/cv/`.
 
-- **Astro** — static site framework
-- **TypeScript** — strict mode
-- **CSS Modules** — scoped component styles
-- **JSON** — i18n dictionaries (en / es)
+## Stack and infrastructure
+
+- Astro with static output.
+- TypeScript and CSS Modules.
+- English and Spanish Home and CV routes.
+- `@astrojs/sitemap` and `public/robots.txt` for SEO discovery.
+- `@vercel/analytics` and `@vercel/speed-insights` in the shared Home layout.
+- Vercel deployment uses the static build; `vercel.json` contains PDF cache headers.
+
+The shared Home layout provides canonical URLs, reciprocal hreflang links, Open Graph/Twitter metadata, and `Person`/`ProfilePage` JSON-LD. The Open Graph image is the existing `public/og-image.svg`; there is no reference to a missing PNG or Apple Touch Icon.
 
 ## Commands
 
-| Command        | Action                                          |
-| :------------- | :---------------------------------------------- |
-| `pnpm install` | Install dependencies                            |
-| `pnpm dev`     | Start dev server at `localhost:4321`            |
-| `pnpm build`   | Build for production into `./dist/`             |
-| `pnpm preview` | Preview the production build locally            |
+| Command | Action |
+| :--- | :--- |
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Start the Astro development server |
+| `pnpm check` | Run `astro check` |
+| `pnpm test` | Run all Node source tests, including Home and CV contracts |
+| `pnpm build` | Generate the static site and sitemap in `dist/` |
+| `pnpm preview` | Preview the generated static build locally |
+| `pnpm export:cv` | Generate printable CV PDF variants with the existing exporter |
+
+Do not commit generated output from `dist/`. No runtime server is required in production.
+
+## Assets
+
+Use the assets that exist in `public/`: `profile.jpg`, `og-image.svg`, favicons, social logos, and the two linked CV PDFs. The POS project intentionally has no public URL, metrics, commercial name, or screenshots until those are available.
 
 ## License
 

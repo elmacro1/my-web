@@ -1,60 +1,74 @@
-export interface ExperienceItem {
-  url: string;
-  title: string;
-  time: string;
-  descriptions: string[];
-}
-
-export interface ProjectItem {
-  url?: string;
+export interface CapabilityItem {
   title: string;
   description: string;
 }
 
-export interface ProductItem {
-  url?: string;
+export interface ProcessStep {
+  number: string;
   title: string;
   description: string;
+}
+
+export interface SelectedWorkItem {
+  url?: string;
+  name: string;
   category: string;
+  title: string;
+  description: string;
+  role: string;
   tags: string[];
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface Dictionary {
+  navigation: {
+    work: string;
+    process: string;
+    about: string;
+    contact: string;
+    resumeLabel: string;
+    cta: string;
+    languageLabel: string;
+    menuLabel: string;
+  };
   hero: {
+    eyebrow: string;
     title: string;
-    subtitle: string;
     description: string;
-    openToRemote: string;
-    resumeUrl: string;
-    ctaResume: string;
-    ctaContact: string;
+    primaryCta: string;
+    secondaryCta: string;
   };
-  about: {
+  capabilities: {
     title: string;
-    descriptions: string[];
-    technologiesTitle: string;
-    technologies: string[];
+    items: CapabilityItem[];
   };
-  experience: {
+  process: {
     title: string;
-    experiences: ExperienceItem[];
+    steps: ProcessStep[];
   };
-  featured: {
+  selectedWork: {
     title: string;
-    items: ProductItem[];
+    items: SelectedWorkItem[];
   };
-  projects: {
+  experienceSummary: {
     title: string;
-    projects: ProjectItem[];
+    text: string;
+    resumeLabel: string;
+    linkedinLabel: string;
   };
   contact: {
     title: string;
     text: string;
     contactLabel: string;
     linkedinLabel: string;
+    emailSubject: string;
   };
   footer: {
     title: string;
+    role: string;
+    emailLabel: string;
+    resumeLabel: string;
     copyright: string;
   };
 }

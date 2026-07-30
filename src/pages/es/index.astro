@@ -1,42 +1,49 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Hero from "../../components/hero/hero.astro";
-import Experience from "../../components/experience/experience.astro";
-import About from "../../components/about/about.astro";
+import Capabilities from "../../components/capabilities/capabilities.astro";
+import Process from "../../components/process/process.astro";
 import Header from "../../components/header/header.astro";
 import Footer from "../../components/footer/footer.astro";
 import Featured from "../../components/featured/featured.astro";
-import Projects from "../../components/projects/projects.astro";
+import ExperienceSummary from "../../components/experience-summary/experience-summary.astro";
 import ContactCta from "../../components/contact-cta/contact-cta.astro";
 import dictionary from "../../dictionaries/es.json";
+import { CV_PATHS } from "../../consts";
 import styles from "../_index.module.css";
 
 const config = {
-    lang: "es",
-    title: "Marco Galván | Desarrollador de Software",
+    lang: "es" as const,
+    title: "Marco Galván — Product Builder",
     description:
-        "Desarrollador de Software especializado en productos web, móviles, SaaS y software para negocios con TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
+        "Product Builder que diseña y construye productos digitales, automatizaciones e integraciones para founders, empresas y equipos de producto.",
     alternates: [
         { lang: "en", href: "/" },
-        { lang: "es", href: "/es" },
+        { lang: "es", href: "/es/" },
         { lang: "x-default", href: "/" },
     ],
-    canonicalPath: "/es",
+    canonicalPath: "/es/",
 };
+const cvUrl = CV_PATHS[config.lang];
 ---
 
 <Layout {...config}>
     <a href="#main" class="skip-link">Saltar al contenido</a>
-    <Header lang={config.lang} />
+    <Header lang={config.lang} dictionary={dictionary.navigation} cvUrl={cvUrl} />
     <main id="main" class={styles.main}>
         <div class={styles.content_container}>
             <Hero dictionary={dictionary.hero} />
-            <About dictionary={dictionary.about} />
-            <Featured dictionary={dictionary.featured} />
-            <Experience dictionary={dictionary.experience} />
-            <Projects dictionary={dictionary.projects} />
+            <Capabilities dictionary={dictionary.capabilities} />
+            <Process dictionary={dictionary.process} />
+            <Featured dictionary={dictionary.selectedWork} />
+            <ExperienceSummary dictionary={dictionary.experienceSummary} cvUrl={cvUrl} />
             <ContactCta dictionary={dictionary.contact} />
         </div>
     </main>
-    <Footer dictionary={dictionary["footer"]} />
+    <Footer
+        lang={config.lang}
+        dictionary={dictionary.footer}
+        navigation={dictionary.navigation}
+        cvUrl={cvUrl}
+    />
 </Layout>

@@ -4,7 +4,7 @@ import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import { SITE_URL, SOCIAL_LINKS } from "../consts";
+import { CONTACT_EMAIL, SITE_URL, SOCIAL_LINKS } from "../consts";
 
 interface AlternateLanguage {
     lang: string;
@@ -24,14 +24,12 @@ interface Props {
 
 const {
     lang,
-    title = lang === "en"
-        ? "Marco Galván | Software Developer"
-        : "Marco Galván | Desarrollador de Software",
+    title = "Marco Galván — Product Builder",
     description = lang === "en"
-        ? "Software Developer building web, mobile, SaaS, and business software products with TypeScript, React, Next.js, React Native, Node.js, and PostgreSQL."
-        : "Desarrollador de Software especializado en productos web, móviles, SaaS y software para negocios con TypeScript, React, Next.js, React Native, Node.js y PostgreSQL.",
+        ? "Product Builder designing and building digital products, automations, and integrations for founders, businesses, and product teams."
+        : "Product Builder que diseña y construye productos digitales, automatizaciones e integraciones para founders, empresas y equipos de producto.",
     canonicalPath = Astro.url.pathname,
-    ogImage = `${SITE_URL}/og-image.png`,
+    ogImage = `${SITE_URL}/og-image.svg`,
     ogType = "profile",
     alternates = [],
     noindex = false,
@@ -52,10 +50,7 @@ const structuredData = {
     "@id": profilePageId,
     url: canonicalURL,
     name: title,
-    headline:
-        lang === "en"
-            ? "Marco Galván — Software Developer"
-            : "Marco Galván — Desarrollador de Software",
+    headline: "Marco Galván — Product Builder",
     description,
     inLanguage: lang,
     isPartOf: {
@@ -73,9 +68,8 @@ const structuredData = {
             "@type": "ImageObject",
             url: ogImage,
         },
-        email: "mailto:elmacro11@gmail.com",
-        jobTitle:
-            lang === "en" ? "Software Developer" : "Desarrollador de Software",
+        email: CONTACT_EMAIL,
+        jobTitle: "Product Builder",
         address: {
             "@type": "PostalAddress",
             addressLocality: "Santiago del Estero",
@@ -86,18 +80,13 @@ const structuredData = {
             name: "Dam Squad",
         },
         knowsAbout: [
-            "Software Development",
-            "Web Development",
-            "Mobile Application Development",
+            "Product Development",
+            "Digital Products",
+            "Web and Mobile Software",
             "SaaS",
-            "TypeScript",
-            "React",
-            "Next.js",
-            "React Native",
-            "Node.js",
-            "PostgreSQL",
-            "Software Architecture",
-            "Artificial Intelligence",
+            "Business Process Automation",
+            "Systems Integration",
+            "Applied Artificial Intelligence",
         ],
         sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.github, SOCIAL_LINKS.x],
         mainEntityOfPage: {
@@ -159,9 +148,7 @@ const structuredData = {
         <meta property="og:image" content={ogImage} />
         <meta
             property="og:image:alt"
-            content={lang === "en"
-                ? "Marco Galván — Software Developer"
-                : "Marco Galván — Desarrollador de Software"}
+            content="Marco Galván — Product Builder"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -185,9 +172,7 @@ const structuredData = {
         <meta name="twitter:image" content={ogImage} />
         <meta
             name="twitter:image:alt"
-            content={lang === "en"
-                ? "Marco Galván — Software Developer"
-                : "Marco Galván — Desarrollador de Software"}
+            content="Marco Galván — Product Builder"
         />
         <meta name="twitter:site" content="@MarcoGal4" />
         <meta name="twitter:creator" content="@MarcoGal4" />
@@ -199,7 +184,6 @@ const structuredData = {
             sizes="32x32"
             href="/favicon-32x32.png"
         />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         <script
             type="application/ld+json"
@@ -217,10 +201,29 @@ const structuredData = {
 
 <style is:global>
     :root {
-        background-color: Canvas;
-        color: CanvasText;
+        background-color: #0a0a0a;
+        color: #fafafa;
         color-scheme: dark;
         font-family: "Geist Sans", sans-serif;
+        --site-bg: #0a0a0a;
+        --site-surface: #111111;
+        --site-surface-raised: #171717;
+        --site-text: #fafafa;
+        --site-text-muted: #a3a3a3;
+        --site-border: #262626;
+        --site-border-strong: #404040;
+        --site-accent: #4ade80;
+        --site-container: 1120px;
+        --site-radius-sm: 0.65rem;
+        --site-radius-md: 1rem;
+        --site-radius-lg: 1.5rem;
+        --site-space-1: 0.5rem;
+        --site-space-2: 0.75rem;
+        --site-space-3: 1rem;
+        --site-space-4: 1.5rem;
+        --site-space-5: 2rem;
+        --site-space-6: 3rem;
+        --site-space-7: 5rem;
     }
 
     *,
@@ -250,6 +253,11 @@ const structuredData = {
         scroll-behavior: smooth;
     }
 
+    body {
+        color: var(--site-text);
+        background: var(--site-bg);
+    }
+
     h1,
     h2,
     h3,
@@ -261,6 +269,12 @@ const structuredData = {
 
     p {
         text-wrap: pretty;
+    }
+
+    a,
+    button,
+    summary {
+        -webkit-tap-highlight-color: transparent;
     }
 
     .skip-link {
@@ -281,8 +295,8 @@ const structuredData = {
     }
 
     :focus-visible {
-        outline: 2px solid #fafafa;
-        outline-offset: 2px;
+        outline: 2px solid var(--site-accent);
+        outline-offset: 3px;
         border-radius: 4px;
     }
 

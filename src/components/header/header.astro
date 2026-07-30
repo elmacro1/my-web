@@ -1,17 +1,24 @@
 ---
+import type { Dictionary } from "../../models/dictionary.model";
 import Navbar from "../navbar/navbar.astro";
 import styles from "./header.module.css";
 
 interface Props {
-  lang: string;
+    lang: "en" | "es";
+    dictionary: Dictionary["navigation"];
+    cvUrl: string;
 }
 
-const { lang } = Astro.props;
+const { lang, dictionary, cvUrl } = Astro.props;
+const homeHref = lang === "en" ? "/" : "/es/";
 ---
 
-<header class={styles.main_container}>
-  <div class={styles.content_container}>
-    <a href="#inicio" class={styles.name_link}>MG </a>
-    <Navbar lang={lang} />
-  </div>
+<header id="top" class={styles.main_container}>
+    <div class={styles.content_container}>
+        <a href={homeHref} class={styles.brand} aria-label="Marco Galván">
+            <span class={styles.name}>Marco Galván</span>
+            <span class={styles.role}>Product Builder</span>
+        </a>
+        <Navbar lang={lang} dictionary={dictionary} cvUrl={cvUrl} />
+    </div>
 </header>

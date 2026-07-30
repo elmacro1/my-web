@@ -1,0 +1,35 @@
+---
+import type { Dictionary } from "../../models/dictionary.model";
+import styles from "./capabilities.module.css";
+
+interface Props {
+    dictionary: Dictionary["capabilities"];
+}
+
+const { dictionary } = Astro.props;
+---
+
+<section
+    id="services"
+    class={styles.section}
+    aria-labelledby="services-title"
+>
+    <div class={styles.heading}>
+        <p class={styles.kicker}>01</p>
+        <h2 id="services-title" class={styles.title}>{dictionary.title}</h2>
+    </div>
+
+    <div class={styles.grid}>
+        {
+            dictionary.items.map((item, index) => (
+                <article class={styles.card}>
+                    <span class={styles.number}>
+                        {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 class={styles.card_title}>{item.title}</h3>
+                    <p class={styles.description}>{item.description}</p>
+                </article>
+            ))
+        }
+    </div>
+</section>

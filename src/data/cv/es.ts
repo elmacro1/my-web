@@ -44,11 +44,11 @@ export const cvData: CVData = {
     title: "Marco Galván — CV de Desarrollador de Software",
     description:
       "CV en español de Marco Galván, Desarrollador de Software con experiencia construyendo productos web, móviles, SaaS y soluciones con inteligencia artificial.",
-    canonical: "https://mgalvan.dev/cv/es",
+    canonical: "https://mgalvan.dev/cv/es/",
     alternates: [
-      { hreflang: "en", href: "https://mgalvan.dev/cv/en" },
-      { hreflang: "es", href: "https://mgalvan.dev/cv/es" },
-      { hreflang: "x-default", href: "https://mgalvan.dev/cv/en" },
+      { hreflang: "en", href: "https://mgalvan.dev/cv/en/" },
+      { hreflang: "es", href: "https://mgalvan.dev/cv/es/" },
+      { hreflang: "x-default", href: "https://mgalvan.dev/cv/en/" },
     ],
   },
   summary: [
