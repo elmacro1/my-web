@@ -153,3 +153,126 @@ test("Home navigation and sections expose stable anchors without social navigati
   assert.doesNotMatch(navbar, /SOCIAL_LINKS/);
   assert.match(footer, /SOCIAL_LINKS/);
 });
+test("Selected work exposes truthful localized contexts without invented client claims", async () => {
+  const [english, spanish] = await Promise.all([
+    readJson("src/dictionaries/en.json"),
+    readJson("src/dictionaries/es.json"),
+  ]);
+
+  assert.equal(english.selectedWork.title, "Selected products & professional work");
+  assert.equal(spanish.selectedWork.title, "Productos y experiencia seleccionada");
+  assert.deepEqual(
+    english.selectedWork.items.map(({ context, status, url }) => ({ context, status, url })),
+    [
+      { context: "own-product", status: "in-validation", url: undefined },
+      { context: "dam-squad", status: undefined, url: undefined },
+      { context: "professional-experience", status: undefined, url: undefined },
+    ],
+  );
+  assert.deepEqual(
+    spanish.selectedWork.items.map(({ context, status, url }) => ({ context, status, url })),
+    [
+      { context: "own-product", status: "in-validation", url: undefined },
+      { context: "dam-squad", status: undefined, url: undefined },
+      { context: "professional-experience", status: undefined, url: undefined },
+    ],
+  );
+  assert.deepEqual(Object.keys(english.selectedWork.labels.contexts).sort(), [
+    "dam-squad",
+    "own-product",
+    "professional-experience",
+  ]);
+  assert.equal(english.selectedWork.labels.statuses["in-validation"], "In validation");
+  assert.equal(spanish.selectedWork.labels.statuses["in-validation"], "En validación");
+  assert.doesNotMatch(JSON.stringify(english), /UR POV/i);
+  assert.doesNotMatch(JSON.stringify(spanish), /UR POV/i);
+});
+
+test("Home dictionaries contain the approved localized metadata and CTA copy", async () => {
+  const [english, spanish] = await Promise.all([
+    readJson("src/dictionaries/en.json"),
+    readJson("src/dictionaries/es.json"),
+  ]);
+
+  assert.equal(
+    english.metadata.title,
+    "Digital Products, Automations & Integrations | Marco Galván",
+  );
+  assert.equal(
+    spanish.metadata.title,
+    "Productos digitales, automatizaciones e integraciones | Marco Galván",
+  );
+  assert.match(english.metadata.description, /operational problems into digital products/);
+  assert.match(spanish.metadata.description, /problemas operativos en productos digitales/);
+  assert.match(
+    english.hero.description,
+    /from understanding the problem to launching and evolving/,
+  );
+  assert.match(english.process.steps[0].description, /current operations/);
+  assert.match(english.capabilities.items[0].description, /test with real users and evolve/);
+  assert.equal(
+    english.contact.text,
+    "Tell me about the problem, how things work today and what you have already tried. You do not need to have the solution defined.",
+  );
+  assert.equal(
+    spanish.contact.text,
+    "Contame el problema, cómo funciona hoy y qué ya intentaron. No hace falta que tengas definida la solución.",
+  );
+  assert.equal(english.contact.contactLabel, "Tell me what you're trying to solve");
+  assert.equal(spanish.contact.contactLabel, "Contame qué estás intentando resolver");
+});
+
+test("Selected work cards retain semantic static fallbacks", async () => {
+  const [productCard, featured] = await Promise.all([
+    readSource("src/components/product-card/product-card.astro"),
+    readSource("src/components/featured/featured.astro"),
+  ]);
+
+  assert.match(productCard, /<article/);
+  assert.doesNotMatch(productCard, /role=["']link["']/);
+  assert.match(featured, /contextLabel/);
+  assert.match(featured, /statusLabel/);
+});
+
+test("Home pages consume localized metadata and preserve page-family alternates", async () => {
+  const [englishRoute, spanishRoute, layout, cvLayout] = await Promise.all([
+    readSource("src/pages/index.astro"),
+    readSource("src/pages/es/index.astro"),
+    readSource("src/layouts/Layout.astro"),
+    readSource("src/layouts/CVLayout.astro"),
+  ]);
+
+  assert.match(englishRoute, /metadata:\s*dictionary\.metadata/);
+  assert.match(spanishRoute, /metadata:\s*dictionary\.metadata/);
+  assert.match(layout, /og:locale:alternate/);
+  assert.match(layout, /alternate\.lang !== lang/);
+  assert.match(cvLayout, /metadata\.alternates/);
+  assert.match(cvLayout, /metadata\.canonical/);
+});
+
+test("Home analytics uses one shared event listener and named events", async () => {
+  const sources = await Promise.all([
+    readSource("src/layouts/Layout.astro"),
+    readSource("src/components/navbar/navbar.astro"),
+    readSource("src/components/contact-cta/contact-cta.astro"),
+    readSource("src/components/footer/footer.astro"),
+    readSource("src/components/experience-summary/experience-summary.astro"),
+    readSource("src/components/hero/hero.astro"),
+  ]);
+  const [layout, ...components] = sources;
+  const source = components.join("\n");
+
+  assert.match(layout, /AnalyticsEvents/);
+  assert.match(layout, /AnalyticsEvents/);
+  for (const eventName of [
+    "contact_cta_clicked",
+    "email_clicked",
+    "linkedin_clicked",
+    "github_clicked",
+    "x_clicked",
+    "cv_clicked",
+    "language_changed",
+  ]) {
+    assert.match(source, new RegExp(eventName));
+  }
+});
