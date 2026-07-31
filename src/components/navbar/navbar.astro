@@ -18,6 +18,7 @@ const language = lang === "en" ? "es" : "en";
     <details class={styles.menu} open>
         <summary class={styles.menu_toggle}>{dictionary.menuLabel}</summary>
         <div class={styles.links_container}>
+            <a class={styles.link} href="#services">{dictionary.services}</a>
             <a class={styles.link} href="#work">{dictionary.work}</a>
             <a class={styles.link} href="#process">{dictionary.process}</a>
             <a class={styles.link} href="#about">{dictionary.about}</a>
@@ -26,6 +27,7 @@ const language = lang === "en" ? "es" : "en";
                 class={styles.resume_link}
                 href={cvUrl}
                 target="_blank"
+                data-analytics-event="cv_clicked"
                 rel="noopener noreferrer"
             >
                 {dictionary.resumeLabel}
@@ -34,11 +36,12 @@ const language = lang === "en" ? "es" : "en";
                 class={styles.language_link}
                 href={languageHref}
                 hreflang={language}
+                data-analytics-event="language_changed"
                 aria-label={dictionary.languageLabel}
             >
                 {languageCode}
             </a>
-            <a class={styles.cta_link} href="#contact">{dictionary.cta}</a>
+            <a class={styles.cta_link} href="#contact" data-analytics-event="contact_cta_clicked">{dictionary.cta}</a>
         </div>
     </details>
 </nav>

@@ -32,6 +32,7 @@ const { dictionary, cvUrl } = Astro.props;
             <a
                 class={styles.primary_button}
                 href={cvUrl}
+                data-analytics-event="cv_clicked"
                 target="_blank"
                 rel="noopener noreferrer"
             >
@@ -41,6 +42,7 @@ const { dictionary, cvUrl } = Astro.props;
                 class={styles.secondary_button}
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
+                data-analytics-event="linkedin_clicked"
                 rel="noopener noreferrer"
             >
                 {dictionary.linkedinLabel}

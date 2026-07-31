@@ -7,7 +7,7 @@
     transition: transform 160ms ease, border-color 160ms ease;
 }
 
-.card:hover {
+.card.linked:hover {
     transform: translateY(-4px);
     border-color: var(--site-border-strong);
 }
@@ -39,6 +39,14 @@
 .header {
     display: grid;
     gap: var(--site-space-2);
+}
+
+.context {
+    color: var(--site-text-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
 }
 
 .category {

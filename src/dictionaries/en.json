@@ -1,5 +1,11 @@
 {
+  "metadata": {
+    "title": "Digital Products, Automations & Integrations | Marco Galván",
+    "description": "I help businesses turn operational problems into digital products, automations, integrations and internal systems built to evolve.",
+    "ogImageAlt": "Marco Galván — Product Builder"
+  },
   "navigation": {
+    "services": "Capabilities",
     "work": "Work",
     "process": "Process",
     "about": "About",
@@ -12,7 +18,7 @@
   "hero": {
     "eyebrow": "Marco Galván · Product Builder",
     "title": "I turn business problems into products and systems that work.",
-    "description": "I design and build digital products, automations, and integrations for founders, small businesses, and teams. I get involved from understanding the problem through launching and evolving the solution.",
+    "description": "I design and build digital products, automations, and integrations for founders, small businesses, and teams. I get involved from understanding the problem to launching and evolving the solution.",
     "primaryCta": "Tell me what you're trying to solve",
     "secondaryCta": "See my work"
   },
@@ -21,7 +27,7 @@
     "items": [
       {
         "title": "Build a product",
-        "description": "I turn an idea, opportunity, or business problem into a digital product ready to validate and evolve. It may be a web app, mobile product, SaaS, or internal tool."
+        "description": "I turn an idea, opportunity, or business problem into a digital product ready to test with real users and evolve. It may be a web app, mobile product, SaaS, or internal tool."
       },
       {
         "title": "Automate an operation",
@@ -39,7 +45,7 @@
       {
         "number": "01",
         "title": "Understand",
-        "description": "I learn about the business, its users, current operation, constraints, and the outcome we want to achieve."
+        "description": "I learn about the business, its users and current operations, constraints, and the outcome we want to achieve."
       },
       {
         "number": "02",
@@ -64,29 +70,41 @@
     ]
   },
   "selectedWork": {
-    "title": "Selected work",
+    "title": "Selected products & professional work",
+    "labels": {
+      "contexts": {
+        "own-product": "Own product",
+        "dam-squad": "Work at Dam Squad",
+        "professional-experience": "Professional experience"
+      },
+      "statuses": {
+        "in-validation": "In validation"
+      }
+    },
     "items": [
       {
         "name": "POS for retailers",
-        "category": "Own product · Product design & development",
+        "category": "Product design & development",
+        "context": "own-product",
+        "status": "in-validation",
         "title": "A management system designed around the daily operation of a real store.",
-        "description": "I designed and built a multi-tenant POS to centralize sales, inventory, customers, store credit, cash management, expenses, purchases, and suppliers. The product is being prepared for validation in a real operation before evolving into a SaaS.",
-        "role": "Discovery, MVP definition, product design, architecture, and full-stack development.",
+        "description": "I designed and built a multi-tenant POS to centralize sales, inventory, customers, store credit, cash management, expenses, purchases, and suppliers. It is a digital product being prepared for validation with real users in a real store operation. It is not yet a consolidated SaaS.",
+        "role": "Product strategy, discovery, MVP definition, product design, architecture, and full-stack development.",
         "tags": []
       },
       {
-        "url": "https://amparoseguros.com/",
         "name": "Amparo Seguros",
         "category": "Product, automation & integrations",
+        "context": "dam-squad",
         "title": "Evolving a digital ecosystem connected to real insurance operations.",
-        "description": "I work across mobile products, backend services, internal tools, integrations, and automations that connect the producer and customer experience with the company's operation.",
-        "role": "Product decisions, architecture, development, and systems integration.",
+        "description": "As part of the Dam Squad team, I contribute to products and systems used in Amparo Seguros' operations, working across mobile applications, backend services, internal tools, integrations, and automations.",
+        "role": "Contribution within the Dam Squad team across product decisions, architecture, development, and systems integration.",
         "tags": ["React Native", "Next.js", "Payload CMS"]
       },
       {
-        "url": "https://helmcode.com/",
         "name": "Helmcode Cloud Products",
         "category": "SaaS & product evolution",
+        "context": "professional-experience",
         "title": "Cloud products designed to simplify infrastructure and developer productivity.",
         "description": "I contributed to Andulia, HelmCloud, and Coderun: products and services for managing infrastructure, deploying containerized services, and improving developer productivity.",
         "role": "Architecture, full-stack development, and product evolution.",
@@ -102,8 +120,8 @@
   },
   "contact": {
     "title": "What are you trying to solve?",
-    "text": "It may be a product idea, a manual process, a missing integration, or a system that needs to evolve. The first step is understanding the context and deciding which solution makes the most sense.",
-    "contactLabel": "Tell me about your project",
+    "text": "Tell me about the problem, how things work today and what you have already tried. You do not need to have the solution defined.",
+    "contactLabel": "Tell me what you're trying to solve",
     "linkedinLabel": "Connect on LinkedIn",
     "emailSubject": "Project or business problem"
   },

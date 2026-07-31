@@ -4,17 +4,23 @@ import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import { CONTACT_EMAIL, SITE_URL, SOCIAL_LINKS } from "../consts";
+import AnalyticsEvents from "../components/analytics/analytics-events.astro";
+import { CONTACT_EMAIL_ADDRESS, SITE_URL, SOCIAL_LINKS } from "../consts";
 
 interface AlternateLanguage {
     lang: string;
     href: string;
 }
 
+interface SiteMetadata {
+    title: string;
+    description: string;
+    ogImageAlt: string;
+}
+
 interface Props {
     lang: "en" | "es";
-    title?: string;
-    description?: string;
+    metadata: SiteMetadata;
     canonicalPath?: string;
     ogImage?: string;
     ogType?: "website" | "profile";
@@ -24,18 +30,21 @@ interface Props {
 
 const {
     lang,
-    title = "Marco Galván — Product Builder",
-    description = lang === "en"
-        ? "Product Builder designing and building digital products, automations, and integrations for founders, businesses, and product teams."
-        : "Product Builder que diseña y construye productos digitales, automatizaciones e integraciones para founders, empresas y equipos de producto.",
+    metadata,
     canonicalPath = Astro.url.pathname,
-    ogImage = `${SITE_URL}/og-image.svg`,
+    ogImage = SITE_URL + "/og-image.svg",
     ogType = "profile",
     alternates = [],
     noindex = false,
 }: Props = Astro.props;
 
+const { title, description, ogImageAlt } = metadata;
+
 const canonicalURL = new URL(canonicalPath, SITE_URL).href;
+const ogImageURL = new URL(ogImage, SITE_URL).href;
+const alternateLanguages = alternates.filter(
+    (alternate) => alternate.lang !== lang && ["en", "es"].includes(alternate.lang),
+);
 
 const defaultAlternate = alternates.find(
     (alternate) => alternate.lang === "x-default",
@@ -66,15 +75,15 @@ const structuredData = {
         url: SITE_URL,
         image: {
             "@type": "ImageObject",
-            url: ogImage,
+            url: ogImageURL,
         },
-        email: CONTACT_EMAIL,
+        email: CONTACT_EMAIL_ADDRESS,
         jobTitle: "Product Builder",
-        address: {
-            "@type": "PostalAddress",
-            addressLocality: "Santiago del Estero",
-            addressCountry: "AR",
+        homeLocation: {
+            "@type": "Place",
+            name: "Santiago del Estero, Argentina",
         },
+        knowsLanguage: ["es", "en"],
         worksFor: {
             "@type": "Organization",
             name: "Dam Squad",
@@ -145,20 +154,16 @@ const structuredData = {
             property="og:locale"
             content={lang === "en" ? "en_US" : "es_AR"}
         />
-        <meta property="og:image" content={ogImage} />
+        <meta property="og:image" content={ogImageURL} />
         <meta
             property="og:image:alt"
-            content="Marco Galván — Product Builder"
+            content={ogImageAlt}
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
         {
-            alternates
-                .filter(({ lang: alternateLang }) =>
-                    ["en", "es"].includes(alternateLang),
-                )
-                .map(({ lang: alternateLang }) => (
+            alternateLanguages.map(({ lang: alternateLang }) => (
                     <meta
                         property="og:locale:alternate"
                         content={alternateLang === "en" ? "en_US" : "es_AR"}
@@ -169,10 +174,10 @@ const structuredData = {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image" content={ogImageURL} />
         <meta
             name="twitter:image:alt"
-            content="Marco Galván — Product Builder"
+            content={ogImageAlt}
         />
         <meta name="twitter:site" content="@MarcoGal4" />
         <meta name="twitter:creator" content="@MarcoGal4" />
@@ -187,11 +192,13 @@ const structuredData = {
 
         <script
             type="application/ld+json"
+            is:inline
             set:html={JSON.stringify(structuredData)}
         />
 
         <Analytics />
         <SpeedInsights />
+        <AnalyticsEvents />
     </head>
 
     <body>

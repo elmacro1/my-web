@@ -1,5 +1,11 @@
 {
+  "metadata": {
+    "title": "Productos digitales, automatizaciones e integraciones | Marco Galván",
+    "description": "Ayudo a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas preparados para evolucionar.",
+    "ogImageAlt": "Marco Galván — Product Builder"
+  },
   "navigation": {
+    "services": "Capacidades",
     "work": "Trabajo",
     "process": "Proceso",
     "about": "Sobre mí",
@@ -12,7 +18,7 @@
   "hero": {
     "eyebrow": "Marco Galván · Product Builder",
     "title": "Convierto problemas de negocio en productos y sistemas que funcionan.",
-    "description": "Diseño y construyo productos digitales, automatizaciones e integraciones para founders, pymes y equipos. Me involucro desde entender el problema hasta lanzar y evolucionar la solución.",
+    "description": "Diseño y construyo productos digitales, automatizaciones e integraciones para fundadores, pymes y equipos. Me involucro desde entender el problema hasta lanzar y evolucionar la solución.",
     "primaryCta": "Contame qué estás intentando resolver",
     "secondaryCta": "Ver mi trabajo"
   },
@@ -21,11 +27,11 @@
     "items": [
       {
         "title": "Crear un producto",
-        "description": "Transformo una idea, una oportunidad o un problema de negocio en un producto digital listo para validar y evolucionar. Puede ser una aplicación web, mobile, un SaaS o una herramienta interna."
+        "description": "Transformo una idea, una oportunidad o un problema de negocio en un producto digital listo para probar con usuarios reales y evolucionar. Puede ser una aplicación web, móvil, un SaaS o una herramienta interna."
       },
       {
         "title": "Automatizar una operación",
-        "description": "Analizo procesos manuales y tareas repetitivas para diseñar automatizaciones, workflows y soluciones con IA que reduzcan trabajo operativo y errores."
+        "description": "Analizo procesos manuales y tareas repetitivas para diseñar automatizaciones, flujos de trabajo y soluciones con IA que reduzcan trabajo operativo y errores."
       },
       {
         "title": "Integrar o evolucionar sistemas",
@@ -64,29 +70,41 @@
     ]
   },
   "selectedWork": {
-    "title": "Trabajo seleccionado",
+    "title": "Productos y experiencia seleccionada",
+    "labels": {
+      "contexts": {
+        "own-product": "Producto propio",
+        "dam-squad": "Trabajo en Dam Squad",
+        "professional-experience": "Experiencia profesional"
+      },
+      "statuses": {
+        "in-validation": "En validación"
+      }
+    },
     "items": [
       {
         "name": "POS para comercios",
-        "category": "Producto propio · Product design & development",
+        "category": "Diseño y desarrollo de producto",
+        "context": "own-product",
+        "status": "in-validation",
         "title": "Un sistema de gestión pensado desde la operación diaria de un comercio real.",
-        "description": "Diseñé y construí un POS multi-tenant para centralizar ventas, stock, clientes, cuentas corrientes, caja, egresos, compras y proveedores. El producto se está preparando para validarse en una operación real antes de evolucionar hacia un SaaS.",
-        "role": "Discovery, definición del MVP, diseño de producto, arquitectura y desarrollo full-stack.",
+        "description": "Diseñé y construí un POS multi-tenant para centralizar ventas, stock, clientes, cuentas corrientes, caja, egresos, compras y proveedores. Es un producto digital en preparación para ser validado con usuarios reales en una operación comercial real. Todavía no es un SaaS consolidado.",
+        "role": "Estrategia y descubrimiento de producto, definición del MVP, diseño de producto, arquitectura y desarrollo full-stack.",
         "tags": []
       },
       {
-        "url": "https://amparoseguros.com/",
         "name": "Amparo Seguros",
         "category": "Producto, automatización e integraciones",
+        "context": "dam-squad",
         "title": "Evolución de un ecosistema digital conectado con procesos reales de seguros.",
-        "description": "Trabajo en productos mobile, servicios backend, herramientas internas, integraciones y automatizaciones que conectan la experiencia de productores y clientes con la operación de la empresa.",
-        "role": "Decisiones de producto, arquitectura, desarrollo e integración de sistemas.",
+        "description": "Como parte del equipo de Dam Squad, participo en la evolución de productos y sistemas utilizados en la operación de Amparo Seguros, trabajando en aplicaciones móviles, servicios backend, herramientas internas, integraciones y automatizaciones.",
+        "role": "Contribución dentro del equipo de Dam Squad en decisiones de producto, arquitectura, desarrollo e integración de sistemas.",
         "tags": ["React Native", "Next.js", "Payload CMS"]
       },
       {
-        "url": "https://helmcode.com/",
         "name": "Helmcode Cloud Products",
         "category": "SaaS y evolución de producto",
+        "context": "professional-experience",
         "title": "Productos cloud para simplificar infraestructura y productividad de equipos.",
         "description": "Participé en Andulia, HelmCloud y Coderun: productos y servicios para gestionar infraestructura, desplegar servicios contenedorizados y mejorar la productividad de equipos de desarrollo.",
         "role": "Arquitectura, desarrollo full-stack y evolución de producto.",
@@ -96,14 +114,14 @@
   },
   "experienceSummary": {
     "title": "Experiencia construyendo productos reales",
-    "text": "Durante casi cinco años trabajé en productos web, mobile y SaaS para empresas y equipos de seguros, tecnología, educación y servicios digitales. Actualmente formo parte de Dam Squad, donde participo en la evolución de productos, integraciones y automatizaciones utilizadas en operaciones reales.",
+    "text": "Durante casi cinco años trabajé en productos web, móviles y SaaS para empresas y equipos de seguros, tecnología, educación y servicios digitales. Actualmente formo parte de Dam Squad, donde participo en la evolución de productos, integraciones y automatizaciones utilizadas en operaciones reales.",
     "resumeLabel": "Ver CV",
     "linkedinLabel": "Ver LinkedIn"
   },
   "contact": {
     "title": "¿Qué estás intentando resolver?",
-    "text": "Puede ser una idea de producto, un proceso manual, una integración pendiente o un sistema que necesita evolucionar. El primer paso es entender el contexto y decidir qué solución tiene más sentido.",
-    "contactLabel": "Contame sobre tu proyecto",
+    "text": "Contame el problema, cómo funciona hoy y qué ya intentaron. No hace falta que tengas definida la solución.",
+    "contactLabel": "Contame qué estás intentando resolver",
     "linkedinLabel": "Conectemos en LinkedIn",
     "emailSubject": "Proyecto o problema de negocio"
   },

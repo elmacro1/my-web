@@ -5,6 +5,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://mgalvan.dev",
+  trailingSlash: "always",
   redirects: {
     "/en": "/",
   },

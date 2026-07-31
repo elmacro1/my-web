@@ -4,12 +4,14 @@ import styles from "./product-card.module.css";
 
 interface Props {
     dictionary: SelectedWorkItem;
+    contextLabel: string;
+    statusLabel?: string;
 }
 
-const { dictionary } = Astro.props;
+const { dictionary, contextLabel, statusLabel } = Astro.props;
 ---
 
-<article class={styles.card}>
+<article class:list={[styles.card, dictionary.url && styles.linked]}>
     {dictionary.url ? (
         <a
             href={dictionary.url}
@@ -29,6 +31,9 @@ const { dictionary } = Astro.props;
                 )
             }
             <div class={styles.header}>
+                <p class={styles.context}>
+                    {contextLabel}{statusLabel ? ` · ${statusLabel}` : ""}
+                </p>
                 <span class={styles.category}>{dictionary.category}</span>
                 <h3 class={styles.name}>{dictionary.name}</h3>
             </div>
@@ -57,6 +62,9 @@ const { dictionary } = Astro.props;
                 )
             }
             <div class={styles.header}>
+                <p class={styles.context}>
+                    {contextLabel}{statusLabel ? ` · ${statusLabel}` : ""}
+                </p>
                 <span class={styles.category}>{dictionary.category}</span>
                 <h3 class={styles.name}>{dictionary.name}</h3>
             </div>

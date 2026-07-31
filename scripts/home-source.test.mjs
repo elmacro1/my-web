@@ -110,19 +110,20 @@ test("Home routes use centralized locale-specific CV paths", async () => {
   assert.ok(consts.includes('es: "/Marco-Galvan-CV-ES.pdf"'));
 });
 
-test("Home metadata uses the commercial SEO descriptions", async () => {
-  const [englishRoute, spanishRoute, layout] = await Promise.all([
+test("Home routes consume localized commercial SEO metadata", async () => {
+  const [english, spanish, englishRoute, spanishRoute] = await Promise.all([
+    readJson("src/dictionaries/en.json"),
+    readJson("src/dictionaries/es.json"),
     readSource("src/pages/index.astro"),
     readSource("src/pages/es/index.astro"),
-    readSource("src/layouts/Layout.astro"),
   ]);
 
-  assert.match(englishRoute, /Product Builder designing and building digital products/);
-  assert.match(englishRoute, /founders, businesses, and product teams/);
-  assert.match(spanishRoute, /Product Builder que diseña y construye productos digitales/);
-  assert.match(spanishRoute, /founders, empresas y equipos de producto/);
-  assert.match(layout, /Product Builder designing and building digital products/);
-  assert.match(layout, /Product Builder que diseña y construye productos digitales/);
+  assert.match(englishRoute, /metadata: dictionary\.metadata/);
+  assert.match(spanishRoute, /metadata: dictionary\.metadata/);
+  assert.equal(english.metadata.title, "Digital Products, Automations & Integrations | Marco Galván");
+  assert.equal(spanish.metadata.title, "Productos digitales, automatizaciones e integraciones | Marco Galván");
+  assert.match(english.metadata.description, /operational problems into digital products/);
+  assert.match(spanish.metadata.description, /problemas operativos en productos digitales/);
 });
 
 test("Home navigation and sections expose stable anchors without social navigation", async () => {
@@ -261,9 +262,11 @@ test("Home analytics uses one shared event listener and named events", async () 
   ]);
   const [layout, ...components] = sources;
   const source = components.join("\n");
+  const analytics = await readSource("src/components/analytics/analytics-events.astro");
 
   assert.match(layout, /AnalyticsEvents/);
-  assert.match(layout, /AnalyticsEvents/);
+  assert.match(analytics, /track/);
+  assert.equal((analytics.match(/document\.addEventListener/g) ?? []).length, 1);
   for (const eventName of [
     "contact_cta_clicked",
     "email_clicked",

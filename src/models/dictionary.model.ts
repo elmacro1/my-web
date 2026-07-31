@@ -9,10 +9,24 @@ export interface ProcessStep {
   description: string;
 }
 
+export type ProjectContext =
+  | "own-product"
+  | "dam-squad"
+  | "professional-experience";
+
+export type ProjectStatus = "in-validation";
+
+export interface SelectedWorkLabels {
+  contexts: Record<ProjectContext, string>;
+  statuses: Partial<Record<ProjectStatus, string>>;
+}
+
 export interface SelectedWorkItem {
   url?: string;
   name: string;
   category: string;
+  context: ProjectContext;
+  status?: ProjectStatus;
   title: string;
   description: string;
   role: string;
@@ -22,7 +36,13 @@ export interface SelectedWorkItem {
 }
 
 export interface Dictionary {
+  metadata: {
+    title: string;
+    description: string;
+    ogImageAlt: string;
+  };
   navigation: {
+    services: string;
     work: string;
     process: string;
     about: string;
@@ -49,6 +69,7 @@ export interface Dictionary {
   };
   selectedWork: {
     title: string;
+    labels: SelectedWorkLabels;
     items: SelectedWorkItem[];
   };
   experienceSummary: {

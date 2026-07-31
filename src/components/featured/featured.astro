@@ -19,7 +19,15 @@ const { dictionary } = Astro.props;
     <div class={styles.content_container}>
         {
             dictionary.items.map((item) => (
-                <ProductCard dictionary={item} />
+                <ProductCard
+                    dictionary={item}
+                    contextLabel={dictionary.labels.contexts[item.context]}
+                    statusLabel={
+                        item.status
+                            ? dictionary.labels.statuses[item.status]
+                            : undefined
+                    }
+                />
             ))
         }
     </div>

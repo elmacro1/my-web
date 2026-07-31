@@ -8,15 +8,16 @@ import Footer from "../components/footer/footer.astro";
 import Featured from "../components/featured/featured.astro";
 import ExperienceSummary from "../components/experience-summary/experience-summary.astro";
 import ContactCta from "../components/contact-cta/contact-cta.astro";
-import dictionary from "../dictionaries/en.json";
+import dictionaryJson from "../dictionaries/en.json";
+import type { Dictionary } from "../models/dictionary.model";
 import { CV_PATHS } from "../consts";
 import styles from "./_index.module.css";
 
+const dictionary = dictionaryJson as Dictionary;
+
 const config = {
     lang: "en" as const,
-    title: "Marco Galván — Product Builder",
-    description:
-        "Product Builder designing and building digital products, automations, and integrations for founders, businesses, and product teams.",
+    metadata: dictionary.metadata,
     alternates: [
         { lang: "en", href: "/" },
         { lang: "es", href: "/es/" },

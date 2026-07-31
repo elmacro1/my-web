@@ -17,13 +17,14 @@ const contactHref = `${CONTACT_EMAIL}?subject=${encodeURIComponent(dictionary.em
         <h2 id="contact-title" class={styles.title}>{dictionary.title}</h2>
         <p class={styles.text}>{dictionary.text}</p>
         <div class={styles.button_group}>
-            <a class={styles.primary_button} href={contactHref}>
+            <a class={styles.primary_button} href={contactHref} data-analytics-event="contact_cta_clicked">
                 {dictionary.contactLabel}
             </a>
             <a
                 class={styles.secondary_button}
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
+                data-analytics-event="linkedin_clicked"
                 rel="noopener noreferrer"
             >
                 {dictionary.linkedinLabel}

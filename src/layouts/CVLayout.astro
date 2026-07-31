@@ -4,6 +4,7 @@ import "@fontsource/geist-sans/500.css";
 import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import type { CVPageMetadata } from "../data/cv/types";
+import { SITE_URL } from "../consts";
 import styles from "./CVLayout.module.css";
 
 interface Props {
@@ -11,6 +12,17 @@ interface Props {
 }
 
 const { metadata } = Astro.props;
+const canonicalURL = new URL(metadata.canonical, SITE_URL).href;
+const ogImageURL = SITE_URL + "/og-image.svg";
+const alternateLanguage = metadata.alternates.find(
+    (alternate) => alternate.hreflang !== metadata.lang && ["en", "es"].includes(alternate.hreflang),
+);
+const ogLocale = metadata.lang === "en" ? "en_US" : "es_AR";
+const ogAlternateLocale = alternateLanguage
+    ? alternateLanguage.hreflang === "en"
+        ? "en_US"
+        : "es_AR"
+    : undefined;
 ---
 
 <!doctype html>
@@ -19,8 +31,9 @@ const { metadata } = Astro.props;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={metadata.description} />
+        <meta name="author" content="Marco Galván" />
         <meta name="theme-color" content="#ffffff" />
-        <link rel="canonical" href={metadata.canonical} />
+        <link rel="canonical" href={canonicalURL} />
         {
             metadata.alternates.map((alternate) => (
                 <link
@@ -31,6 +44,22 @@ const { metadata } = Astro.props;
             ))
         }
         <title>{metadata.title}</title>
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:type" content="profile" />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:site_name" content="Marco Galván" />
+        <meta property="og:locale" content={ogLocale} />
+        {ogAlternateLocale && (
+            <meta property="og:locale:alternate" content={ogAlternateLocale} />
+        )}
+        <meta property="og:image" content={ogImageURL} />
+        <meta property="og:image:alt" content="Marco Galván — CV" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metadata.title} />
+        <meta name="twitter:description" content={metadata.description} />
+        <meta name="twitter:image" content={ogImageURL} />
+        <meta name="twitter:image:alt" content="Marco Galván — CV" />
     </head>
     <body class={styles.browserFrame}>
         <div class={styles.page} data-cv-page>

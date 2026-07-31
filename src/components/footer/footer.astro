@@ -27,6 +27,7 @@ const year = new Date().getFullYear();
 
         <nav aria-label={dictionary.title}>
             <ul class={styles.navigation}>
+                <li><a href="#services">{navigation.services}</a></li>
                 <li><a href="#work">{navigation.work}</a></li>
                 <li><a href="#process">{navigation.process}</a></li>
                 <li><a href="#about">{navigation.about}</a></li>
@@ -35,6 +36,7 @@ const year = new Date().getFullYear();
                     <a
                         href={cvUrl}
                         target="_blank"
+                        data-analytics-event="cv_clicked"
                         rel="noopener noreferrer"
                     >
                         {dictionary.resumeLabel}
@@ -44,10 +46,11 @@ const year = new Date().getFullYear();
         </nav>
 
         <div class={styles.links}>
-            <a href={CONTACT_EMAIL}>{dictionary.emailLabel}</a>
+            <a href={CONTACT_EMAIL} data-analytics-event="email_clicked">{dictionary.emailLabel}</a>
             <a
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
+                data-analytics-event="linkedin_clicked"
                 rel="noopener noreferrer"
             >
                 LinkedIn
@@ -55,16 +58,18 @@ const year = new Date().getFullYear();
             <a
                 href={SOCIAL_LINKS.github}
                 target="_blank"
+                data-analytics-event="github_clicked"
                 rel="noopener noreferrer"
             >
                 GitHub
             </a>
-            <a href={SOCIAL_LINKS.x} target="_blank" rel="noopener noreferrer">
+            <a href={SOCIAL_LINKS.x} target="_blank" data-analytics-event="x_clicked" rel="noopener noreferrer">
                 X
             </a>
             <a
                 href={languageHref}
                 hreflang={language}
+                data-analytics-event="language_changed"
                 aria-label={navigation.languageLabel}
             >
                 {languageCode}

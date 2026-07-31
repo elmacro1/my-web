@@ -6,6 +6,7 @@ export const CV_PATHS = {
 } as const;
 
 export const CONTACT_EMAIL = "mailto:elmacro11@gmail.com";
+export const CONTACT_EMAIL_ADDRESS = "elmacro11@gmail.com";
 
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/mgalvan26/",
