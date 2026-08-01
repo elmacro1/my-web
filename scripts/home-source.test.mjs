@@ -154,6 +154,17 @@ test("Home navigation and sections expose stable anchors without social navigati
   assert.doesNotMatch(navbar, /SOCIAL_LINKS/);
   assert.match(footer, /SOCIAL_LINKS/);
 });
+
+test("Responsive navigation synchronizes its initial state with the viewport", async () => {
+  const navbar = await readSource("src/components/navbar/navbar.astro");
+
+  assert.match(navbar, /<details[^>]*\sopen(?:\s|>)/);
+  assert.match(navbar, /data-navigation-menu/);
+  assert.match(navbar, /matchMedia\("\(width <= 880px\)"\)/);
+  assert.match(navbar, /menu\.open = !mobileViewport\.matches/);
+  assert.match(navbar, /mobileViewport\.addEventListener\("change", syncMenuState\)/);
+});
+
 test("Selected work exposes truthful localized contexts without invented client claims", async () => {
   const [english, spanish] = await Promise.all([
     readJson("src/dictionaries/en.json"),

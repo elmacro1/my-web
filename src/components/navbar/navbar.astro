@@ -15,7 +15,7 @@ const language = lang === "en" ? "es" : "en";
 ---
 
 <nav class={styles.main_container} aria-label={dictionary.menuLabel}>
-    <details class={styles.menu} open>
+    <details class={styles.menu} data-navigation-menu open>
         <summary class={styles.menu_toggle}>{dictionary.menuLabel}</summary>
         <div class={styles.links_container}>
             <a class={styles.link} href="#services">{dictionary.services}</a>
@@ -45,3 +45,17 @@ const language = lang === "en" ? "es" : "en";
         </div>
     </details>
 </nav>
+
+<script is:inline>
+    const menu = document.querySelector("[data-navigation-menu]");
+    const mobileViewport = window.matchMedia("(width <= 880px)");
+
+    if (menu instanceof HTMLDetailsElement) {
+        const syncMenuState = () => {
+            menu.open = !mobileViewport.matches;
+        };
+
+        syncMenuState();
+        mobileViewport.addEventListener("change", syncMenuState);
+    }
+</script>
