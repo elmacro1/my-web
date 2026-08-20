@@ -6,10 +6,10 @@ import styles from "./header.module.css";
 interface Props {
     lang: "en" | "es";
     dictionary: Dictionary["navigation"];
-    cvUrl: string;
+    role: string;
 }
 
-const { lang, dictionary, cvUrl } = Astro.props;
+const { lang, dictionary, role } = Astro.props;
 const homeHref = lang === "en" ? "/" : "/es/";
 ---
 
@@ -17,8 +17,8 @@ const homeHref = lang === "en" ? "/" : "/es/";
     <div class={styles.content_container}>
         <a href={homeHref} class={styles.brand} aria-label="Marco Galván">
             <span class={styles.name}>Marco Galván</span>
-            <span class={styles.role}>Product Builder</span>
+            <span class={styles.role}>{role}</span>
         </a>
-        <Navbar lang={lang} dictionary={dictionary} cvUrl={cvUrl} />
+        <Navbar lang={lang} dictionary={dictionary} />
     </div>
 </header>

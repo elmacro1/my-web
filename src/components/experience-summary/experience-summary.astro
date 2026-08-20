@@ -5,10 +5,9 @@ import styles from "./experience-summary.module.css";
 
 interface Props {
     dictionary: Dictionary["experienceSummary"];
-    cvUrl: string;
 }
 
-const { dictionary, cvUrl } = Astro.props;
+const { dictionary } = Astro.props;
 ---
 
 <section id="about" class={styles.section} aria-labelledby="about-title">
@@ -29,15 +28,6 @@ const { dictionary, cvUrl } = Astro.props;
         <p class={styles.description}>{dictionary.text}</p>
 
         <div class={styles.actions}>
-            <a
-                class={styles.primary_button}
-                href={cvUrl}
-                data-analytics-event="cv_clicked"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {dictionary.resumeLabel}
-            </a>
             <a
                 class={styles.secondary_button}
                 href={SOCIAL_LINKS.linkedin}

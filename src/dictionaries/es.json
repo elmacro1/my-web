@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Productos digitales, automatizaciones e integraciones | Marco Galván",
-    "description": "Ayudo a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas preparados para evolucionar.",
-    "ogImageAlt": "Marco Galván — Product Builder"
+    "description": "Desarrollador de Software & Product Builder que ayuda a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas pensados para evolucionar.",
+    "ogImageAlt": "Marco Galván — Desarrollador de Software & Product Builder"
   },
   "navigation": {
     "services": "Capacidades",
@@ -10,13 +10,12 @@
     "process": "Proceso",
     "about": "Sobre mí",
     "contact": "Contacto",
-    "resumeLabel": "Ver CV",
     "cta": "Hablemos",
     "languageLabel": "Cambiar a inglés",
     "menuLabel": "Menú"
   },
   "hero": {
-    "eyebrow": "Marco Galván · Product Builder",
+    "eyebrow": "Marco Galván · Desarrollador de Software & Product Builder",
     "title": "Convierto problemas de negocio en productos y sistemas que funcionan.",
     "description": "Diseño y construyo productos digitales, automatizaciones e integraciones para fundadores, pymes y equipos. Me involucro desde entender el problema hasta lanzar y evolucionar la solución.",
     "primaryCta": "Contame qué estás intentando resolver",
@@ -45,27 +44,27 @@
       {
         "number": "01",
         "title": "Entender",
-        "description": "Conozco el negocio, sus usuarios, la operación actual, las restricciones y el resultado que se busca alcanzar."
+        "description": "Entiendo cómo funciona hoy el negocio o proceso, dónde está el problema y qué resultado importa."
       },
       {
         "number": "02",
         "title": "Definir",
-        "description": "Identifico el problema prioritario, cuestiono supuestos y delimito qué vale la pena resolver primero."
+        "description": "Determino qué vale la pena resolver primero y cuál es el alcance mínimo que genera valor."
       },
       {
         "number": "03",
         "title": "Diseñar",
-        "description": "Evalúo alternativas y defino la solución, el alcance y la arquitectura que mejor se adaptan al contexto."
+        "description": "Diseño una solución simple alrededor del flujo de trabajo real."
       },
       {
         "number": "04",
         "title": "Construir",
-        "description": "Convierto las decisiones en entregas funcionales que puedan revisarse y validarse durante el proceso."
+        "description": "Construyo y entrego software usable, no solo funcionalidades marcadas como terminadas."
       },
       {
         "number": "05",
         "title": "Evolucionar",
-        "description": "Observo el uso real, incorporo aprendizajes y decido junto al equipo cuáles son los siguientes pasos."
+        "description": "Observo el uso real, mido resultados y mejoro donde tiene sentido."
       }
     ]
   },
@@ -114,8 +113,7 @@
   },
   "experienceSummary": {
     "title": "Experiencia construyendo productos reales",
-    "text": "Durante casi cinco años trabajé en productos web, móviles y SaaS para empresas y equipos de seguros, tecnología, educación y servicios digitales. Actualmente formo parte de Dam Squad, donde participo en la evolución de productos, integraciones y automatizaciones utilizadas en operaciones reales.",
-    "resumeLabel": "Ver CV",
+    "text": "Durante casi cinco años trabajé en productos web, móviles y SaaS para empresas y equipos de seguros, tecnología, educación y servicios digitales. Actualmente formo parte de Dam Squad, donde participo en la evolución de productos, integraciones y automatizaciones utilizadas en operaciones reales. Trabajás directamente conmigo desde entender el problema hasta lanzar y evolucionar la solución.",
     "linkedinLabel": "Ver LinkedIn"
   },
   "contact": {
@@ -127,9 +125,8 @@
   },
   "footer": {
     "title": "Marco Galván",
-    "role": "Product Builder",
+    "role": "Desarrollador de Software & Product Builder",
     "emailLabel": "Email",
-    "resumeLabel": "Ver CV",
     "copyright": "Todos los derechos reservados."
   }
 }

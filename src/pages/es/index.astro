@@ -10,7 +10,6 @@ import ExperienceSummary from "../../components/experience-summary/experience-su
 import ContactCta from "../../components/contact-cta/contact-cta.astro";
 import dictionaryJson from "../../dictionaries/es.json";
 import type { Dictionary } from "../../models/dictionary.model";
-import { CV_PATHS } from "../../consts";
 import styles from "../_index.module.css";
 
 const dictionary = dictionaryJson as Dictionary;
@@ -24,20 +23,20 @@ const config = {
         { lang: "x-default", href: "/" },
     ],
     canonicalPath: "/es/",
+    role: dictionary.footer.role,
 };
-const cvUrl = CV_PATHS[config.lang];
 ---
 
 <Layout {...config}>
     <a href="#main" class="skip-link">Saltar al contenido</a>
-    <Header lang={config.lang} dictionary={dictionary.navigation} cvUrl={cvUrl} />
+    <Header lang={config.lang} dictionary={dictionary.navigation} role={dictionary.footer.role} />
     <main id="main" class={styles.main}>
         <div class={styles.content_container}>
             <Hero dictionary={dictionary.hero} />
             <Capabilities dictionary={dictionary.capabilities} />
             <Process dictionary={dictionary.process} />
             <Featured dictionary={dictionary.selectedWork} />
-            <ExperienceSummary dictionary={dictionary.experienceSummary} cvUrl={cvUrl} />
+            <ExperienceSummary dictionary={dictionary.experienceSummary} />
             <ContactCta dictionary={dictionary.contact} />
         </div>
     </main>
@@ -45,6 +44,5 @@ const cvUrl = CV_PATHS[config.lang];
         lang={config.lang}
         dictionary={dictionary.footer}
         navigation={dictionary.navigation}
-        cvUrl={cvUrl}
     />
 </Layout>

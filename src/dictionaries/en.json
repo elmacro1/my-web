@@ -1,8 +1,8 @@
 {
   "metadata": {
     "title": "Digital Products, Automations & Integrations | Marco Galván",
-    "description": "I help businesses turn operational problems into digital products, automations, integrations and internal systems built to evolve.",
-    "ogImageAlt": "Marco Galván — Product Builder"
+    "description": "Software Developer & Product Builder helping businesses turn operational problems into digital products, automations, integrations and internal systems built to evolve.",
+    "ogImageAlt": "Marco Galván — Software Developer & Product Builder"
   },
   "navigation": {
     "services": "Capabilities",
@@ -10,13 +10,12 @@
     "process": "Process",
     "about": "About",
     "contact": "Contact",
-    "resumeLabel": "View CV",
     "cta": "Start a conversation",
     "languageLabel": "Switch to Spanish",
     "menuLabel": "Menu"
   },
   "hero": {
-    "eyebrow": "Marco Galván · Product Builder",
+    "eyebrow": "Marco Galván · Software Developer & Product Builder",
     "title": "I turn business problems into products and systems that work.",
     "description": "I design and build digital products, automations, and integrations for founders, small businesses, and teams. I get involved from understanding the problem to launching and evolving the solution.",
     "primaryCta": "Tell me what you're trying to solve",
@@ -45,27 +44,27 @@
       {
         "number": "01",
         "title": "Understand",
-        "description": "I learn about the business, its users and current operations, constraints, and the outcome we want to achieve."
+        "description": "I learn how the business works today, where the problem appears, and what outcome matters."
       },
       {
         "number": "02",
         "title": "Define",
-        "description": "I identify the priority problem, challenge assumptions, and determine what is worth solving first."
+        "description": "I decide what is worth solving first and the smallest scope that can create value."
       },
       {
         "number": "03",
         "title": "Design",
-        "description": "I evaluate alternatives and define the solution, scope, and architecture that best fit the context."
+        "description": "I design a simple solution around the real workflow."
       },
       {
         "number": "04",
         "title": "Build",
-        "description": "I turn decisions into working deliveries that can be reviewed and validated throughout the process."
+        "description": "I build and ship usable software, not just features on a checklist."
       },
       {
         "number": "05",
         "title": "Evolve",
-        "description": "I observe real usage, incorporate learnings, and decide with the team what should come next."
+        "description": "I observe real usage, measure results, and improve where it makes sense."
       }
     ]
   },
@@ -114,8 +113,7 @@
   },
   "experienceSummary": {
     "title": "Experience building real products",
-    "text": "For nearly five years, I have worked on web, mobile, and SaaS products for companies and teams across insurance, technology, education, and digital services. I currently work at Dam Squad, where I contribute to products, integrations, and automations used in real operations.",
-    "resumeLabel": "View CV",
+    "text": "For nearly five years, I have worked on web, mobile, and SaaS products for companies and teams across insurance, technology, education, and digital services. I currently work at Dam Squad, where I contribute to products, integrations, and automations used in real operations. You work directly with me from understanding the problem to shipping and evolving the solution.",
     "linkedinLabel": "View LinkedIn"
   },
   "contact": {
@@ -127,9 +125,8 @@
   },
   "footer": {
     "title": "Marco Galván",
-    "role": "Product Builder",
+    "role": "Software Developer & Product Builder",
     "emailLabel": "Email",
-    "resumeLabel": "View CV",
     "copyright": "All rights reserved."
   }
 }

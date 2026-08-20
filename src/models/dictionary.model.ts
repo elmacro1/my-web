@@ -47,7 +47,6 @@ export interface Dictionary {
     process: string;
     about: string;
     contact: string;
-    resumeLabel: string;
     cta: string;
     languageLabel: string;
     menuLabel: string;
@@ -75,7 +74,6 @@ export interface Dictionary {
   experienceSummary: {
     title: string;
     text: string;
-    resumeLabel: string;
     linkedinLabel: string;
   };
   contact: {
@@ -89,7 +87,6 @@ export interface Dictionary {
     title: string;
     role: string;
     emailLabel: string;
-    resumeLabel: string;
     copyright: string;
   };
 }

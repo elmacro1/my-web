@@ -21,6 +21,7 @@ interface SiteMetadata {
 interface Props {
     lang: "en" | "es";
     metadata: SiteMetadata;
+    role: string;
     canonicalPath?: string;
     ogImage?: string;
     ogType?: "website" | "profile";
@@ -31,6 +32,7 @@ interface Props {
 const {
     lang,
     metadata,
+    role,
     canonicalPath = Astro.url.pathname,
     ogImage = SITE_URL + "/og-image.svg",
     ogType = "profile",
@@ -59,7 +61,7 @@ const structuredData = {
     "@id": profilePageId,
     url: canonicalURL,
     name: title,
-    headline: "Marco Galván — Product Builder",
+    headline: "Marco Galván — " + role,
     description,
     inLanguage: lang,
     isPartOf: {
@@ -78,7 +80,7 @@ const structuredData = {
             url: ogImageURL,
         },
         email: CONTACT_EMAIL_ADDRESS,
-        jobTitle: "Product Builder",
+        jobTitle: role,
         homeLocation: {
             "@type": "Place",
             name: "Santiago del Estero, Argentina",

@@ -34,7 +34,6 @@
 }
 
 .link,
-.resume_link,
 .language_link,
 .cta_link {
     display: inline-flex;
@@ -49,16 +48,9 @@
 }
 
 .link:hover,
-.resume_link:hover,
 .language_link:hover {
     color: var(--site-text);
     background: var(--site-surface);
-}
-
-.resume_link {
-    margin-left: 0.35rem;
-    color: var(--site-text-muted);
-    font-size: 0.78rem;
 }
 
 .language_link {
@@ -99,7 +91,6 @@
     }
 
     .link,
-    .resume_link,
     .language_link,
     .cta_link {
         width: 100%;

@@ -48,7 +48,7 @@ test("Home routes use the commercial Product Builder section order", async () =>
   }
 });
 
-test("Home dictionaries contain the bilingual Product Builder offer", async () => {
+test("Home dictionaries contain bilingual Software Developer & Product Builder positioning", async () => {
   const [english, spanish] = await Promise.all([
     readJson("src/dictionaries/en.json"),
     readJson("src/dictionaries/es.json"),
@@ -64,7 +64,16 @@ test("Home dictionaries contain the bilingual Product Builder offer", async () =
     Object.keys(spanish.experienceSummary),
   );
 
-  assert.equal(english.hero.eyebrow, "Marco Galván · Product Builder");
+  assert.equal(
+    english.hero.eyebrow,
+    "Marco Galván · Software Developer & Product Builder",
+  );
+  assert.equal(
+    spanish.hero.eyebrow,
+    "Marco Galván · Desarrollador de Software & Product Builder",
+  );
+  assert.equal(english.footer.role, "Software Developer & Product Builder");
+  assert.equal(spanish.footer.role, "Desarrollador de Software & Product Builder");
   assert.equal(
     english.hero.title,
     "I turn business problems into products and systems that work.",
@@ -97,17 +106,50 @@ test("Home dictionaries contain the bilingual Product Builder offer", async () =
   );
 });
 
-test("Home routes use centralized locale-specific CV paths", async () => {
-  const [englishRoute, spanishRoute, consts] = await Promise.all([
+test("Home keeps CV routes available without Home navigation links", async () => {
+  const [englishRoute, spanishRoute, header, navbar, experience, footer, consts] =
+    await Promise.all([
     readSource("src/pages/index.astro"),
     readSource("src/pages/es/index.astro"),
+    readSource("src/components/header/header.astro"),
+    readSource("src/components/navbar/navbar.astro"),
+    readSource("src/components/experience-summary/experience-summary.astro"),
+    readSource("src/components/footer/footer.astro"),
     readSource("src/consts.ts"),
-  ]);
+    ]);
 
-  assert.match(englishRoute, /CV_PATHS/);
-  assert.match(spanishRoute, /CV_PATHS/);
+  for (const source of [englishRoute, spanishRoute, header, navbar, experience, footer]) {
+    assert.doesNotMatch(source, /cvUrl|CV_PATHS|resumeLabel|resume_link/);
+  }
+
   assert.ok(consts.includes('en: "/Marco-Galvan-CV-EN.pdf"'));
   assert.ok(consts.includes('es: "/Marco-Galvan-CV-ES.pdf"'));
+});
+
+test("Home uses the localized role in JSON-LD and keeps the CV outside the Home journey", async () => {
+  const [layout, englishPage, spanishPage, header, navbar, experience, footer] =
+    await Promise.all([
+      readSource("src/layouts/Layout.astro"),
+      readSource("src/pages/index.astro"),
+      readSource("src/pages/es/index.astro"),
+      readSource("src/components/header/header.astro"),
+      readSource("src/components/navbar/navbar.astro"),
+      readSource("src/components/experience-summary/experience-summary.astro"),
+      readSource("src/components/footer/footer.astro"),
+    ]);
+
+  assert.match(layout, /role:\s*string/);
+  assert.match(layout, /headline:\s*["']Marco Galván — ["']\s*\+\s*role/);
+  assert.match(layout, /jobTitle:\s*role/);
+  assert.match(englishPage, /role:\s*dictionary\.footer\.role/);
+  assert.match(spanishPage, /role:\s*dictionary\.footer\.role/);
+
+  for (const source of [englishPage, spanishPage, header, navbar, experience, footer]) {
+    assert.doesNotMatch(source, /cvUrl|CV_PATHS|resumeLabel|resume_link/);
+  }
+
+  assert.match(await readSource("src/pages/cv/en.astro"), /<CVLayout\b/);
+  assert.match(await readSource("src/pages/cv/es.astro"), /<CVLayout\b/);
 });
 
 test("Home routes consume localized commercial SEO metadata", async () => {
@@ -122,8 +164,22 @@ test("Home routes consume localized commercial SEO metadata", async () => {
   assert.match(spanishRoute, /metadata: dictionary\.metadata/);
   assert.equal(english.metadata.title, "Digital Products, Automations & Integrations | Marco Galván");
   assert.equal(spanish.metadata.title, "Productos digitales, automatizaciones e integraciones | Marco Galván");
-  assert.match(english.metadata.description, /operational problems into digital products/);
-  assert.match(spanish.metadata.description, /problemas operativos en productos digitales/);
+  assert.equal(
+    english.metadata.description,
+    "Software Developer & Product Builder helping businesses turn operational problems into digital products, automations, integrations and internal systems built to evolve.",
+  );
+  assert.equal(
+    spanish.metadata.description,
+    "Desarrollador de Software & Product Builder que ayuda a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas pensados para evolucionar.",
+  );
+  assert.equal(
+    english.metadata.ogImageAlt,
+    "Marco Galván — Software Developer & Product Builder",
+  );
+  assert.equal(
+    spanish.metadata.ogImageAlt,
+    "Marco Galván — Desarrollador de Software & Product Builder",
+  );
 });
 
 test("Home navigation and sections expose stable anchors without social navigation", async () => {
@@ -150,7 +206,7 @@ test("Home navigation and sections expose stable anchors without social navigati
     assert.match(navbar, new RegExp(`href=["']${anchor}["']`));
   }
 
-  assert.match(navbar, /cvUrl/);
+  assert.doesNotMatch(navbar, /cvUrl|resumeLabel|cv_clicked|resume_link/);
   assert.doesNotMatch(navbar, /SOCIAL_LINKS/);
   assert.match(footer, /SOCIAL_LINKS/);
 });
@@ -220,7 +276,34 @@ test("Home dictionaries contain the approved localized metadata and CTA copy", a
     english.hero.description,
     /from understanding the problem to launching and evolving/,
   );
-  assert.match(english.process.steps[0].description, /current operations/);
+  assert.deepEqual(
+    english.process.steps.map(({ description }) => description),
+    [
+      "I learn how the business works today, where the problem appears, and what outcome matters.",
+      "I decide what is worth solving first and the smallest scope that can create value.",
+      "I design a simple solution around the real workflow.",
+      "I build and ship usable software, not just features on a checklist.",
+      "I observe real usage, measure results, and improve where it makes sense.",
+    ],
+  );
+  assert.deepEqual(
+    spanish.process.steps.map(({ description }) => description),
+    [
+      "Entiendo cómo funciona hoy el negocio o proceso, dónde está el problema y qué resultado importa.",
+      "Determino qué vale la pena resolver primero y cuál es el alcance mínimo que genera valor.",
+      "Diseño una solución simple alrededor del flujo de trabajo real.",
+      "Construyo y entrego software usable, no solo funcionalidades marcadas como terminadas.",
+      "Observo el uso real, mido resultados y mejoro donde tiene sentido.",
+    ],
+  );
+  assert.match(
+    english.experienceSummary.text,
+    /You work directly with me from understanding the problem to shipping and evolving the solution\./,
+  );
+  assert.match(
+    spanish.experienceSummary.text,
+    /Trabajás directamente conmigo desde entender el problema hasta lanzar y evolucionar la solución\./,
+  );
   assert.match(english.capabilities.items[0].description, /test with real users and evolve/);
   assert.equal(
     english.contact.text,
@@ -284,7 +367,6 @@ test("Home analytics uses one shared event listener and named events", async () 
     "linkedin_clicked",
     "github_clicked",
     "x_clicked",
-    "cv_clicked",
     "language_changed",
   ]) {
     assert.match(source, new RegExp(eventName));

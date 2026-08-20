@@ -7,10 +7,9 @@ interface Props {
     lang: "en" | "es";
     dictionary: Dictionary["footer"];
     navigation: Dictionary["navigation"];
-    cvUrl: string;
 }
 
-const { lang, dictionary, navigation, cvUrl } = Astro.props;
+const { lang, dictionary, navigation } = Astro.props;
 const languageHref = lang === "en" ? "/es/" : "/";
 const languageCode = lang === "en" ? "ES" : "EN";
 const homeHref = lang === "en" ? "/" : "/es/";
@@ -32,16 +31,6 @@ const year = new Date().getFullYear();
                 <li><a href="#process">{navigation.process}</a></li>
                 <li><a href="#about">{navigation.about}</a></li>
                 <li><a href="#contact">{navigation.contact}</a></li>
-                <li>
-                    <a
-                        href={cvUrl}
-                        target="_blank"
-                        data-analytics-event="cv_clicked"
-                        rel="noopener noreferrer"
-                    >
-                        {dictionary.resumeLabel}
-                    </a>
-                </li>
             </ul>
         </nav>
 
