@@ -51,7 +51,7 @@ Keep the existing five-step process and numbering. Replace only the descriptions
 | Understand | `I learn how the business works today, where the problem appears, and what outcome matters.` | `Entiendo cómo funciona hoy el negocio o proceso, dónde está el problema y qué resultado importa.` |
 | Define | `I decide what is worth solving first and the smallest scope that can create value.` | `Determino qué vale la pena resolver primero y cuál es el alcance mínimo que genera valor.` |
 | Design | `I design a simple solution around the real workflow.` | `Diseño una solución simple alrededor del flujo de trabajo real.` |
-| Build | `I build and ship usable software, not just completed features.` | `Construyo y entrego software que se puede usar, no solo funcionalidades terminadas.` |
+| Build | `I build and ship usable software, not just features on a checklist.` | `Construyo y entrego software usable, no solo funcionalidades marcadas como terminadas.` |
 | Evolve | `I observe real usage, measure results, and improve where it makes sense.` | `Observo el uso real, mido resultados y mejoro donde tiene sentido.` |
 
 ### Selected work and hero
@@ -79,7 +79,7 @@ Keep the existing localized Home titles because they describe the offer and do n
 Update the localized Home descriptions so search and social previews include the new role and business-problem focus:
 
 - English: `Software Developer & Product Builder helping businesses turn operational problems into digital products, automations, integrations and internal systems built to evolve.`
-- Spanish: `Desarrollador de Software & Product Builder que ayuda a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas preparados para evolucionar.`
+- Spanish: `Desarrollador de Software & Product Builder que ayuda a empresas a convertir problemas operativos en productos digitales, automatizaciones, integraciones y sistemas pensados para evolucionar.`
 
 Update `ogImageAlt` with the localized professional label. Open Graph and Twitter descriptions/alt text continue to derive from the localized dictionary metadata. `Layout.astro` receives the localized Home role and uses it for the JSON-LD `ProfilePage.headline` and `Person.jobTitle`, preserving the existing schema shape and facts.
 
