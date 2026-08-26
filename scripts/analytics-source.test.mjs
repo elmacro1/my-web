@@ -28,7 +28,12 @@ test("Google Analytics component uses the configured public Measurement ID", asy
     component,
     /googletagmanager\.com\/gtag\/js\?id=\$\{measurementId\}/,
   );
-  assert.match(component, /gtag\(["']config["'],\s*measurementId\)/);
+  assert.match(component, /window\.gtag\(\s*["']config["']\s*,\s*measurementId\s*\)/);
+  assert.doesNotMatch(component, /window\.gtag\(\s*["']config["']\s*,\s*measurementId\s*,/);
+  assert.doesNotMatch(
+    component,
+    /(?:email|phone|name|address|user[_-]?id|client[_-]?id|customer[_-]?id|ip|user[_-]?data)/i,
+  );
   assert.match(component, /<script[^>]+async[^>]+src=/);
   assert.match(component, /window\.dataLayer\s*=\s*window\.dataLayer\s*\|\|\s*\[\]/);
   assert.match(component, /function\s+gtag\(\)\s*\{\s*dataLayer\.push\(arguments\)/s);
