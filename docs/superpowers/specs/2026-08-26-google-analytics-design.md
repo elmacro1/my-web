@@ -4,7 +4,7 @@
 
 ## Goal
 
-Add Google Analytics 4 to the static Astro site so page views are measured across the Home and CV routes, while preserving the existing Vercel Analytics integration and forwarding the Home's existing interaction events to GA4.
+Add Google Analytics 4 to the static Astro site so page views are measured across the Home and CV routes, using GA4 as the only product-analytics provider and preserving Vercel Speed Insights for performance monitoring.
 
 ## Existing architecture
 
@@ -30,7 +30,14 @@ Use the Google tag's default `page_view` behavior. Because the site uses normal 
 
 ### Interaction events
 
-Extend the existing delegated analytics listener so each existing `data-analytics-event` trigger continues to be sent to Vercel Analytics and is also sent to GA4 with the same event name. Do not add new event names or attach personal data or URL/query-string values to events.
+Keep the existing delegated analytics listener, but make GA4 its only destination: each existing `data-analytics-event` trigger is sent to GA4 with the same event name. Do not add new event names or attach personal data or URL/query-string values to events.
+
+Remove Vercel Analytics completely:
+
+- Remove the `@vercel/analytics` dependency.
+- Remove its Astro component from `Layout.astro`.
+- Remove the Vercel `track` call from the delegated listener.
+- Keep `@vercel/speed-insights` and its Astro component unchanged.
 
 ### Configuration
 
@@ -44,7 +51,7 @@ Do not add a consent banner or Consent Mode implementation in this change. Do no
 
 Add a focused `GoogleAnalytics.astro` component that owns the Google tag bootstrap and receives the shared Measurement ID from `src/consts.ts`.
 
-Mount the component once in `Layout.astro` and once in `CVLayout.astro`. Keep the existing Vercel components and listener separate so either analytics provider can be changed without coupling their initialization.
+Mount the component once in `Layout.astro` and once in `CVLayout.astro`. Keep the Google tag bootstrap separate from the event listener, and leave Vercel Speed Insights independent because it measures performance rather than product analytics.
 
 The browser flow is:
 
@@ -54,11 +61,10 @@ document load
   -> GA4 receives page_view
 
 click on [data-analytics-event]
-  -> existing listener sends the event to Vercel Analytics
-  -> same listener sends the event name to GA4 when gtag is available
+  -> existing listener sends the event name to GA4 when gtag is available
 ```
 
-The GA4 call is guarded so a blocked script or unavailable network does not break navigation or the existing Vercel event call.
+The GA4 call is guarded so a blocked script or unavailable network does not break navigation or page interactions.
 
 ## Error handling and performance
 
@@ -71,9 +77,9 @@ The GA4 call is guarded so a blocked script or unavailable network does not brea
 
 - Add the Measurement ID constant and the dedicated Google Analytics component.
 - Mount the component in both shared layouts.
-- Update the existing event listener to forward approved event names to GA4 while preserving Vercel tracking.
+- Update the existing event listener to forward approved event names to GA4.
+- Remove the Vercel Analytics dependency and component while keeping Speed Insights.
 - Do not introduce Google Tag Manager, new dependencies, consent UI, or unrelated event instrumentation.
-- Do not remove or replace Vercel Analytics or Speed Insights.
 
 ## Validation strategy
 
@@ -81,5 +87,5 @@ The GA4 call is guarded so a blocked script or unavailable network does not brea
 - Run `pnpm check` for Astro and TypeScript validation.
 - Run `pnpm build`.
 - Inspect generated HTML for the GA4 script/configuration and the Measurement ID in both Home and CV output.
-- Confirm existing event names remain in source and the event listener still calls Vercel `track`.
+- Confirm existing event names remain in source, the event listener calls GA4, and no Vercel Analytics dependency/import remains.
 - After deployment, use GA4 `Tiempo real` and Tag Assistant/browser network tools to confirm a page view arrives for the public site.
