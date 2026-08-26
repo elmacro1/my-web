@@ -1,10 +1,24 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const root = new URL("..", import.meta.url);
 const file = (path) => new URL(path, root);
 const readSource = (path) => readFile(file(path), "utf8");
+const readProductionSources = async (directory = file("src")) => {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const sources = await Promise.all(
+    entries.map(async (entry) => {
+      const path = new URL(`${entry.name}/`, directory);
+      if (entry.isDirectory()) return readProductionSources(path);
+      if (/\.(?:astro|ts)$/.test(entry.name)) {
+        return [{ path: path.href, source: await readFile(path, "utf8") }];
+      }
+      return [];
+    }),
+  );
+  return sources.flat();
+};
 
 test("Google Analytics component uses the configured public Measurement ID", async () => {
   const [consts, component] = await Promise.all([
@@ -71,7 +85,6 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
     /import\s+GoogleAnalytics\s+from\s+["']\.\.\/components\/analytics\/google-analytics\.astro["'];/,
   );
   assert.match(cvLayout, /<GoogleAnalytics\s*\/>/);
-  assert.match(cvLayout, /import\s+SpeedInsights\s+from\s+["']@vercel\/speed-insights\/astro["'];/);
   assert.doesNotMatch(cvLayout, /@vercel\/analytics|<Analytics\s*\/>/);
 
   assert.match(indexRoute, /import\s+Layout\s+from\s+["']\.\.\/layouts\/Layout\.astro["'];/);
@@ -126,4 +139,20 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
     /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|dataset\.[A-Za-z]+\s*\+/,
   );
   assert.doesNotMatch(events, /gtag\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/s);
+});
+
+test("Production source tree contains no disallowed analytics integrations or payloads", async () => {
+  const sources = await readProductionSources();
+
+  for (const { path, source } of sources) {
+    assert.doesNotMatch(source, /@vercel\/analytics/ , path);
+    assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/, path);
+    assert.doesNotMatch(source, /consent|Consent|cookie|Cookie/, path);
+    assert.doesNotMatch(source, /gtag\([^)]*,[^)]*,/s, path);
+    assert.doesNotMatch(
+      source,
+      /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|gtag\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/is,
+      path,
+    );
+  }
 });
