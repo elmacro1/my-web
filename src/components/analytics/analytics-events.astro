@@ -2,7 +2,11 @@
 ---
 
 <script>
-    import { track } from "@vercel/analytics";
+    type AnalyticsWindow = Window & {
+        gtag?: (command: "event", eventName: string) => void;
+    };
+
+    const analyticsWindow = window as AnalyticsWindow;
 
     document.addEventListener("click", (event) => {
         if (!(event.target instanceof Element)) return;
@@ -12,6 +16,12 @@
         );
         const eventName = trigger?.dataset.analyticsEvent;
 
-        if (eventName) void track(eventName);
+        if (eventName) {
+            try {
+                analyticsWindow.gtag?.("event", eventName);
+            } catch {
+                // Analytics must never interrupt normal page interactions.
+            }
+        }
     });
 </script>

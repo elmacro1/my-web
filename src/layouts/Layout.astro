@@ -2,9 +2,9 @@
 import "@fontsource/geist-sans/400.css";
 import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
-import Analytics from "@vercel/analytics/astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import AnalyticsEvents from "../components/analytics/analytics-events.astro";
+import GoogleAnalytics from "../components/analytics/google-analytics.astro";
 import { CONTACT_EMAIL_ADDRESS, SITE_URL, SOCIAL_LINKS } from "../consts";
 
 interface AlternateLanguage {
@@ -198,7 +198,7 @@ const structuredData = {
             set:html={JSON.stringify(structuredData)}
         />
 
-        <Analytics />
+        <GoogleAnalytics />
         <SpeedInsights />
         <AnalyticsEvents />
     </head>

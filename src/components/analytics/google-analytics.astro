@@ -1,0 +1,18 @@
+---
+import { GOOGLE_ANALYTICS_MEASUREMENT_ID } from "../../consts";
+
+const measurementId = GOOGLE_ANALYTICS_MEASUREMENT_ID;
+---
+
+<script define:vars={{ measurementId }}>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+    };
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId);
+</script>
+<script
+    async
+    src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+></script>

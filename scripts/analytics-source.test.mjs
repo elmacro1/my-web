@@ -46,11 +46,11 @@ test("Google Analytics component uses the configured public Measurement ID", asy
   assert.doesNotMatch(component, /window\.gtag\(\s*["']config["']\s*,\s*measurementId\s*,/);
   assert.doesNotMatch(
     component,
-    /(?:email|phone|name|address|user[_-]?id|client[_-]?id|customer[_-]?id|ip|user[_-]?data)/i,
+    /(?:email|phone|name|address|user[_-]?id|client[_-]?id|customer[_-]?id|\bip\b|user[_-]?data)/i,
   );
   assert.match(component, /<script[^>]+async[^>]+src=/);
   assert.match(component, /window\.dataLayer\s*=\s*window\.dataLayer\s*\|\|\s*\[\]/);
-  assert.match(component, /function\s+gtag\(\)\s*\{\s*dataLayer\.push\(arguments\)/s);
+  assert.match(component, /function\s+gtag\(\)\s*\{\s*(?:window\.)?dataLayer\.push\(arguments\)/s);
   assert.match(component, /dataLayer.*gtag.*config/s);
   assert.doesNotMatch(component, /GTM-[A-Z0-9]+/);
   assert.doesNotMatch(component, /(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/);
@@ -131,7 +131,7 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
   assert.equal((events.match(/document\.addEventListener/g) ?? []).length, 1);
   assert.match(events, /analyticsWindow\.gtag\?\.\("event",\s*eventName\)/);
   assert.match(events, /if\s*\(eventName\).*analyticsWindow\.gtag\?\./s);
-  assert.match(events, /try\s*\{[\s\S]*analyticsWindow\.gtag\?\.[\s\S]*\}\s*catch\s*\(/);
+  assert.match(events, /try\s*\{[\s\S]*analyticsWindow\.gtag\?\.[\s\S]*\}\s*catch(?:\s*\([^)]*\))?\s*\{/);
   assert.doesNotMatch(events, /analyticsWindow\.gtag\?\.\("event",\s*eventName\s*,/);
   assert.doesNotMatch(events, /@vercel\/analytics|track\s*\(/);
   assert.doesNotMatch(events, /GTM-[A-Z0-9]+|(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/);
