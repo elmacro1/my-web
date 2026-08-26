@@ -9,9 +9,9 @@ const readProductionSources = async (directory = file("src")) => {
   const entries = await readdir(directory, { withFileTypes: true });
   const sources = await Promise.all(
     entries.map(async (entry) => {
-      const path = new URL(`${entry.name}/`, directory);
-      if (entry.isDirectory()) return readProductionSources(path);
-      if (/\.(?:astro|ts)$/.test(entry.name)) {
+      const path = new URL(entry.name, directory);
+      if (entry.isDirectory()) return readProductionSources(new URL(`${entry.name}/`, directory));
+      if (entry.isFile()) {
         return [{ path: path.href, source: await readFile(path, "utf8") }];
       }
       return [];
@@ -143,11 +143,19 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
 
 test("Production source tree contains no disallowed analytics integrations or payloads", async () => {
   const sources = await readProductionSources();
+  const measurementIdOccurrences = sources.reduce(
+    (count, { source }) => count + (source.match(/G-7Y7QZ4BZ5H/g) ?? []).length,
+    0,
+  );
+  const consts = sources.find(({ path }) => path.endsWith("/src/consts.ts"));
+  assert.equal(measurementIdOccurrences, 1);
+  assert.equal((consts?.source.match(/G-7Y7QZ4BZ5H/g) ?? []).length, 1);
 
   for (const { path, source } of sources) {
-    assert.doesNotMatch(source, /@vercel\/analytics/ , path);
+    assert.doesNotMatch(source, /@vercel\/analytics/, path);
     assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/, path);
     assert.doesNotMatch(source, /consent|Consent|cookie|Cookie/, path);
+    assert.doesNotMatch(source, /import\.meta\.env|process\.env/, path);
     assert.doesNotMatch(source, /gtag\([^)]*,[^)]*,/s, path);
     assert.doesNotMatch(
       source,
@@ -155,4 +163,17 @@ test("Production source tree contains no disallowed analytics integrations or pa
       path,
     );
   }
+
+  const scriptSources = sources.flatMap(({ source }) =>
+    [...source.matchAll(/<script\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)].map(
+      ([, src]) => src,
+    ),
+  );
+  const externalScriptSources = scriptSources.filter((src) => /^https?:\/\//i.test(src));
+  assert.ok(externalScriptSources.length > 0);
+  assert.ok(
+    externalScriptSources.every((src) =>
+      /^https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/.test(src),
+    ),
+  );
 });
