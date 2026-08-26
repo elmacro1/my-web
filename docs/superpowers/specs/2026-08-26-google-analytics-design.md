@@ -79,6 +79,7 @@ The GA4 call is guarded so a blocked script or unavailable network does not brea
 - Mount the component in both shared layouts.
 - Update the existing event listener to forward approved event names to GA4.
 - Remove the Vercel Analytics dependency and component while keeping Speed Insights.
+- Update `README.md` so the documented analytics architecture matches the implementation.
 - Do not introduce Google Tag Manager, new dependencies, consent UI, or unrelated event instrumentation.
 
 ## Validation strategy
