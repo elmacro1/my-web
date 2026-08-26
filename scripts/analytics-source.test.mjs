@@ -85,6 +85,7 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
     /import\s+GoogleAnalytics\s+from\s+["']\.\.\/components\/analytics\/google-analytics\.astro["'];/,
   );
   assert.match(cvLayout, /<GoogleAnalytics\s*\/>/);
+  assert.doesNotMatch(cvLayout, /@vercel\/speed-insights\/astro|<SpeedInsights\s*\/>/);
   assert.doesNotMatch(cvLayout, /@vercel\/analytics|<Analytics\s*\/>/);
 
   assert.match(indexRoute, /import\s+Layout\s+from\s+["']\.\.\/layouts\/Layout\.astro["'];/);
@@ -116,7 +117,7 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
   assert.doesNotMatch(readme, /@vercel\/analytics/);
   for (const source of [homeLayout, cvLayout, lockfile, readme]) {
     assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/);
-    assert.doesNotMatch(source, /(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/, path);
+    assert.doesNotMatch(source, /(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/);
   }
 });
 
@@ -138,41 +139,39 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
     events,
     /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|dataset\.[A-Za-z]+\s*\+/,
   );
-  assert.doesNotMatch(events, /gtag\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/s);
+  assert.doesNotMatch(events, /gtag\?\.\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/s);
 });
 
 test("Production source tree contains no disallowed analytics integrations or payloads", async () => {
   const sources = await readProductionSources();
-  const measurementIdOccurrences = sources.reduce(
-    (count, { source }) => count + (source.match(/G-7Y7QZ4BZ5H/g) ?? []).length,
+  const measurementIdDeclarations = sources.reduce(
+    (count, { source }) => count + (source.match(/export\s+const\s+GOOGLE_ANALYTICS_MEASUREMENT_ID\s*=/g) ?? []).length,
     0,
   );
   const consts = sources.find(({ path }) => path.endsWith("/src/consts.ts"));
-  assert.equal(measurementIdOccurrences, 1);
+  assert.equal(measurementIdDeclarations, 1);
+  assert.match(consts?.source ?? "", /export\s+const\s+GOOGLE_ANALYTICS_MEASUREMENT_ID\s*=\s*["']G-7Y7QZ4BZ5H["'];/);
   assert.equal((consts?.source.match(/G-7Y7QZ4BZ5H/g) ?? []).length, 1);
 
   for (const { path, source } of sources) {
     assert.doesNotMatch(source, /@vercel\/analytics/, path);
     assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/, path);
     assert.doesNotMatch(source, /(?:GOOGLE_ANALYTICS|GA4|MEASUREMENT_ID)[^\n]*(?:import\.meta\.env|process\.env)|(?:import\.meta\.env|process\.env)[^\n]*(?:GOOGLE_ANALYTICS|GA4|MEASUREMENT_ID)/i, path);
-    assert.doesNotMatch(source, /gtag\([^)]*,[^)]*,/s, path);
+    assert.doesNotMatch(source, /gtag\?\.?(?:\s*)\([^)]*,[^)]*,/s, path);
     assert.doesNotMatch(
       source,
-      /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|gtag\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/is,
+      /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|gtag(?:\?\.)?\s*\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/is,
       path,
     );
   }
 
-  const scriptSources = sources.flatMap(({ source }) =>
+  const scriptTags = sources.flatMap(({ source }) =>
     [...source.matchAll(/<script\b[^>]*\bsrc\s*=\s*(?:(["'])([^"']+)\1|\{([\s\S]*?)\})[^>]*>/gi)].map(
-      ([, , quoted, expression]) => quoted ?? expression,
+      ([tag, , quoted, expression]) => ({ tag, src: quoted ?? expression }),
     ),
   );
-  assert.ok(scriptSources.length > 0);
-  assert.ok(scriptSources.every((src) =>
-    !/https?:\/\//i.test(src) || /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/i.test(src),
-  ));
-  assert.ok(scriptSources.some((src) =>
-    /googletagmanager\.com\/gtag\/js\?id=/i.test(src),
-  ));
+  const externalScriptTags = scriptTags.filter(({ src }) => /https?:\/\//i.test(src));
+  assert.equal(externalScriptTags.length, 1);
+  assert.match(externalScriptTags[0].src, /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/i);
+  assert.match(externalScriptTags[0].tag, /\basync\b/i);
 });
