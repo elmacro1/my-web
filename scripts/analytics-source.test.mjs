@@ -58,6 +58,7 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
   );
   assert.match(homeLayout, /<GoogleAnalytics\s*\/>/);
   assert.match(homeLayout, /<SpeedInsights\s*\/>/);
+  assert.match(homeLayout, /import\s+SpeedInsights\s+from\s+["']@vercel\/speed-insights\/astro["'];/);
   assert.doesNotMatch(homeLayout, /@vercel\/analytics|<Analytics\s*\/>/);
 
   assert.match(
@@ -65,6 +66,7 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
     /import\s+GoogleAnalytics\s+from\s+["']\.\.\/components\/analytics\/google-analytics\.astro["'];/,
   );
   assert.match(cvLayout, /<GoogleAnalytics\s*\/>/);
+  assert.match(cvLayout, /import\s+SpeedInsights\s+from\s+["']@vercel\/speed-insights\/astro["'];/);
   assert.doesNotMatch(cvLayout, /@vercel\/analytics|<Analytics\s*\/>/);
 
   assert.match(indexRoute, /import\s+Layout\s+from\s+["']\.\.\/layouts\/Layout\.astro["'];/);
@@ -81,10 +83,9 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
   assert.deepEqual(Object.keys(packageJson.dependencies).sort(), [
     "@astrojs/sitemap",
     "@fontsource/geist-sans",
-    "@vercel/analytics",
     "@vercel/speed-insights",
     "astro",
-  ].sort().filter((name) => name !== "@vercel/analytics"));
+  ]);
   assert.deepEqual(Object.keys(packageJson.devDependencies).sort(), [
     "@astrojs/check",
     "playwright",
@@ -95,6 +96,10 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
   assert.match(readme, /Google Analytics 4/);
   assert.match(readme, /@vercel\/speed-insights/);
   assert.doesNotMatch(readme, /@vercel\/analytics/);
+  for (const source of [homeLayout, cvLayout, lockfile, readme]) {
+    assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/);
+    assert.doesNotMatch(source, /consent|Consent|cookie|Cookie/);
+  }
 });
 
 test("GA4 event bridge forwards named events without Vercel Analytics", async () => {
@@ -107,8 +112,13 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
   assert.equal((events.match(/document\.addEventListener/g) ?? []).length, 1);
   assert.match(events, /analyticsWindow\.gtag\?\.\("event",\s*eventName\)/);
   assert.match(events, /if\s*\(eventName\).*analyticsWindow\.gtag\?\./s);
+  assert.match(events, /try\s*\{[\s\S]*analyticsWindow\.gtag\?\.[\s\S]*\}\s*catch\s*\(/);
+  assert.doesNotMatch(events, /analyticsWindow\.gtag\?\.\("event",\s*eventName\s*,/);
   assert.doesNotMatch(events, /@vercel\/analytics|track\s*\(/);
   assert.doesNotMatch(events, /GTM-[A-Z0-9]+|consent|Consent|cookie|Cookie/);
-  assert.doesNotMatch(events, /location\.search|URLSearchParams|input\.value/);
-  assert.doesNotMatch(events, /gtag\([^)]*(?:location|search|URLSearchParams|value)/s);
+  assert.doesNotMatch(
+    events,
+    /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|dataset\.[A-Za-z]+\s*\+/,
+  );
+  assert.doesNotMatch(events, /gtag\([^)]*(?:target|detail|location|search|URLSearchParams|innerText|textContent|value|FormData)/s);
 });
