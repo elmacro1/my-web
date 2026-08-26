@@ -68,8 +68,8 @@ Home dictionaries have explicit `navigation`, `hero`, `capabilities`, `process`,
 - TypeScript and CSS Modules.
 - English and Spanish Home and CV routes.
 - `@astrojs/sitemap` and `public/robots.txt` for SEO discovery.
-- Google Analytics 4 in the shared Home and CV layouts, and `@vercel/speed-insights` in the shared Home layout.
-- A small delegated Analytics listener sends the approved Home interactions to Google Analytics 4 without framework hydration.
+- `@vercel/analytics` and `@vercel/speed-insights` in the shared Home layout.
+- A small delegated Analytics listener tracks the approved home interactions without framework hydration.
 - Vercel deployment uses the static build; `vercel.json` contains PDF cache headers.
 
 The shared Home layout provides canonical URLs, reciprocal hreflang links, Open Graph/Twitter metadata, and `Person`/`ProfilePage` JSON-LD. The Open Graph image is the existing `public/og-image.svg`; there is no reference to a missing PNG or Apple Touch Icon.

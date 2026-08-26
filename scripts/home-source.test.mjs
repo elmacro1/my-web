@@ -345,7 +345,7 @@ test("Home pages consume localized metadata and preserve page-family alternates"
   assert.match(cvLayout, /metadata\.canonical/);
 });
 
-test("Home analytics uses one shared GA4 event listener and named events", async () => {
+test("Home analytics uses one shared event listener and named events", async () => {
   const sources = await Promise.all([
     readSource("src/layouts/Layout.astro"),
     readSource("src/components/navbar/navbar.astro"),
@@ -359,8 +359,7 @@ test("Home analytics uses one shared GA4 event listener and named events", async
   const analytics = await readSource("src/components/analytics/analytics-events.astro");
 
   assert.match(layout, /AnalyticsEvents/);
-  assert.match(analytics, /gtag/);
-  assert.doesNotMatch(analytics, /@vercel\/analytics|track\s*\(/);
+  assert.match(analytics, /track/);
   assert.equal((analytics.match(/document\.addEventListener/g) ?? []).length, 1);
   for (const eventName of [
     "contact_cta_clicked",

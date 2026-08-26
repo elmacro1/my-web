@@ -4,7 +4,6 @@ import "@fontsource/geist-sans/500.css";
 import "@fontsource/geist-sans/600.css";
 import "@fontsource/geist-sans/700.css";
 import type { CVPageMetadata } from "../data/cv/types";
-import GoogleAnalytics from "../components/analytics/google-analytics.astro";
 import { SITE_URL } from "../consts";
 import styles from "./CVLayout.module.css";
 
@@ -29,7 +28,6 @@ const ogAlternateLocale = alternateLanguage
 <!doctype html>
 <html lang={metadata.lang}>
     <head>
-        <GoogleAnalytics />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={metadata.description} />

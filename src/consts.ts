@@ -1,7 +1,5 @@
 export const SITE_URL = "https://mgalvan.dev";
 
-export const GOOGLE_ANALYTICS_MEASUREMENT_ID = "G-7Y7QZ4BZ5H";
-
 export const CV_PATHS = {
   en: "/Marco-Galvan-CV-EN.pdf",
   es: "/Marco-Galvan-CV-ES.pdf",

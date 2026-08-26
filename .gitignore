@@ -26,5 +26,3 @@ pnpm-debug.log*
 .idea/
 
 docs/superpowers
-
-.worktrees/
