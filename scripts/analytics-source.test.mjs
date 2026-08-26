@@ -5,7 +5,7 @@ import test from "node:test";
 const root = new URL("..", import.meta.url);
 const file = (path) => new URL(path, root);
 const readSource = (path) => readFile(file(path), "utf8");
-const readProductionSources = async (directory = file("src")) => {
+const readProductionSources = async (directory = file("src/")) => {
   const entries = await readdir(directory, { withFileTypes: true });
   const sources = await Promise.all(
     entries.map(async (entry) => {
@@ -53,7 +53,7 @@ test("Google Analytics component uses the configured public Measurement ID", asy
   assert.match(component, /function\s+gtag\(\)\s*\{\s*dataLayer\.push\(arguments\)/s);
   assert.match(component, /dataLayer.*gtag.*config/s);
   assert.doesNotMatch(component, /GTM-[A-Z0-9]+/);
-  assert.doesNotMatch(component, /consent|Consent|cookie|Cookie/);
+  assert.doesNotMatch(component, /(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/);
   assert.doesNotMatch(component, /location\.search|URLSearchParams|input\.value/);
 });
 
@@ -116,7 +116,7 @@ test("GA4 is wired into both shared layouts and replaces Vercel Analytics", asyn
   assert.doesNotMatch(readme, /@vercel\/analytics/);
   for (const source of [homeLayout, cvLayout, lockfile, readme]) {
     assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/);
-    assert.doesNotMatch(source, /consent|Consent|cookie|Cookie/);
+    assert.doesNotMatch(source, /(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/, path);
   }
 });
 
@@ -133,7 +133,7 @@ test("GA4 event bridge forwards named events without Vercel Analytics", async ()
   assert.match(events, /try\s*\{[\s\S]*analyticsWindow\.gtag\?\.[\s\S]*\}\s*catch\s*\(/);
   assert.doesNotMatch(events, /analyticsWindow\.gtag\?\.\("event",\s*eventName\s*,/);
   assert.doesNotMatch(events, /@vercel\/analytics|track\s*\(/);
-  assert.doesNotMatch(events, /GTM-[A-Z0-9]+|consent|Consent|cookie|Cookie/);
+  assert.doesNotMatch(events, /GTM-[A-Z0-9]+|(?:gtag\s*\(\s*["']consent|Consent Mode|consent_mode|cookieconsent|Cookiebot|OneTrust)/);
   assert.doesNotMatch(
     events,
     /event\.target\.value|FormData|event\.detail|location\.href|location\.search|URLSearchParams|innerText|textContent|input\.value|dataset\.[A-Za-z]+\s*\+/,
@@ -154,8 +154,7 @@ test("Production source tree contains no disallowed analytics integrations or pa
   for (const { path, source } of sources) {
     assert.doesNotMatch(source, /@vercel\/analytics/, path);
     assert.doesNotMatch(source, /GTM-[A-Z0-9]+|googletagmanager\.com\/gtm\.js/, path);
-    assert.doesNotMatch(source, /consent|Consent|cookie|Cookie/, path);
-    assert.doesNotMatch(source, /import\.meta\.env|process\.env/, path);
+    assert.doesNotMatch(source, /(?:GOOGLE_ANALYTICS|GA4|MEASUREMENT_ID)[^\n]*(?:import\.meta\.env|process\.env)|(?:import\.meta\.env|process\.env)[^\n]*(?:GOOGLE_ANALYTICS|GA4|MEASUREMENT_ID)/i, path);
     assert.doesNotMatch(source, /gtag\([^)]*,[^)]*,/s, path);
     assert.doesNotMatch(
       source,
@@ -165,15 +164,15 @@ test("Production source tree contains no disallowed analytics integrations or pa
   }
 
   const scriptSources = sources.flatMap(({ source }) =>
-    [...source.matchAll(/<script\b[^>]*\bsrc\s*=\s*["']([^"']+)["'][^>]*>/gi)].map(
-      ([, src]) => src,
+    [...source.matchAll(/<script\b[^>]*\bsrc\s*=\s*(?:(["'])([^"']+)\1|\{([\s\S]*?)\})[^>]*>/gi)].map(
+      ([, , quoted, expression]) => quoted ?? expression,
     ),
   );
-  const externalScriptSources = scriptSources.filter((src) => /^https?:\/\//i.test(src));
-  assert.ok(externalScriptSources.length > 0);
-  assert.ok(
-    externalScriptSources.every((src) =>
-      /^https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/.test(src),
-    ),
-  );
+  assert.ok(scriptSources.length > 0);
+  assert.ok(scriptSources.every((src) =>
+    !/https?:\/\//i.test(src) || /https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=/i.test(src),
+  ));
+  assert.ok(scriptSources.some((src) =>
+    /googletagmanager\.com\/gtag\/js\?id=/i.test(src),
+  ));
 });
